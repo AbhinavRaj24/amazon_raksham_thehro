@@ -1,0 +1,15 @@
+# duplicates of thehro-complete-code/
+THEHRO_ALL_CODE.md
+thehro-complete-code.zip
+/THEHRO_PIPELINE_AND_DATA.md
+
+# organisers' brief, not our work
+Amazon IITD-1.pdf
+
+# deck source: the submitted PDF is the record
+thehro-complete-code/deck_source/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/

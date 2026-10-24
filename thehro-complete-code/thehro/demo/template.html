@@ -1,0 +1,787 @@
+<title>Thehro Scam Guard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans+Devanagari:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: an app shell. Scenario rail | phone stage | "what Thehro saw" inspector. Stacks on narrow screens. */
+:root {
+  --bg: #f2f5f3;
+  --surface: #ffffff;
+  --sunk: #e8eeeb;
+  --ink: #14201b;
+  --muted: #56665f;
+  --line: #d6dfdb;
+  --accent: #0d6a54;
+  --accent-ink: #ffffff;
+  --accent-soft: #d9eee6;
+  --t0: #2e7a4c; --t0-soft: #e0efe5;
+  --t1: #2a5f9e; --t1-soft: #e1eaf6;
+  --t2: #9a6208; --t2-soft: #f6ebd3;
+  --t3: #b84d0c; --t3-soft: #f8e2d3;
+  --t4: #ad2219; --t4-soft: #f7dcd9;
+  --phone: #121916;
+  --screen: #ffffff;
+  --screen-sunk: #f1f4f2;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "IBM Plex Sans", "IBM Plex Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-deva: "IBM Plex Sans Devanagari", "Noto Sans Devanagari", "Mangal", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1210; --surface: #141c19; --sunk: #1a2420; --ink: #e3ebe7; --muted: #98aaa2; --line: #28352f;
+    --accent: #47b893; --accent-ink: #06130e; --accent-soft: #163128;
+    --t0: #5cc086; --t0-soft: #142a1d; --t1: #74a6e8; --t1-soft: #162338;
+    --t2: #e2a640; --t2-soft: #2f2511; --t3: #f28b4c; --t3-soft: #341f12; --t4: #f1736a; --t4-soft: #381816;
+    --phone: #000000; --screen: #0f1513; --screen-sunk: #18211d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1210; --surface: #141c19; --sunk: #1a2420; --ink: #e3ebe7; --muted: #98aaa2; --line: #28352f;
+  --accent: #47b893; --accent-ink: #06130e; --accent-soft: #163128;
+  --t0: #5cc086; --t0-soft: #142a1d; --t1: #74a6e8; --t1-soft: #162338;
+  --t2: #e2a640; --t2-soft: #2f2511; --t3: #f28b4c; --t3-soft: #341f12; --t4: #f1736a; --t4-soft: #381816;
+  --phone: #000000; --screen: #0f1513; --screen-sunk: #18211d;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1320px; margin-inline: auto; padding-inline: 20px; padding-block: 0 40px; }
+@media (max-width: 520px) { .wrap { padding-inline: 16px; } }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+h2 { font-size: 22px; line-height: 1.2; }
+h3 { font-size: 16px; line-height: 1.3; }
+p { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--font-mono); font-size: 12px; }
+.muted { color: var(--muted); }
+.label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.num { font-variant-numeric: tabular-nums; }
+[lang="hi"], .deva { font-family: var(--font-deva); }
+
+/* ---------- top bar ---------- */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+.mark { width: 36px; height: 36px; border-radius: 9px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--font-deva); font-size: 22px; font-weight: 600; }
+.brand b { font-family: var(--font-display); font-size: 19px; display: block; line-height: 1.1; }
+.brand small { color: var(--muted); font-size: 12px; }
+.tabs { display: flex; gap: 4px; background: var(--sunk); padding: 4px; border-radius: 999px; }
+.tabs button { border: 0; background: transparent; padding: 6px 14px; border-radius: 999px; font-weight: 500; color: var(--muted); }
+.tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / 0.08); }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.lang button { border: 0; background: transparent; padding: 5px 12px; color: var(--muted); font-weight: 500; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.banner { font-size: 12.5px; color: var(--muted); padding-block: 10px 0; }
+
+/* ---------- play layout ---------- */
+.app { display: grid; grid-template-columns: 236px minmax(300px, 370px) minmax(0, 1fr); gap: 22px; padding-top: 18px; align-items: start; }
+@media (max-width: 1120px) { .app { grid-template-columns: minmax(300px, 370px) minmax(0, 1fr); } .rail { grid-column: 1 / -1; } }
+@media (max-width: 760px) { .app { grid-template-columns: minmax(0, 1fr); } }
+.rail { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.rail-group { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 1120px) {
+  .rail { flex-direction: row; gap: 18px; overflow-x: auto; padding-bottom: 6px; }
+  .rail-group { flex-direction: row; flex-wrap: nowrap; align-items: stretch; }
+  .rail-group .label { writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; }
+}
+.sc { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 9px 11px; display: flex; flex-direction: column; gap: 2px; min-width: 180px; }
+.sc:hover { border-color: var(--muted); }
+.sc[aria-current="true"] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.sc b { font-weight: 600; font-size: 13.5px; }
+.sc span { font-size: 12px; color: var(--muted); }
+.stage { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.story { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.story .who { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; padding: 2px 8px; border-radius: 999px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.chip.on { background: var(--accent-soft); color: var(--accent); }
+
+/* ---------- phone ---------- */
+.phone { width: 100%; max-width: 360px; margin-inline: auto; background: var(--phone); border-radius: 42px; padding: 11px; box-shadow: 0 24px 50px -24px rgb(0 0 0 / 0.45); }
+.screen { background: var(--screen); color: var(--ink); border-radius: 32px; height: 640px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.status { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px 6px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; gap: 8px; }
+.callpill { display: inline-flex; align-items: center; gap: 6px; background: var(--t0); color: #fff; border-radius: 999px; padding: 2px 9px; font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+.callpill.share { background: var(--t4); }
+.callpill i { width: 6px; height: 6px; border-radius: 50%; background: #fff; display: inline-block; animation: pulse 1.4s infinite; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+.appbar { display: flex; align-items: center; gap: 10px; padding: 8px 18px 12px; border-bottom: 1px solid var(--line); }
+.appbar .logo { width: 26px; height: 26px; border-radius: 7px; background: var(--sunk); display: grid; place-items: center; font-size: 12px; font-weight: 600; color: var(--muted); }
+.appbar b { font-size: 15px; }
+.appbar small { margin-left: auto; color: var(--muted); font-size: 11px; }
+.pay { flex: 1; display: flex; flex-direction: column; padding: 22px 20px 18px; gap: 16px; min-height: 0; }
+.payee { display: flex; gap: 12px; align-items: center; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--screen-sunk); display: grid; place-items: center; font-weight: 600; color: var(--muted); font-size: 13px; flex: none; }
+.payee b { display: block; font-size: 15px; }
+.payee span { font-size: 12px; color: var(--muted); }
+.amount { font-family: var(--font-display); font-size: 42px; font-weight: 600; text-align: center; padding-block: 18px 4px; font-variant-numeric: tabular-nums; }
+.via { text-align: center; color: var(--muted); font-size: 12px; }
+.spacer { flex: 1; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 12px 14px; font-weight: 600; width: 100%; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.ghost { background: transparent; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btns { display: flex; flex-direction: column; gap: 8px; }
+.note { border-radius: 12px; padding: 10px 12px; background: var(--t1-soft); color: var(--ink); border: 1px solid color-mix(in srgb, var(--t1) 30%, transparent); display: flex; flex-direction: column; gap: 2px; }
+.note b { color: var(--t1); font-size: 13px; }
+.note span { font-size: 12.5px; }
+.sheet { flex: 1; min-height: 0; background: var(--screen); display: flex; flex-direction: column; padding: 14px 18px 16px; gap: 12px; }
+.sheet-body { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 2px; }
+.sheet .bar { height: 6px; border-radius: 3px; flex: none; }
+.sheet h3 { font-size: 21px; line-height: 1.2; }
+.sheet .pattern { font-weight: 600; font-size: 14.5px; }
+.sheet .advice { font-size: 13.5px; color: var(--muted); }
+.sheet ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.sheet .hold { font-size: 12.5px; padding: 8px 10px; border-radius: 10px; background: var(--screen-sunk); }
+.skip { border: 0; background: none; color: var(--muted); font-size: 11.5px; text-decoration: underline; padding: 2px; align-self: center; }
+.done { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 10px; padding: 24px; }
+.tick { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-size: 30px; color: #fff; }
+.pin { display: grid; grid-template-columns: repeat(4, 14px); gap: 14px; justify-content: center; padding: 10px; }
+.pin i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--muted); }
+.pin i.f { background: var(--ink); border-color: var(--ink); }
+.timeline { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.tl { font-size: 11.5px; border-radius: 8px; padding: 4px 8px; background: var(--sunk); color: var(--muted); display: flex; gap: 6px; align-items: center; font-variant-numeric: tabular-nums; }
+.tl.cur { outline: 2px solid var(--ink); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); display: inline-block; }
+
+/* ---------- inspector ---------- */
+.inspect { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.panel-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.panel-h .label { margin-left: auto; }
+.fams { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 980px) { .fams { grid-template-columns: minmax(0, 1fr); } }
+.fam { border: 1px solid var(--line); border-radius: 9px; padding: 10px 11px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.fam.el { border-color: color-mix(in srgb, var(--t2) 55%, var(--line)); }
+.fam-h { display: flex; align-items: center; gap: 8px; }
+.fam-h b { font-size: 13.5px; }
+.fam-h .chip { margin-left: auto; }
+.chip.el { background: var(--t2-soft); color: var(--t2); }
+.facts { display: flex; flex-direction: column; gap: 3px; font-size: 12px; }
+.fact { display: flex; justify-content: space-between; gap: 8px; }
+.fact span:first-child { color: var(--muted); }
+.fact span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.fact.hot span:last-child { color: var(--t2); font-weight: 600; }
+.src { font-size: 11px; color: var(--muted); }
+.scale { position: relative; height: 26px; }
+.scale .track { position: absolute; left: 0; right: 0; top: 9px; height: 6px; border-radius: 3px; background: var(--sunk); }
+.scale .fill { position: absolute; left: 0; top: 9px; height: 6px; border-radius: 3px; background: var(--muted); }
+.scale .tick { position: absolute; top: 4px; width: 2px; height: 16px; background: var(--ink); opacity: 0.55; }
+.scale .tick span { position: absolute; top: 15px; transform: translateX(-50%); font-size: 10px; white-space: nowrap; color: var(--muted); }
+.scale .val { position: absolute; top: 5px; width: 14px; height: 14px; border-radius: 50%; transform: translateX(-50%); border: 2px solid var(--surface); }
+.ladder { display: flex; flex-direction: column; gap: 6px; }
+.rung { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; align-items: start; font-size: 12.5px; }
+.rung .ok { width: 20px; height: 20px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 700; background: var(--sunk); color: var(--muted); }
+.rung.yes .ok { color: #fff; }
+.rung b { font-weight: 600; }
+.verdict { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 9px; }
+.verdict b { font-family: var(--font-display); font-size: 18px; }
+.reasons { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.reasons li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; font-size: 12.5px; align-items: baseline; }
+.lr { font-size: 11px; font-family: var(--font-mono); background: var(--sunk); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+.case { border: 1px dashed color-mix(in srgb, var(--t4) 60%, var(--line)); border-radius: 9px; padding: 12px; display: flex; flex-direction: column; gap: 8px; background: color-mix(in srgb, var(--t4-soft) 45%, var(--surface)); }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; font-size: 12px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+pre.json { margin: 0; background: var(--sunk); border-radius: 8px; padding: 10px; font-family: var(--font-mono); font-size: 11px; line-height: 1.45; max-height: 240px; overflow: auto; white-space: pre; }
+details summary { cursor: pointer; font-size: 12.5px; font-weight: 500; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 980px) { .two { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- results ---------- */
+.res { display: flex; flex-direction: column; gap: 18px; padding-top: 18px; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 900px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.kpi .big { font-family: var(--font-display); font-size: 34px; font-weight: 600; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.kpi p { font-size: 12.5px; color: var(--muted); }
+.tbl-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 180px; }
+th { font-weight: 500; color: var(--muted); font-size: 11.5px; }
+tr.us td { font-weight: 600; background: var(--accent-soft); }
+.chart { width: 100%; height: auto; display: block; }
+.chart text { fill: var(--muted); font-family: var(--font-body); font-size: 11px; }
+.chart .ax { stroke: var(--line); }
+.caveat { font-size: 12.5px; color: var(--muted); }
+.caveat li { margin-bottom: 4px; }
+
+/* ---------- how ---------- */
+.flow { display: flex; flex-direction: column; gap: 10px; }
+.row { display: grid; gap: 10px; }
+.row.r3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.row.r2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .row.r3, .row.r2 { grid-template-columns: minmax(0, 1fr); } }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; }
+.box b { font-size: 13.5px; }
+.box.acc { border-color: var(--accent); }
+.arrow { text-align: center; color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .callpill i { animation: none; } }
+</style>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">ठ</div>
+      <div><b>Thehro</b><small>ठहरो, "wait": a scam-journey guard for UPI and bank apps</small></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="tab-play" aria-selected="true" data-tab="play">Play a journey</button>
+      <button role="tab" id="tab-results" aria-selected="false" data-tab="results">Results</button>
+      <button role="tab" id="tab-how" aria-selected="false" data-tab="how">How it decides</button>
+    </div>
+    <div class="lang" aria-label="Language of the customer's screen">
+      <button id="lang-en" aria-pressed="true" data-lang="en">EN</button>
+      <button id="lang-hi" aria-pressed="false" data-lang="hi" class="deva">हिं</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="banner" id="banner"></p>
+
+  <section id="play" role="tabpanel" aria-labelledby="tab-play">
+    <div class="app">
+      <nav class="rail" id="rail" aria-label="Scenarios"></nav>
+      <div class="stage">
+        <div class="story" id="story"></div>
+        <div class="phone"><div class="screen" id="screen"></div></div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+      <div class="inspect" id="inspect"></div>
+    </div>
+  </section>
+
+  <section id="results" role="tabpanel" aria-labelledby="tab-results" hidden></section>
+  <section id="how" role="tabpanel" aria-labelledby="tab-how" hidden></section>
+</main>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(function () {
+"use strict";
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const R = DATA.results, H = R.headline, T = H.thresholds, POL = H.policy;
+const WF = {
+  investment: "Fake trading / IPO", digital_arrest: "Digital arrest", task: "Task / part-time job",
+  customer_care: "Fake customer care", marketplace: "Marketplace 'scan to receive'",
+  voice_clone: "Cloned voice of a relative", loan_fee: "Fake loan fee (new type)"
+};
+const LANG_NAME = { hi: "Hindi", en: "English", ta: "Tamil", te: "Telugu", bn: "Bengali", mr: "Marathi", kn: "Kannada", gu: "Gujarati" };
+const TIERS = ["Allow", "Note", "Pause and explain", "Trusted check", "Hold for review"];
+const TV = i => `var(--t${i})`, TS = i => `var(--t${i}-soft)`;
+const UI = {
+  en: { send: "Send money", pay: "Pay", payAnyway: "Pay anyway", cancel: "Cancel", checking: "Checking this payment…",
+        pin: "Enter UPI PIN", paid: "Paid", stopped: "Payment cancelled", kept: "You kept", via: "via", newp: "New payee",
+        oncall: "On call", unknown: "unknown number", sharing: "Screen shared", next: "Next request", end: "See how it ended",
+        why: "Why we're asking", cont: s => s > 0 ? `Continue (${s} s)` : "Continue", skip: "Skip the wait (demo only)",
+        trustedSent: "Request sent to your trusted person", trustedSees: "They see the amount, the payee and the warning signs, and can approve or decline.",
+        declined: "Your trusted person declined. Payment cancelled.", noTrusted: "No trusted person is set up. Wait one hour, or call your bank.",
+        bankCall: "Call your bank on the number printed on your card or saved in this app, never a number someone gave you.",
+        officer: "A bank fraud officer is on the line", officerSays: "They explain the warning signs and ask who asked you to pay.",
+        iCancel: "I'll cancel it", release: "It's genuine, release it", waited: "One hour later" },
+  hi: { send: "पैसे भेजें", pay: "भुगतान करें", payAnyway: "फिर भी भुगतान करें", cancel: "रद्द करें", checking: "इस भुगतान की जाँच हो रही है…",
+        pin: "UPI PIN डालें", paid: "भुगतान हो गया", stopped: "भुगतान रद्द", kept: "आपके बचे", via: "माध्यम:", newp: "नया प्राप्तकर्ता",
+        oncall: "कॉल पर", unknown: "अनजान नंबर", sharing: "स्क्रीन शेयर हो रही है", next: "अगला अनुरोध", end: "देखें आगे क्या हुआ",
+        why: "हम क्यों पूछ रहे हैं", cont: s => s > 0 ? `जारी रखें (${s} सेकंड)` : "जारी रखें", skip: "इंतज़ार छोड़ें (केवल डेमो)",
+        trustedSent: "आपके भरोसेमंद व्यक्ति को अनुरोध भेजा गया", trustedSees: "वे रकम, प्राप्तकर्ता और चेतावनी के संकेत देखकर मंज़ूरी दे सकते हैं या मना कर सकते हैं।",
+        declined: "आपके भरोसेमंद व्यक्ति ने मना कर दिया। भुगतान रद्द।", noTrusted: "कोई भरोसेमंद व्यक्ति नहीं जुड़ा है। एक घंटा रुकें या अपने बैंक को कॉल करें।",
+        bankCall: "अपने बैंक को कार्ड पर छपे या इस ऐप में सेव नंबर पर कॉल करें, किसी के दिए नंबर पर नहीं।",
+        officer: "बैंक का धोखाधड़ी अधिकारी लाइन पर है", officerSays: "वे चेतावनी के संकेत समझाते हैं और पूछते हैं कि भुगतान करने को किसने कहा।",
+        iCancel: "मैं रद्द करूँगा/करूँगी", release: "यह सही है, भुगतान करें", waited: "एक घंटे बाद" }
+};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const inr = x => "₹" + Math.round(x).toLocaleString("en-IN");
+const pct = (x, d = 0) => (x * 100).toFixed(d) + "%";
+const f1 = x => x == null ? "–" : (x >= 10 ? Math.round(x).toString() : (Math.round(x * 10) / 10).toString());
+const yn = x => x ? "yes" : "no";
+const BAND = ["none", "medium", "high", "very high"];
+
+let lang = "en";
+let cur = null;   // { sc, i, phase, paid, timer, sub }
+
+// ---------------------------------------------------------------- scenario rail
+function renderRail() {
+  const scams = DATA.scenarios.filter(s => s.kind === "scam");
+  const gen = DATA.scenarios.filter(s => s.kind === "genuine");
+  const item = s => {
+    const sub = s.kind === "scam" ? `${s.steps.length} payment${s.steps.length > 1 ? "s" : ""} · ${s.total_text}` : s.steps[0].amount_text;
+    return `<button class="sc" data-id="${s.id}" aria-current="${cur && cur.sc.id === s.id}"><b>${esc(s.kind === "scam" ? (WF[s.id] || s.title) : s.title)}</b><span>${esc(sub)}</span></button>`;
+  };
+  $("#rail").innerHTML = `
+    <div class="rail-group"><span class="label">Scams (test weeks)</span>${scams.map(item).join("")}</div>
+    <div class="rail-group"><span class="label">Genuine payments</span>${gen.map(item).join("")}</div>`;
+  $("#rail").querySelectorAll(".sc").forEach(b => b.addEventListener("click", () => start(b.dataset.id)));
+}
+
+function start(id) {
+  if (cur && cur.timer) clearInterval(cur.timer);
+  const sc = DATA.scenarios.find(s => s.id === id);
+  cur = { sc, i: 0, phase: "ready", paid: 0, timer: null, sub: null, outcome: null };
+  renderRail(); renderStory(); renderAll();
+}
+
+function renderStory() {
+  const sc = cur.sc, p = sc.persona;
+  const chips = [
+    `${p.age_band} yrs`, `${p.segment}`, `${p.region}`, `prefers ${LANG_NAME[p.lang] || p.lang}`,
+  ].map(c => `<span class="chip">${esc(c)}</span>`).join("") +
+    `<span class="chip ${p.consent ? "on" : ""}">${p.consent ? "shares call and screen signals" : "has not opted in to call signals"}</span>` +
+    `<span class="chip ${p.trusted_contact ? "on" : ""}">${p.trusted_contact ? "trusted person on file" : "no trusted person"}</span>`;
+  const head = sc.kind === "scam" ? `${esc(WF[sc.id] || sc.title)}` : esc(sc.title);
+  $("#story").innerHTML = `<div class="panel-h"><h3>${head}</h3><span class="label">${sc.kind === "scam" ? "scam journey" : "genuine payment"}</span></div>
+    <p>${esc(sc.story)}</p><div class="who">${chips}</div>`;
+}
+
+// ---------------------------------------------------------------- phone
+function step() { return cur.sc.steps[cur.i]; }
+function ui() { return UI[lang]; }
+
+function statusBar(st) {
+  const f = st.features, t = st.payment.time.split("· ")[1] || "";
+  let pill = "";
+  if (st.consent && f.screen_share) pill = `<span class="callpill share"><i></i>${ui().sharing}</span>`;
+  else if (st.consent && f.on_call) pill = `<span class="callpill"><i></i>${ui().oncall}${f.caller_unknown ? " · " + ui().unknown : ""} · ${Math.round(f.call_min)}m</span>`;
+  return `<div class="status"><span>${esc(t)}</span>${pill}<span>4G ▮▮▮</span></div>`;
+}
+function appBar() {
+  return `<div class="appbar"><div class="logo">B</div><b ${lang === "hi" ? 'class="deva"' : ""}>${ui().send}</b><small>Your bank app (demo)</small></div>`;
+}
+function payeeBlock(st) {
+  const f = st.features;
+  const newp = f.is_new_payee ? ` · ${ui().newp}` : "";
+  return `<div class="payee"><div class="avatar">${esc(st.payment.payee_ref.slice(-4))}</div><div><b>${esc(st.payment.payee_ref)}</b><span>${esc(st.payee_kind)} account${newp}</span></div></div>`;
+}
+
+function renderPhone() {
+  const st = step(), u = ui(), s = $("#screen");
+  const L = lang === "hi" ? ' lang="hi"' : "";
+  const base = statusBar(st) + appBar();
+  const payView = (extra = "", btns = `<button class="btn primary" id="b-pay">${u.pay} ${st.amount_text}</button>`) => `${base}
+    <div class="pay"${L}>${payeeBlock(st)}<div class="amount">${st.amount_text}</div><div class="via">${u.via} ${esc(st.payment.channel)}</div>
+    <div class="spacer"></div>${extra}<div class="btns">${btns}</div></div>`;
+
+  if (cur.phase === "ready") {
+    s.innerHTML = payView();
+    $("#b-pay").addEventListener("click", decide);
+  } else if (cur.phase === "checking") {
+    s.innerHTML = payView(`<p class="muted" style="text-align:center">${u.checking}</p>`, `<button class="btn primary" disabled>${u.pay} ${st.amount_text}</button>`);
+  } else if (cur.phase === "note") {
+    const m = st.message[lang];
+    s.innerHTML = payView(`<div class="note"><b>${esc(m.headline)}</b><span>${esc(m.note)}</span></div>`,
+      `<button class="btn primary" id="b-go">${u.payAnyway}</button><button class="btn ghost" id="b-stop">${u.cancel}</button>`);
+    $("#b-go").addEventListener("click", () => pinThenPaid());
+    $("#b-stop").addEventListener("click", () => stop("cancel"));
+  } else if (cur.phase === "warn") {
+    renderWarning(base, st, L);
+  } else if (cur.phase === "pin") {
+    s.innerHTML = `${base}<div class="done"${L}><b>${u.pin}</b><div class="pin"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></div><span class="muted">${st.amount_text} → ${esc(st.payment.payee_ref)}</span></div>`;
+  } else if (cur.phase === "paid") {
+    const last = cur.i === cur.sc.steps.length - 1;
+    const nxt = last ? "" : cur.sc.steps[cur.i + 1];
+    s.innerHTML = `${base}<div class="done"${L}><div class="tick" style="background:var(--t0)">✓</div><h3>${u.paid} ${st.amount_text}</h3>
+      <span class="muted">${esc(st.payment.payee_ref)}</span>
+      ${cur.sub ? `<span class="muted">${esc(cur.sub)}</span>` : ""}
+      <div class="spacer"></div>
+      <div class="btns" style="width:100%">${last ? `<button class="btn" id="b-next">${u.end}</button>`
+        : `<button class="btn primary" id="b-next">${u.next}: ${nxt.amount_text} · ${esc(nxt.payment.time)}</button>`}</div></div>`;
+    $("#b-next").addEventListener("click", () => { if (last) finish(); else { cur.i++; cur.phase = "ready"; cur.sub = null; cur.decided = false; renderAll(); } });
+  } else if (cur.phase === "stopped" || cur.phase === "end") {
+    renderEnd(base, L);
+  }
+}
+
+function renderWarning(base, st, L) {
+  const u = ui(), m = st.message[lang], k = st.tier, s = $("#screen");
+  const why = `<div><div class="label">${u.why}</div><ul>${m.why.map(w => `<li>${esc(w)}</li>`).join("")}</ul></div>`;
+  let body = "", btns = "";
+  if (cur.sub === "trusted") {
+    const ok = cur.sc.persona.trusted_contact;
+    body = `<h3>${u.trustedSent}</h3><p class="advice">${ok ? u.trustedSees : u.noTrusted}</p>`;
+    btns = ok ? `<button class="btn primary" id="b-declined">${u.declined}</button>` : `<button class="btn" id="b-wait">${m.actions.find(a => a.id === "wait").label}</button><button class="btn ghost" id="b-bank">${m.actions.find(a => a.id === "call_bank").label}</button>`;
+  } else if (cur.sub === "bank") {
+    body = `<h3>${k === 4 ? u.officer : m.actions.find(a => a.id === "call_bank").label}</h3><p class="advice">${k === 4 ? u.officerSays : u.bankCall}</p>`;
+    btns = k === 4 ? `<button class="btn primary" id="b-icancel">${u.iCancel}</button><button class="btn ghost" id="b-release">${u.release}</button>`
+                   : `<button class="btn primary" id="b-icancel">${u.cancel}</button>`;
+  } else {
+    body = `<h3>${esc(m.headline)}</h3>${m.hold_note ? `<p class="hold">${esc(m.hold_note)}</p>` : ""}
+      <p class="pattern">${esc(m.pattern)}</p><p class="advice">${esc(m.advice)}</p>${why}`;
+    btns = m.actions.map((a, j) => {
+      if (a.id === "continue") return `<button class="btn ghost" id="b-continue" disabled>${u.cont(30)}</button><button class="skip" id="b-skip">${u.skip}</button>`;
+      return `<button class="btn ${j === 0 ? "primary" : ""}" data-act="${a.id}">${esc(a.label)}</button>`;
+    }).join("");
+  }
+  s.innerHTML = `${base}<div class="sheet"${L}><div class="bar" style="background:${TV(k)}"></div><div class="sheet-body">${body}</div><div class="btns">${btns}</div></div>`;
+  s.querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act)));
+  const c = $("#b-continue");
+  if (c) {
+    let left = 30;
+    cur.timer = setInterval(() => { left--; c.textContent = u.cont(left); if (left <= 0) { clearInterval(cur.timer); c.disabled = false; } }, 1000);
+    c.addEventListener("click", () => act("continue"));
+    $("#b-skip").addEventListener("click", () => { clearInterval(cur.timer); c.disabled = false; c.textContent = u.cont(0); });
+  }
+  const on = (id, fn) => { const e = document.getElementById(id); if (e) e.addEventListener("click", fn); };
+  on("b-declined", () => stop("trusted"));
+  on("b-wait", () => { cur.sub = null; pinThenPaid(u.waited); });
+  on("b-bank", () => { cur.sub = "bank"; renderPhone(); });
+  on("b-icancel", () => stop(k === 4 ? "officer" : "bank"));
+  on("b-release", () => { cur.sub = null; pinThenPaid(); });
+}
+
+function decide() {
+  const st = step();
+  cur.phase = "checking"; renderPhone();
+  setTimeout(() => {
+    cur.decided = true;
+    if (st.tier === 0) pinThenPaid();
+    else if (st.tier === 1) cur.phase = "note";
+    else { cur.phase = "warn"; cur.sub = null; }
+    renderAll();
+  }, 450);
+}
+
+function act(a) {
+  if (cur.timer) clearInterval(cur.timer);
+  if (a === "cancel") return stop("cancel");
+  if (a === "continue") return pinThenPaid();
+  if (a === "trusted") { cur.sub = "trusted"; return renderPhone(); }
+  if (a === "wait") return pinThenPaid(ui().waited);
+  if (a === "call_bank") { cur.sub = "bank"; return renderPhone(); }
+}
+
+function pinThenPaid(sub) {
+  cur.phase = "pin"; cur.sub = sub || null; renderAll();
+  setTimeout(() => { cur.phase = "paid"; cur.paid += step().payment.amount; renderAll(); }, 700);
+}
+
+function stop(how) {
+  cur.phase = "stopped"; cur.outcome = how; renderAll();
+}
+function finish() { cur.phase = "end"; renderAll(); }
+
+function renderEnd(base, L) {
+  const sc = cur.sc, u = ui(), s = $("#screen");
+  if (sc.kind === "genuine") {
+    const st = sc.steps[0];
+    const txt = cur.phase === "stopped" ? `${u.stopped}` : `${u.paid} ${st.amount_text}`;
+    s.innerHTML = `${base}<div class="done"${L}><div class="tick" style="background:${cur.phase === "stopped" ? "var(--muted)" : "var(--t0)"}">${cur.phase === "stopped" ? "×" : "✓"}</div><h3>${txt}</h3>
+      <p class="muted" lang="en">${st.tier < 2 ? "Genuine payment, no interruption." : (cur.phase === "stopped" ? "This payment was genuine, so cancelling it is the real cost of a false alarm. We assume about 8% of genuine customers give up after a pause." : "This payment was genuine. The warning cost the customer about 30 seconds. If no outside flag appears in 7 days, this payee counts as confirmed and stops triggering warnings.")}</p>
+      <div class="spacer"></div><button class="btn" id="b-again">Replay</button></div>`;
+  } else {
+    const kept = sc.total - cur.paid;
+    const head = cur.phase === "stopped" ? `${u.stopped}` : `${u.paid}: ${inr(cur.paid)}`;
+    s.innerHTML = `${base}<div class="done"${L}><div class="tick" style="background:${cur.phase === "stopped" ? "var(--t0)" : "var(--t4)"}">${cur.phase === "stopped" ? "✓" : "!"}</div>
+      <h3>${head}</h3>${kept > 0 ? `<p><b>${u.kept} ${inr(kept)}</b></p>` : ""}
+      <p class="muted" lang="en">The scam asked for ${sc.steps.length} payment${sc.steps.length > 1 ? "s" : ""}, ${sc.total_text} in total. ${cur.phase === "stopped" ? `You stopped at payment ${cur.i + 1}.` : "You paid every one."}</p>
+      <p class="muted" lang="en">Across many customers, with the response rates we assume, Thehro's warnings on this journey cut the expected loss from ${sc.total_text} to ${inr(sc.total - sc.expected_protected)}.</p>
+      <div class="spacer"></div><button class="btn" id="b-again">Replay</button></div>`;
+  }
+  $("#b-again").addEventListener("click", () => start(sc.id));
+}
+
+function renderTimeline() {
+  const sc = cur.sc;
+  $("#timeline").innerHTML = sc.steps.map((st, j) => {
+    const seen = j < cur.i || (j === cur.i && cur.decided && cur.phase !== "ready" && cur.phase !== "checking");
+    const col = seen ? TV(st.tier) : "var(--line)";
+    return `<span class="tl ${j === cur.i ? "cur" : ""}"><span class="dot" style="background:${col}"></span>${j + 1} · ${st.amount_text}${seen ? " · " + TIERS[st.tier] : ""}</span>`;
+  }).join("");
+}
+
+// ---------------------------------------------------------------- inspector
+const LO = 1e-4;
+function pos(v) { const x = Math.max(LO, Math.min(1, v)); return (Math.log10(x) - Math.log10(LO)) / (0 - Math.log10(LO)) * 100; }
+function scale(v, ticks, color) {
+  return `<div class="scale" aria-hidden="true"><div class="track"></div><div class="fill" style="width:${pos(v)}%;background:${color}"></div>
+    ${ticks.map(t => `<div class="tick" style="left:${pos(t[0])}%"><span>${esc(t[1])}</span></div>`).join("")}
+    <div class="val" style="left:${pos(v)}%;background:${color}"></div></div>`;
+}
+
+function famFacts(st, fam) {
+  const f = st.features;
+  if (fam === "journey") {
+    const recentSum = Math.pow(10, f.recent_payee_sum_7d_log || 0) - 1;
+    return [
+      ["New payee", f.n_prev_to_payee >= 50 ? "no, saved" : (f.is_new_payee ? "yes" : `no, ${f.n_prev_to_payee} before`), f.is_new_payee && f.amt_vs_usual >= 5],
+      ["Amount vs usual", "×" + f1(f.amt_vs_usual), f.amt_vs_usual >= 5],
+      ["Series to new payees (7 d)", f.recent_payee_payments_7d ? `${f.recent_payee_payments_7d}, ${inr(recentSum)}` : "none", f.recent_payee_payments_7d >= 2],
+      ["Sent today vs usual", "×" + f1(f.push_out_24h_vs_usual), f.push_out_24h_vs_usual >= 10],
+      ["FD broken (48 h)", yn(f.fd_break_48h), !!f.fd_break_48h],
+      ["Credits from strangers", f.stranger_credits_24h ? String(f.stranger_credits_24h) : "none", f.stranger_credits_24h >= 1],
+    ];
+  }
+  if (fam === "payee") {
+    const inflow = Math.pow(10, f.payee_inflow_24h_log || 0) - 1;
+    return [
+      ["Opened", `${Math.max(1, Math.round(f.payee_age_days))} days ago`, f.payee_age_days < 30],
+      ["Idle before today", f.payee_idle_days >= 1 ? `${Math.round(f.payee_idle_days)} days` : "active today", f.payee_idle_days >= 90],
+      ["New payers (24 h)", String(f.payee_new_payers_24h), f.payee_new_payers_24h >= 3],
+      ["Money in (24 h)", inr(inflow), false],
+      ["Passed on (24 h)", f.payee_passthrough_24h == null ? "–" : pct(Math.min(1, f.payee_passthrough_24h)), f.payee_passthrough_24h >= 0.8 && f.payee_inflow_24h_log >= 3],
+      ["I4C suspect registry", yn(f.payee_registry), !!f.payee_registry],
+      ["DoT fraud-risk (FRI)", BAND[f.payee_fri_band] || "none", f.payee_fri_band >= 2],
+      ["Live mule network", f.payee_in_campaign ? `yes, ${f.payee_campaign_size} accounts` : "no", !!f.payee_in_campaign],
+    ];
+  }
+  if (!st.consent) return null;
+  return [
+    ["On a call", f.on_call ? (f.caller_unknown ? "yes, unknown number" : "yes, saved contact") + (f.call_ott ? ", internet call" : "") : "no", f.on_call && f.caller_unknown],
+    ["Call length", f.on_call ? `${Math.round(f.call_min)} min` : "–", f.on_call && f.caller_unknown && f.call_min >= 40],
+    ["Caller's FRI band", f.on_call ? (BAND[f.caller_fri_band] || "none") : "–", f.caller_fri_band >= 2],
+    ["Screen shared", yn(f.screen_share), !!f.screen_share],
+    ["Remote-access app", yn(f.remote_app), !!f.remote_app],
+    ["App switches", String(f.app_switches), f.app_switches >= 4],
+  ];
+}
+const FAM = {
+  journey: ["Journey", "bank's own records of this customer"],
+  payee: ["Payee", "NPCI / MuleHunter.AI risk, I4C registry, DoT FRI, live network flag"],
+  context: ["Context", "on-phone flags, only with consent; no audio, no messages"]
+};
+
+function renderInspect() {
+  const st = step(), sc = cur.sc, revealed = cur.decided && cur.phase !== "ready" && cur.phase !== "checking";
+  const fams = ["journey", "payee", "context"].map(k => {
+    const facts = famFacts(st, k), el = st.families[k];
+    const sc_ = st.scores["s_" + k];
+    const body = facts ? `${scale(sc_, [[T.family[k], "elevated"]], el ? "var(--t2)" : "var(--muted)")}
+      <div class="facts">${facts.map(r => `<div class="fact ${r[2] ? "hot" : ""}"><span>${esc(r[0])}</span><span>${esc(r[1])}</span></div>`).join("")}</div>`
+      : `<p class="muted" style="font-size:12px">Not shared: this customer has not opted in. The other two families still protect them, and this family simply doesn't vote.</p>`;
+    return `<div class="fam ${el ? "el" : ""}"><div class="fam-h"><b>${FAM[k][0]}</b><span class="chip ${el ? "el" : ""}">${facts ? (el ? "elevated" : "normal") : "off"}</span></div>
+      <span class="src">${esc(FAM[k][1])}</span>${body}</div>`;
+  }).join("");
+
+  const s = st.scores.s_fused, amt = st.payment.amount;
+  const holdOk = st.gate && st.payee_flag && s >= T.t4;
+  const nfam = Object.values(st.families).filter(Boolean).length;
+  const rung = (ok, name, rule) => `<div class="rung ${ok ? "yes" : ""}"><span class="ok" style="${ok ? `background:var(--ink)` : ""}">${ok ? "✓" : "–"}</span><span><b>${name}</b>: ${rule}</span></div>`;
+  const ladder = [
+    rung(s >= T.t1, "Note", `risk above the note line (genuine payments cross it 1 in 1,000)`),
+    rung(s >= T.t2, "Pause and explain", `risk above the pause line (genuine payments cross it 1 in 10,000)`),
+    rung(s >= T.t2 && st.gate && amt >= POL.trusted_min, "Trusted check", `pause, two families agree, and ${inr(POL.trusted_min)} or more`),
+    rung(holdOk && amt >= POL.hold_min, "Hold for review", `two families agree, an outside flag on the payee, risk above the hold line, ${inr(POL.hold_min)} or more`),
+  ].join("") + (st.escalated ? `<div class="rung yes"><span class="ok" style="background:var(--t3)">↑</span><span><b>Memory</b>: the customer continued past a warning in the last ${POL.memory_days} days, so the amount lines are waived and a note counts as a pause.</span></div>` : "");
+
+  const reasons = st.reasons.length ? `<ul class="reasons">${st.reasons.map(r => `<li><span class="lr" title="How much more often this appears in reported scams than in other payments">${f1(r.weight)}×</span><span ${lang === "hi" ? 'lang="hi"' : ""}>${esc(r[lang])}</span></li>`).join("")}</ul>` : `<p class="muted" style="font-size:12.5px">No warning signs above their lines.</p>`;
+  const advWhy = {
+    phone_control: "screen sharing or a remote-access app", authority_call: "a long call (40+ min) with an unknown number",
+    pay_to_unlock: "a growing series of payments, or small credits from strangers first", known_person: "a shorter call with an unknown number",
+    flagged_payee: "an outside flag on the payee", generic: "no single fact points to one kind of scam"
+  };
+  const decision = revealed ? `
+    <div class="panel"><div class="panel-h"><h3>Decision</h3><span class="label">before the PIN screen</span></div>
+      ${scale(s, [[T.t1, "note"], [T.t2, "pause"]], TV(st.tier))}
+      <p style="font-size:12.5px">Fused risk ${s.toFixed(3)} · ${nfam} of 3 families elevated · ${st.gate ? "two kinds of evidence agree" : "fewer than two families agree"}${st.payee_flag ? " · outside flag on payee" : ""}</p>
+      <div class="ladder">${ladder}</div>
+      <div class="verdict" style="background:${TS(st.tier)}"><span class="dot" style="background:${TV(st.tier)};width:12px;height:12px"></span><b style="color:${TV(st.tier)}">Tier ${st.tier}: ${TIERS[st.tier]}</b></div>
+    </div>
+    <div class="two">
+      <div class="panel"><div class="panel-h"><h3>What the customer is told</h3></div>${reasons}
+        ${st.tier >= 2 ? `<p style="font-size:12px" class="muted">Advice chosen from the facts: ${advWhy[st.advice]}. Never from a guess about the scam type.</p>` : ""}</div>
+      ${st.evidence ? evidencePanel(st) : `<div class="panel"><div class="panel-h"><h3>Evidence record</h3></div><p class="muted" style="font-size:12.5px">Written for every decision of tier 2 or above. This one was tier ${st.tier}, so only the usual payment log applies.</p></div>`}
+    </div>
+    ${st.tier === 4 ? casePanel(st) : ""}` :
+    `<div class="panel"><div class="panel-h"><h3>Decision</h3></div><p class="muted">Press <b>Pay</b> on the phone. Thehro decides in about ${Math.round(H.latency_ms.p50)} ms, before the PIN screen.</p></div>`;
+
+  $("#inspect").innerHTML = `<div class="panel"><div class="panel-h"><h3>What Thehro saw</h3><span class="label">payment ${cur.i + 1} of ${sc.steps.length} · ${esc(st.payment.time)}</span></div>
+    <div class="fams">${fams}</div></div>${decision}`;
+}
+
+function evidencePanel(st) {
+  const e = st.evidence;
+  return `<div class="panel"><div class="panel-h"><h3>Evidence record</h3><span class="label">#${e.seq}</span></div>
+    <dl class="kv"><dt>Tier</dt><dd>${e.body.decision.tier_name}</dd><dt>Families</dt><dd>${e.body.decision.families_elevated.join(", ")}</dd>
+    <dt>Reason codes</dt><dd class="mono">${e.body.reasons.join(", ")}</dd><dt>Hash</dt><dd class="mono">${e.hash.slice(0, 16)}…</dd>
+    <dt>Previous</dt><dd class="mono">${e.prev_hash.slice(0, 16)}…</dd><dt>Chain</dt><dd>${cur.sc.evidence_chain_ok === false ? "broken" : "verified"}</dd></dl>
+    <details><summary>Full record</summary><pre class="json">${esc(JSON.stringify(e, null, 1))}</pre></details></div>`;
+}
+function casePanel(st) {
+  const sc = cur.sc, d = sc.ncrp_draft;
+  const guess = st.workflow_guess ? `${WF[st.workflow_guess] || st.workflow_guess} (${pct(st.workflow_confidence)})` : "not sure";
+  return `<div class="case"><div class="panel-h"><h3>Bank review queue</h3><span class="label">case #${st.evidence ? st.evidence.seq : "–"} · call within 30 min</span></div>
+    <dl class="kv"><dt>Held</dt><dd>${st.amount_text}, this payment only. Nothing else on the account is frozen.</dd>
+    <dt>Why held</dt><dd>${Object.keys(st.families).filter(k => st.families[k]).join(" + ")} families agree; outside flag on the payee</dd>
+    <dt>Model's guess</dt><dd>${esc(guess)}, for the officer only, never shown to the customer</dd>
+    <dt>Officer's script</dt><dd>Call the registered number. Ask who asked for the payment and how they first got in touch. Never ask for the PIN or OTP.</dd>
+    <dt>Outcomes</dt><dd>Scam confirmed: cancel and pre-fill the 1930 / cybercrime.gov.in complaint. Genuine: release and mark the payee confirmed.</dd></dl>
+    ${d ? `<details><summary>Pre-filled complaint draft</summary><pre class="json">${esc(JSON.stringify(d, null, 1))}</pre></details>` : ""}</div>`;
+}
+
+function renderAll() { renderPhone(); renderTimeline(); renderInspect(); }
+
+// ---------------------------------------------------------------- results
+function renderResults() {
+  const rules = R.naive_rules, names = Object.keys(rules);
+  const rowsCmp = [["Thehro (tiers 2–4)", H]].concat(names.map(n => [n, rules[n]]));
+  const one = x => x > 0 ? "1 in " + Math.round(1 / x).toLocaleString("en-IN") : "–";
+  const cmp = rowsCmp.map(([n, r], j) => `<tr class="${j === 0 ? "us" : ""}"><td>${esc(n)}</td><td>${(r.genuine_t2plus_per_10k).toFixed(1)}</td>
+    <td>${pct(1 - r.customers_never_interrupted_share, 1)}</td><td>${pct(r.victims_warned)}</td><td>${pct(r.money_protected_share)}</td>
+    <td>${one(r.precision_t2_adjusted_rate)} – ${one(r.precision_t2_reported_rate)}</td></tr>`).join("");
+
+  const wf = R.per_workflow, lab = R.training_labels_by_workflow || {};
+  const wfRows = Object.keys(wf).map(k => { const r = wf[k]; return `<tr><td>${esc(WF[k] || k)}</td><td>${r.journeys}</td><td>${lab[k] || 0}</td><td>${inr(r.median_loss)}</td>
+    <td>${pct(r.victims_warned)}</td><td>${pct(r.warned_at_first_payment)}</td><td>${pct(r.money_protected_share)}</td></tr>`; }).join("");
+
+  const lo = R.held_out_workflows || {};
+  const st = R.stress_tests;
+  const fair = R.fairness.age_band, fairC = R.fairness.consent;
+  const fairRows = Object.keys(fair).map(k => `<tr><td>${esc(k)}</td><td>${fair[k].victim_journeys}</td><td>${pct(fair[k].victims_warned)}</td><td>${pct(fair[k].money_protected_share)}</td><td>${fair[k].genuine_interruptions_per_10k.toFixed(2)}</td></tr>`).join("")
+    + Object.keys(fairC).map(k => `<tr><td>${esc(k)} (call signals)</td><td>${fairC[k].victim_journeys}</td><td>${pct(fairC[k].victims_warned)}</td><td>${pct(fairC[k].money_protected_share)}</td><td>${fairC[k].genuine_interruptions_per_10k.toFixed(2)}</td></tr>`).join("");
+  const C = R.campaigns;
+
+  $("#results").innerHTML = `<div class="res">
+    <div class="kpis">
+      <div class="kpi"><span class="label">Victims warned</span><span class="big">${pct(H.victims_warned)}</span><p>of ${H.journeys} scam journeys in the test weeks got a tier 2+ warning; ${pct(H.victims_warned_first_payment)} at their first payment.</p></div>
+      <div class="kpi"><span class="label">Money protected (modelled)</span><span class="big">${pct(H.money_protected_share)}</span><p>expected, with assumed response rates; ${pct(H.money_protected_share_if_half_as_many_stop)} if only half as many victims stop.</p></div>
+      <div class="kpi"><span class="label">False interruptions</span><span class="big">${H.genuine_t2plus_per_10k.toFixed(1)}</span><p>per 10,000 genuine payments (budget 1.0). About one false warning per customer every ${Math.round(1 / H.interruptions_per_customer_per_year)} years.</p></div>
+      <div class="kpi"><span class="label">Real scams per warning</span><span class="big">${one(H.precision_t2_adjusted_rate)}</span><p>at India's estimated true UPI fraud rate (${one(H.precision_t2_reported_rate)} at the reported rate). Blanket ₹10k rule: ${one(rules[names[0]].precision_t2_adjusted_rate)}.</p></div>
+    </div>
+
+    <div class="panel"><div class="panel-h"><h2>Against simple rules</h2><span class="label">test weeks · ${H.test_customer_payments.toLocaleString("en-IN")} customer payments · ${H.customers.toLocaleString("en-IN")} customers</span></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Approach</th><th>Genuine payments interrupted per 10,000</th><th>Customers interrupted (18 days)</th><th>Victims warned</th><th>Money protected</th><th>Real scams per warning</th></tr></thead><tbody>${cmp}</tbody></table></div>
+      <p class="caveat">"Real scams per warning" converts the test weeks' rates to India's UPI fraud rate: ${(H.reported_fraud_rate * 1e6).toFixed(1)} per million payments reported (Lok Sabha, FY 2024-25), about ${(H.adjusted_fraud_rate * 1e6).toFixed(1)} per million once unreported cases are counted. The synthetic world holds ${Math.round(H.sim_enrichment_vs_adjusted)}–${Math.round(H.sim_enrichment_vs_reported)}× more scams so there are enough to measure.</p>
+    </div>
+
+    <div class="two">
+      <div class="panel"><div class="panel-h"><h2>Choosing the budget</h2></div>${curveSVG()}
+        <p class="caveat">Each point moves the pause line. More interruptions buy little: going from 1 to 8 per 10,000 warns ${pct(R.budget_curve["0.001"].victims_warned - H.victims_warned)} more victims.</p></div>
+      <div class="panel"><div class="panel-h"><h2>If scammers adapt</h2><span class="label">model not retrained</span></div>${barsSVG(Object.keys(st).map(k => [shortName(k), st[k].victims_warned, st[k].money_protected_share]), ["Victims warned", "Money protected"])}
+        <p class="caveat">Losing outside flags on the payee hurts most. That is why the label-free network detector matters: it needs no complaints.</p></div>
+    </div>
+
+    <div class="panel"><div class="panel-h"><h2>By scam type</h2></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Scam type</th><th>Test journeys</th><th>Training labels</th><th>Median loss</th><th>Victims warned</th><th>Warned at 1st payment</th><th>Money protected</th></tr></thead><tbody>${wfRows}</tbody></table></div>
+      <p class="caveat">The fake loan fee type first appears in week 5. The model saw only ${lab.loan_fee || 0} reported cases of it and still warned ${pct(wf.loan_fee ? wf.loan_fee.victims_warned : 0)} of its victims.</p></div>
+
+    <div class="two">
+      <div class="panel"><div class="panel-h"><h2>New scam types</h2><span class="label">each type hidden from training</span></div>
+        ${Object.keys(lo).length ? barsSVG(Object.keys(lo).map(k => [WF[k] || k, wf[k].victims_warned, lo[k].victims_warned_hidden]), ["Seen in training", "Hidden from training"]) : "<p class='muted'>Not run.</p>"}
+        <p class="caveat">With a scam type removed from training entirely, Thehro still warns most of its victims, because the warning signs are shared: new payee, rising amounts, mule-like payee, pressure on a call.</p></div>
+      <div class="panel"><div class="panel-h"><h2>Mule networks, found without complaints</h2></div>
+        <dl class="kv"><dt>Campaigns found</dt><dd>${C.flagged} of ${C.campaigns} (${pct(C.flagged_share)})</dd>
+        <dt>Time to find</dt><dd>median ${Math.round(C.median_hours_to_flag)} hours after the first victim paid</dd>
+        <dt>Before any complaint</dt><dd>${pct(C.flagged_before_first_complaint_share)} of campaigns; median ${Math.round(C.median_lead_hours_vs_first_complaint)} hours ahead of the first one</dd>
+        <dt>False networks</dt><dd>${C.false_components} of ${C.components} flagged groups had no scam account</dd></dl>
+        <p class="caveat">The detector links accounts that receive from new payers and pass money on within minutes. In production this runs where both ends of a payment are visible (NPCI, IDPIC) and banks receive the flag.</p></div>
+    </div>
+
+    <div class="two">
+      <div class="panel"><div class="panel-h"><h2>Fairness check</h2><span class="label">age, language and region are never model inputs</span></div>
+        <div class="tbl-wrap"><table><thead><tr><th>Group</th><th>Victim journeys</th><th>Warned</th><th>Money protected</th><th>False alarms /10k</th></tr></thead><tbody>${fairRows}</tbody></table></div></div>
+      <div class="panel"><div class="panel-h"><h2>Speed and limits</h2></div>
+        <dl class="kv"><dt>Decision time</dt><dd>${H.latency_ms.p50.toFixed(0)} ms median, ${H.latency_ms.p99.toFixed(0)} ms p99 (Python, 2 vCPU, all models, reasons and message)</dd>
+        <dt>Holds</dt><dd>${H.genuine_t4plus} genuine payments held in ${H.test_customer_payments.toLocaleString("en-IN")}; ${pct(H.scam_payments_t4plus)} of scam payments held</dd>
+        <dt>Escalations</dt><dd>${H.escalated_scam} scam and ${H.escalated_genuine} genuine payments escalated after the customer continued past a warning</dd></dl>
+        <ul class="caveat"><li>All data is synthetic, built from public reports of how these scams run. Real-world numbers will be lower; the pilot plan measures them.</li>
+        <li>Money protected depends on how many warned victims stop. Those rates are assumptions, anchored on published trials, to be tested in an A/B pilot.</li>
+        <li>Thresholds were set on one validation week and tested on the next 18 days with no retraining.</li></ul></div>
+    </div>
+  </div>`;
+}
+
+function curveSVG() {
+  const W = 560, Hh = 300, m = { l: 48, r: 16, t: 14, b: 40 };
+  const xs = v => m.l + (Math.log10(v) - Math.log10(0.1)) / (Math.log10(200) - Math.log10(0.1)) * (W - m.l - m.r);
+  const ys = v => m.t + (1 - v) * (Hh - m.t - m.b);
+  const cv = Object.values(R.budget_curve);
+  const path = cv.map((p, j) => `${j ? "L" : "M"}${xs(p.genuine_per_10k).toFixed(1)},${ys(p.victims_warned).toFixed(1)}`).join("");
+  const xt = [0.1, 1, 10, 100], yt = [0, 0.25, 0.5, 0.75, 1];
+  const rules = R.naive_rules;
+  const short = ["First ₹10k+ to new payee", "…only on an unknown call", "Payee on a fraud list"];
+  return `<svg class="chart" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Victims warned against genuine interruptions per 10,000 payments">
+    ${yt.map(v => `<line class="ax" x1="${m.l}" x2="${W - m.r}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${m.l - 8}" y="${ys(v) + 4}" text-anchor="end">${v * 100}%</text>`).join("")}
+    ${xt.map(v => `<text x="${xs(v)}" y="${Hh - m.b + 16}" text-anchor="middle">${v}</text>`).join("")}
+    <text x="${(W + m.l) / 2}" y="${Hh - 6}" text-anchor="middle">Genuine payments interrupted per 10,000 (log scale)</text>
+    <path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+    ${cv.map(p => `<circle cx="${xs(p.genuine_per_10k)}" cy="${ys(p.victims_warned)}" r="3.5" fill="var(--accent)"/>`).join("")}
+    <circle cx="${xs(H.genuine_t2plus_per_10k)}" cy="${ys(H.victims_warned)}" r="7" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <text x="${xs(H.genuine_t2plus_per_10k) + 10}" y="${ys(H.victims_warned) + 18}" style="fill:var(--accent);font-weight:600">Thehro: 1 per 10,000</text>
+    ${Object.values(rules).map((r, j) => `<rect x="${xs(r.genuine_t2plus_per_10k) - 5}" y="${ys(r.victims_warned) - 5}" width="10" height="10" fill="var(--t3)"/>
+      <text x="${xs(r.genuine_t2plus_per_10k) + (j === 0 ? -8 : 9)}" y="${ys(r.victims_warned) + 4}" text-anchor="${j === 0 ? "end" : "start"}" style="fill:var(--t3)">${short[j]}</text>`).join("")}
+  </svg>`;
+}
+
+const SHORT = { "As simulated": "As simulated", "Scammers stop": "No calls or screen sharing", "Fresh, clean": "Clean new mule every time",
+  "No FD break": "No FD break, no small credits", "All three": "All three at once" };
+const shortName = k => { for (const p in SHORT) if (k.startsWith(p)) return SHORT[p]; return k; };
+function barsSVG(rows, legend) {
+  const W = 560, rowH = 34, m = { l: 200, r: 44, t: 26, b: 8 }, Hh = m.t + rows.length * rowH + m.b;
+  const xs = v => m.l + v * (W - m.l - m.r);
+  const wrap = s => s.length > 30 ? s.slice(0, 29) + "…" : s;
+  return `<svg class="chart" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="${esc(legend.join(" and "))}">
+    <rect x="${m.l}" y="4" width="10" height="10" fill="var(--accent)"/><text x="${m.l + 14}" y="13">${esc(legend[0])}</text>
+    <rect x="${m.l + 150}" y="4" width="10" height="10" fill="var(--muted)"/><text x="${m.l + 164}" y="13">${esc(legend[1])}</text>
+    ${[0, 0.5, 1].map(v => `<line class="ax" x1="${xs(v)}" x2="${xs(v)}" y1="${m.t - 4}" y2="${Hh - m.b}"/>`).join("")}
+    ${rows.map((r, j) => { const y = m.t + j * rowH; return `
+      <text x="${m.l - 8}" y="${y + 18}" text-anchor="end"><title>${esc(r[0])}</title>${esc(wrap(r[0]))}</text>
+      <rect x="${m.l}" y="${y + 4}" width="${xs(r[1]) - m.l}" height="11" fill="var(--accent)"/>
+      <text x="${xs(r[1]) + 4}" y="${y + 13}">${pct(r[1])}</text>
+      <rect x="${m.l}" y="${y + 17}" width="${xs(r[2]) - m.l}" height="11" fill="var(--muted)"/>
+      <text x="${xs(r[2]) + 4}" y="${y + 26}">${pct(r[2])}</text>`; }).join("")}
+  </svg>`;
+}
+
+// ---------------------------------------------------------------- how it decides
+function renderHow() {
+  const tierRows = [
+    [0, "Nothing", "risk below every line", "–", H.genuine_tier0, H.scam_tier0],
+    [1, "One line under the Pay button, no delay", "risk above the note line", "1 in 1,000", H.genuine_tier1, H.scam_tier1],
+    [2, "Full-screen warning: facts, advice, Cancel / Call my bank / Continue after 30 s", "risk above the pause line", "1 in 10,000 (tiers 2–4)", H.genuine_tier2, H.scam_tier2],
+    [3, "Trusted person approves, or a one-hour wait", "pause + two families agree + ₹50,000+, or after the customer continued past a warning", "inside tier 2's", H.genuine_tier3, H.scam_tier3],
+    [4, "This payment held; a fraud officer calls within 30 min", "two families + outside flag on payee + hold line + ₹10,000+", "1 in 100,000", H.genuine_tier4, H.scam_tier4],
+  ].map(r => `<tr><td><span class="dot" style="background:${TV(r[0])}"></span> ${r[0]} · ${TIERS[r[0]]}</td><td style="white-space:normal;text-align:left;min-width:220px">${r[1]}</td><td style="white-space:normal;text-align:left;min-width:200px">${r[2]}</td><td>${r[3]}</td><td>${r[4].toLocaleString("en-IN")}</td><td>${r[5].toLocaleString("en-IN")}</td></tr>`).join("");
+  $("#how").innerHTML = `<div class="res">
+    <div class="panel"><div class="panel-h"><h2>From payment to decision in one step</h2><span class="label">runs before the PIN screen</span></div>
+    <div class="flow">
+      <div class="row r3">
+        <div class="box"><b>Journey signals</b><span>From the bank's own records: first payment to this payee, amount against the customer's usual, a rising series to new payees, a fixed deposit just broken, small credits from strangers.</span></div>
+        <div class="box"><b>Payee signals</b><span>Risk on the receiving account from NPCI / MuleHunter.AI, the I4C Suspect Registry and DoT's Financial Fraud Risk Indicator, plus Thehro's live mule-network flag.</span></div>
+        <div class="box"><b>Context signals (opt-in)</b><span>Yes/no flags from the bank app on the phone: on a call with an unknown number and for how long, screen sharing, a remote-access app. No audio, no messages, no contacts.</span></div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="row r2">
+        <div class="box acc"><b>Models</b><span>Three family models (one per signal family) and one fused model, gradient-boosted trees trained only on scams victims reported. Risk can never go down because a payee is on a fraud list or the screen is shared.</span></div>
+        <div class="box acc"><b>Label-free network detector</b><span>Links accounts that collect from new payers and pass most of it on within minutes. Groups of three or more are flagged as live networks, usually before the first complaint.</span></div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="box acc"><b>Policy</b><span>Friction grows with evidence and with what's at stake. A warning can come from risk alone; anything that delays money needs two signal families to agree; a hold also needs an outside flag on the payee and a person to decide. Each tier has a fixed budget of genuine interruptions.</span></div>
+      <div class="arrow">↓</div>
+      <div class="row r2">
+        <div class="box"><b>Customer screen</b><span>Up to three facts the customer can check, advice that fits those facts, in their language, and clear actions. A score is never shown as the reason.</span></div>
+        <div class="box"><b>Evidence and review</b><span>Every tier 2+ decision is written to a hash-chained log. Holds go to a fraud officer. Confirmed scams get a pre-filled 1930 / cybercrime.gov.in complaint, and the label feeds the next training run.</span></div>
+      </div>
+    </div></div>
+    <div class="panel"><div class="panel-h"><h2>The five tiers</h2><span class="label">test weeks, all customer payments</span></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Tier</th><th style="text-align:left">What the customer sees</th><th style="text-align:left">When</th><th>Genuine budget</th><th>Genuine payments</th><th>Scam payments</th></tr></thead><tbody>${tierRows}</tbody></table></div>
+      <p class="caveat">Memory: after a customer continues past a warning, for ${POL.memory_days} days the amount lines are waived and a note counts as a pause. A payee they chose to pay after a warning, still unflagged ${POL.memory_days} days later, counts as confirmed.</p></div>
+    <div class="two">
+      <div class="panel"><h2>Never collected</h2><ul class="caveat"><li>Call audio, message or chat content, contact lists, photos, location.</li><li>The caller's number is used only for a one-off fraud-risk lookup and is not stored.</li><li>Age, language and region are never model inputs; they are used only to check fairness and to pick the message language.</li></ul></div>
+      <div class="panel"><h2>When Thehro is wrong</h2><ul class="caveat"><li>A false warning costs about 30 seconds; the customer can always continue.</li><li>No payment is blocked on one weak signal. Holds need two families, an outside flag and a person.</li><li>Only the payment in question is ever held; nothing else on the account is frozen.</li><li>Customers can ask why, and every decision can be replayed from its evidence record.</li></ul></div>
+    </div>
+  </div>`;
+}
+
+// ---------------------------------------------------------------- shell
+function setTab(t) {
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === t)));
+  ["play", "results", "how"].forEach(id => { document.getElementById(id).hidden = id !== t; });
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang;
+  document.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  if (cur.timer) clearInterval(cur.timer);
+  renderAll();
+}));
+$("#banner").textContent = "Prototype on synthetic data. " + DATA.meta.note.replace("All data synthetic. ", "") + " The bank app is a generic demo, not a real bank.";
+const tab = (location.hash || "").replace("#", "");
+renderResults(); renderHow();
+start(DATA.scenarios[1] ? DATA.scenarios[1].id : DATA.scenarios[0].id);
+if (["play", "results", "how"].includes(tab)) setTab(tab);
+})();
+</script>
