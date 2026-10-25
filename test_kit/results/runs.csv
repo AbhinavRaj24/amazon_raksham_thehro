@@ -82,3 +82,7 @@ run_id,time,git_commit,command,seed,files,note
 20261025-063010-completeness,2026-10-25T06:30:10,b84dbb3-dirty,python scripts/kit_metrics.py --completeness-only --run-tests --out ../../test_kit/results,,test_kit/results/sections/completeness.md,
 20261025-063010-run_test_kit,2026-10-25T06:30:10,b84dbb3-dirty,python scripts/run_test_kit.py ,7,test_kit/report.md,
 20261025-063601-policy,2026-10-25T06:36:01,b84dbb3-dirty,python scripts/eval_policy.py,2026,test_kit/results/policy_versions.json;test_kit/results/sections/policy.md,
+20261025-105632-spot_check,2026-10-25T10:56:32,d646f85-dirty,python scripts/spot_check.py --seed 7,7,test_kit/results/spot_check_seed7.json;test_kit/results/sections/spot_checks.md,
+20261025-105713-spot_check,2026-10-25T10:57:13,d646f85-dirty,python scripts/spot_check.py --seed 42,42,test_kit/results/spot_check_seed42.json;test_kit/results/sections/spot_checks.md,
+20261025-105715-spot_check,2026-10-25T10:57:15,d646f85-dirty,python scripts/spot_check.py --seed 2026,2026,test_kit/results/spot_check_seed2026.json;test_kit/results/sections/spot_checks.md,
+20261025-105717-spot_check,2026-10-25T10:57:17,d646f85-dirty,python scripts/spot_check.py --seed 42 --journeys 30,42,test_kit/results/spot_check_seed42_journeys30.json;test_kit/results/sections/spot_checks.md,

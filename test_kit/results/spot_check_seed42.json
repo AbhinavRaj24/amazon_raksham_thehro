@@ -1388,6 +1388,6 @@
   },
   "live_equals_evaluation": 60
  },
- "note": "Payment level: about 86% of all scam payments are paused, because a scam's first step is often small and harmless-looking. At the victim level (--journeys) 94.3% are warned, so a missed scam payment here does not mean the victim was missed.",
- "seconds": 2.4
+ "note": "Payment level: about 89% of all scam payments are paused, because a scam's first step is often small and harmless-looking. At the victim level (--journeys) 96.0% are warned, so a missed scam payment here does not mean the victim was missed.",
+ "seconds": 22.7
 }

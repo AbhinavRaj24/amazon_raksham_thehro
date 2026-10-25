@@ -340,10 +340,11 @@ def spot_check(seed: int, n_scam: int = 25, n_risky: int = 25, n_normal: int = 1
         "genuine_right_share": share(right[~is_s].sum(), (~is_s).sum()),
         "live_equals_evaluation": agree,
     }
+    hv, hp, nj = base["head"]["victims_warned"], base["head"]["scam_payments_t2plus"], len(base["jt"])
     note = ("Journey level: a victim counts as right if any of their payments was warned (tier 2+). "
-            "Over all 720 test-day victims this is 94.3%." if journeys else
-            "Payment level: about 86% of all scam payments are paused, because a scam's first step is often "
-            "small and harmless-looking. At the victim level (--journeys) 94.3% are warned, so a missed "
+            f"Over all {nj} test-day victims this is {hv:.1%}." if journeys else
+            f"Payment level: about {hp:.0%} of all scam payments are paused, because a scam's first step is often "
+            f"small and harmless-looking. At the victim level (--journeys) {hv:.1%} are warned, so a missed "
             "scam payment here does not mean the victim was missed.")
     return {"seed": int(seed), "level": "journey" if journeys else "payment",
             "data": "synthetic test days 42-59 (Thehro simulator, seed 7); never used for training or setting lines",

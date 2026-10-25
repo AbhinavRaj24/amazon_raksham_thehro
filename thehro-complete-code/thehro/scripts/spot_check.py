@@ -63,6 +63,7 @@ def spot_section(results: Path) -> str:
         rows.append([r["seed"], lvl, sm["n"], fmt(sm["right"], sm["n"]), fmt(sm["scam_right"], sm["n_scam"]),
                      fmt(sm["genuine_right"], sm["n_genuine"]), f"{sm['live_equals_evaluation']} of {sm['n']}",
                      f"`results/{p.name}`"])
+    H = json.load(open(kit.ROOT / "outputs" / "metrics.json"))["headline"]     # the whole held-out set, for scale
     md = [
         "**Measured, synthetic.** Random labelled draws from the test days, run through the live `DecisionService` "
         "after replaying each customer's earlier test-day payments. Rerun with any seed: "
@@ -73,9 +74,10 @@ def spot_section(results: Path) -> str:
         kit.md_table(["Seed", "Level", "n", "Right (95% CI)", "Scams right", "Genuine right", "Live = evaluation",
                       "File"], rows),
         "",
-        "Payment-level draws contain about 25 scam payments; about 86% of all scam payments are paused, because a "
-        "scam's first step is often small. Victim-level draws (`--journeys`) are the fairer reading of "
-        "\"was this victim protected\": 94.3% over all 720 test-day victims. The kit samples are small, so their "
+        f"Payment-level draws contain about 25 scam payments; about {H['scam_payments_t2plus']:.0%} of all scam "
+        "payments are paused, because a scam's first step is often small. Victim-level draws (`--journeys`) are the "
+        f"fairer reading of \"was this victim protected\": {H['victims_warned']:.1%} over all {H['journeys']} "
+        "test-day victims. The kit samples are small, so their "
         "intervals are wide; the headline accuracy claims come from the full held-out set (Error rates below).",
     ]
     return "\n".join(md)

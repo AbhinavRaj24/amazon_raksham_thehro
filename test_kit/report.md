@@ -90,7 +90,7 @@ Right means: a scam is warned (tier 2+); a genuine payment is not interrupted (t
 | 42 | journey | 30 | 28/30 (79%–98%) | 28/30 (79%–98%) | – | 30 of 30 | `results/spot_check_seed42_journeys30.json` |
 | 7 | payment | 60 | 56/60 (84%–97%) | 22/25 (70%–96%) | 34/35 (85%–99%) | 60 of 60 | `results/spot_check_seed7.json` |
 
-Payment-level draws contain about 25 scam payments; about 86% of all scam payments are paused, because a scam's first step is often small. Victim-level draws (`--journeys`) are the fairer reading of "was this victim protected": 94.3% over all 720 test-day victims. The kit samples are small, so their intervals are wide; the headline accuracy claims come from the full held-out set (Error rates below).
+Payment-level draws contain about 25 scam payments; about 89% of all scam payments are paused, because a scam's first step is often small. Victim-level draws (`--journeys`) are the fairer reading of "was this victim protected": 96.0% over all 720 test-day victims. The kit samples are small, so their intervals are wide; the headline accuracy claims come from the full held-out set (Error rates below).
 
 ## Hand-written cases (K1)
 
