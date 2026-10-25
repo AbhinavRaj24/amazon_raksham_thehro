@@ -15,7 +15,18 @@ decision of tier 2 or above is written to a tamper-evident log.
 
 All data here is synthetic. No real customer, bank or platform data was used.
 
-## Results on the synthetic test weeks
+**Finale (25 Oct 2026).** The system has moved on from Round 1. The results to quote now are in
+`../../test_kit/report.md` (one command, `python scripts/run_test_kit.py`), led by the *Round 1 → now* table and
+the *fresh world* test: every system on a newly simulated world no design choice ever saw. What changed:
+- policy v4 (`thehro/policy.py`, versions v1 to v4)
+- no caller identity
+- a bank call-back for customers with no trusted person
+- bank-wide flags from officer-confirmed scams
+- judge mode with live features (`bank/`, `thehro/live.py`)
+
+Round 1's results below are kept exactly in `reference/round1/`.
+
+## Results on the synthetic test weeks (Round 1, as submitted)
 
 Thresholds were set on one validation week (days 35-41). Results are from the next 18 days (days 42-59), with
 no retraining, scored against ground truth including scams that were never reported. The figures come from
@@ -89,14 +100,20 @@ triggering warnings.
 ## Run it
 
 ```bash
-pip install -r requirements.txt
-python scripts/run_all.py          # simulate, train, evaluate: ~4 min on 2 CPUs, ~3 GB RAM -> outputs/
-python scripts/build_demo.py       # outputs/thehro_demo.html, a standalone demo page
-python -m pytest -q                # 20 tests: point-in-time features, policy rules, messages, API
+pip install -r requirements-lock.txt     # exact versions (requirements.txt keeps the loose ranges)
+python scripts/run_all.py --out /tmp/run  # simulate, train, evaluate: ~2-5 min, ~3 GB RAM (policy v4)
+python scripts/compare_outputs.py /tmp/run  # check the run reproduces outputs/ (the current system) exactly
+python scripts/run_all.py --policy v1 --out /tmp/r1   # Round 1's recipe ...
+python scripts/compare_outputs.py /tmp/r1 --ref reference/round1   # ... reproduces Round 1 exactly
+python scripts/run_test_kit.py     # the whole test kit -> ../../test_kit/report.md (about 25 min)
+python scripts/build_demo.py       # outputs/thehro_demo.html, the Round 1 replay demo
+python -m pytest -q                # tests: point-in-time features, policy rules, messages, API,
+                                   # live-vs-batch features, the bank server's rules
 uvicorn thehro.api:app --port 8000 # POST /v1/score, POST /v1/outcome, GET /v1/evidence/{seq}
+bash scripts/demo_up.sh            # finale judge mode: decision service :8000 + bank server :8080
 ```
 
-`outputs/sample_requests.json` holds example requests for the API.
+`outputs/sample_requests.json` holds example requests for the API. `run_all.py` without `--out` rewrites `outputs/`, the committed results of the current system: do that only to re-baseline on purpose.
 
 | Path | What it holds |
 |---|---|
@@ -108,6 +125,10 @@ uvicorn thehro.api:app --port 8000 # POST /v1/score, POST /v1/outcome, GET /v1/e
 | `thehro/explain.py` | reason codes, fact-based advice, EN/HI messages, hash-chained evidence log, complaint draft |
 | `thehro/evaluate.py` | metrics at real base rates, baselines, stress tests, held-out scam types, fairness |
 | `thehro/service.py`, `thehro/api.py` | decision service and FastAPI app |
+| `thehro/live.py` | live features for judge mode: the training feature code run on the customer's and payee's events |
+| `bank/server.py`, `bank/static/` | the bank server: judge page, officer console, phone mode, call-backs, drills, the Kit tab |
+| `thehro/kit.py`, `thehro/redteam.py`, `scripts/` | the test kit: baseline, intervals, spot-checks, attacks, fresh world, report |
+| `reference/round1/` | Round 1's outputs exactly as committed (`b84dbb3`) |
 | `demo/template.html` | the clickable demo |
 
 ## Choices worth knowing
