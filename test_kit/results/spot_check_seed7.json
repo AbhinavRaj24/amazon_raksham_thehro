@@ -1,0 +1,1404 @@
+{
+ "seed": 7,
+ "level": "payment",
+ "data": "synthetic test days 42-59 (Thehro simulator, seed 7); never used for training or setting lines",
+ "model": {
+  "thehro": "0.1.0",
+  "model": "hgb-86it-677lab-nocallerid",
+  "thresholds": "val-days-35-41-t2-0.1058-tj-0.3419"
+ },
+ "samples": [
+  {
+   "sample": 1,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 1955463,
+   "amount_text": "₹1,29,528",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "REGISTRY",
+    "FRI"
+   ],
+   "top_reason": "This account is part of a network of 10 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 2,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 1986899,
+   "amount_text": "₹4,574",
+   "expected": "interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": false,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "FIRST_PAYMENT"
+   ],
+   "top_reason": "First payment to this account, 2.0x your usual payment"
+  },
+  {
+   "sample": 3,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2036342,
+   "amount_text": "₹20,981",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "FRI"
+   ],
+   "top_reason": "This account is part of a network of 29 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 4,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2051584,
+   "amount_text": "₹43,479",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "REGISTRY",
+    "FRI"
+   ],
+   "top_reason": "This account is part of a network of 12 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 5,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2119882,
+   "amount_text": "₹79,760",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "FD_BREAK",
+    "FRI",
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "A fixed deposit was broken in the last 48 hours"
+  },
+  {
+   "sample": 6,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "digital_arrest",
+   "kind": "scam",
+   "pid": 2157060,
+   "amount_text": "₹1,33,081",
+   "expected": "interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": false,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "top_reason": "First payment to this account, 184x your usual payment"
+  },
+  {
+   "sample": 7,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "marketplace",
+   "kind": "scam",
+   "pid": 2163524,
+   "amount_text": "₹3,228",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "REGISTRY",
+    "APP_SWITCHING"
+   ],
+   "top_reason": "This account is part of a network of 7 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 8,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 2181293,
+   "amount_text": "₹1,383",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "FRI",
+    "STRANGER_CREDITS",
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "The mobile number linked to this account is rated high fraud risk by the telecom department"
+  },
+  {
+   "sample": 9,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "digital_arrest",
+   "kind": "scam",
+   "pid": 2184951,
+   "amount_text": "₹2,23,948",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "FRI",
+    "PASS_THROUGH",
+    "DAY_OUTFLOW"
+   ],
+   "top_reason": "The mobile number linked to this account is rated high fraud risk by the telecom department"
+  },
+  {
+   "sample": 10,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2202798,
+   "amount_text": "₹58,259",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "NEW_ACCOUNT",
+    "CAMPAIGN",
+    "FD_BREAK"
+   ],
+   "top_reason": "This account was opened 14 days ago"
+  },
+  {
+   "sample": 11,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 2322811,
+   "amount_text": "₹26,049",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "ESCALATING",
+    "NIGHT_NEW"
+   ],
+   "top_reason": "This account is part of a network of 30 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 12,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2340039,
+   "amount_text": "₹15,898",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "NEW_PAYEE_LARGE",
+    "PASS_THROUGH"
+   ],
+   "top_reason": "This account is part of a network of 12 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 13,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 2419796,
+   "amount_text": "₹4,484",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": "customer continued past a warning in the last 7 days",
+   "reasons": [
+    "RECENT_WARNING",
+    "NEW_ACCOUNT",
+    "CAMPAIGN"
+   ],
+   "top_reason": "You went ahead after a scam warning 14 hours ago. Payments soon after a warning get extra checks."
+  },
+  {
+   "sample": 14,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2443994,
+   "amount_text": "₹63,428",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "ESCALATING",
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "Payments to accounts you first paid this week keep growing: 4 so far, ₹1,62,746 in total"
+  },
+  {
+   "sample": 15,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 2485127,
+   "amount_text": "₹24,018",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "ESCALATING",
+    "APP_SWITCHING"
+   ],
+   "top_reason": "Payments to accounts you first paid this week keep growing: 7 so far, ₹83,393 in total"
+  },
+  {
+   "sample": 16,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2518486,
+   "amount_text": "₹1,20,172",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "REGISTRY",
+    "ON_CALL"
+   ],
+   "top_reason": "This account has been reported on the national cybercrime portal"
+  },
+  {
+   "sample": 17,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2560035,
+   "amount_text": "₹12,55,791",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "REGISTRY",
+    "ESCALATING"
+   ],
+   "top_reason": "This account is part of a network of 10 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 18,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2569689,
+   "amount_text": "₹38,964",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "ESCALATING"
+   ],
+   "top_reason": "This account is part of a network of 113 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 19,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 2599774,
+   "amount_text": "₹1,216",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "STRANGER_CREDITS",
+    "NIGHT_NEW"
+   ],
+   "top_reason": "This account is part of a network of 39 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 20,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "task",
+   "kind": "scam",
+   "pid": 2600996,
+   "amount_text": "₹14,843",
+   "expected": "interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": false,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 21,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "loan_fee",
+   "kind": "scam",
+   "pid": 2607735,
+   "amount_text": "₹1,832",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "top_reason": "This account is part of a network of 10 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 22,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "digital_arrest",
+   "kind": "scam",
+   "pid": 2636946,
+   "amount_text": "₹23,567",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "top_reason": "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 23,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2653404,
+   "amount_text": "₹16,970",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN"
+   ],
+   "top_reason": "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 24,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "marketplace",
+   "kind": "scam",
+   "pid": 2662129,
+   "amount_text": "₹21,807",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "evaluation_tier": 2,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "NEW_ACCOUNT",
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "This account was opened 16 days ago"
+  },
+  {
+   "sample": 25,
+   "label": "scam",
+   "group": "scam",
+   "scam_type": "investment",
+   "kind": "scam",
+   "pid": 2700369,
+   "amount_text": "₹37,716",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "evaluation_tier": 4,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "CAMPAIGN",
+    "ESCALATING",
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "This account is part of a network of 15 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 26,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 1986029,
+   "amount_text": "₹1,851",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 27,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 2071283,
+   "amount_text": "₹6,335",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 28,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 2343379,
+   "amount_text": "₹3,059",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 29,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 2385665,
+   "amount_text": "₹452",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 30,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 2629795,
+   "amount_text": "₹82",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 31,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 2718554,
+   "amount_text": "₹1,722",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 32,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_individual",
+   "pid": 2759958,
+   "amount_text": "₹6,480",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 33,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_landlord",
+   "pid": 1957400,
+   "amount_text": "₹1,38,353",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": true,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "First payment to this account, 106x your usual payment"
+  },
+  {
+   "sample": 34,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_landlord",
+   "pid": 2004329,
+   "amount_text": "₹49,043",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 35,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_landlord",
+   "pid": 2058688,
+   "amount_text": "₹33,284",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 36,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_landlord",
+   "pid": 2089785,
+   "amount_text": "₹71,159",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 37,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_landlord",
+   "pid": 2190813,
+   "amount_text": "₹79,612",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": true,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "APP_SWITCHING"
+   ],
+   "top_reason": "First payment to this account, 68x your usual payment"
+  },
+  {
+   "sample": 38,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "new_landlord",
+   "pid": 2773197,
+   "amount_text": "₹56,926",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 39,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "medical",
+   "pid": 1954946,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 40,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "medical",
+   "pid": 2225577,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 41,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "medical",
+   "pid": 2349177,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": true,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "First payment to this account, 83x your usual payment"
+  },
+  {
+   "sample": 42,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "medical",
+   "pid": 2455645,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 43,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "medical",
+   "pid": 2509577,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 44,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "medical",
+   "pid": 2675104,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 3,
+    "tier_name": "Trusted check"
+   },
+   "right": false,
+   "evaluation_tier": 3,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "top_reason": "First payment to this account, 62x your usual payment"
+  },
+  {
+   "sample": 45,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "gray_invest",
+   "pid": 2066401,
+   "amount_text": "₹1,45,049",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": true,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "DORMANT"
+   ],
+   "top_reason": "First payment to this account, 69x your usual payment"
+  },
+  {
+   "sample": 46,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "gray_invest",
+   "pid": 2322553,
+   "amount_text": "₹1,45,049",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 47,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "gray_invest",
+   "pid": 2555245,
+   "amount_text": "₹1,45,049",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 48,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "gray_invest",
+   "pid": 2614634,
+   "amount_text": "₹1,45,049",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": true,
+   "evaluation_tier": 1,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [
+    "NEW_PAYEE_LARGE"
+   ],
+   "top_reason": "First payment to this account, 33x your usual payment"
+  },
+  {
+   "sample": 49,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "gray_invest",
+   "pid": 2718348,
+   "amount_text": "₹1,45,049",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 50,
+   "label": "genuine",
+   "group": "risky-looking genuine",
+   "scam_type": null,
+   "kind": "gray_invest",
+   "pid": 2735770,
+   "amount_text": "₹1,45,049",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 51,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "p2p_known",
+   "pid": 2043441,
+   "amount_text": "₹3,145",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 52,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "p2p_known",
+   "pid": 2254138,
+   "amount_text": "₹5,690",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 53,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "vendor_regular",
+   "pid": 2375431,
+   "amount_text": "₹722",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 54,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "p2p_known",
+   "pid": 2402656,
+   "amount_text": "₹639",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 55,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "supplier",
+   "pid": 2449782,
+   "amount_text": "₹37,162",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 56,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "vendor_regular",
+   "pid": 2461476,
+   "amount_text": "₹722",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 57,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "p2p_known",
+   "pid": 2486865,
+   "amount_text": "₹452",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 58,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "p2p_known",
+   "pid": 2522868,
+   "amount_text": "₹170",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 59,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "p2p_known",
+   "pid": 2556824,
+   "amount_text": "₹3,140",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": false,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  },
+  {
+   "sample": 60,
+   "label": "genuine",
+   "group": "ordinary genuine",
+   "scam_type": null,
+   "kind": "vendor_regular",
+   "pid": 2675203,
+   "amount_text": "₹722",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true,
+   "evaluation_tier": 0,
+   "live_equals_evaluation": true,
+   "consent": true,
+   "memory_note": null,
+   "reasons": [],
+   "top_reason": ""
+  }
+ ],
+ "summary": {
+  "n": 60,
+  "right": 56,
+  "scam_right": 22,
+  "genuine_right": 34,
+  "n_scam": 25,
+  "n_genuine": 35,
+  "right_share": {
+   "k": 56,
+   "n": 60,
+   "value": 0.933333,
+   "lo": 0.840746,
+   "hi": 0.973771
+  },
+  "scam_right_share": {
+   "k": 22,
+   "n": 25,
+   "value": 0.88,
+   "lo": 0.700442,
+   "hi": 0.958332
+  },
+  "genuine_right_share": {
+   "k": 34,
+   "n": 35,
+   "value": 0.971429,
+   "lo": 0.854669,
+   "hi": 0.994939
+  },
+  "live_equals_evaluation": 60
+ },
+ "note": "Payment level: about 86% of all scam payments are paused, because a scam's first step is often small and harmless-looking. At the victim level (--journeys) 94.3% are warned, so a missed scam payment here does not mean the victim was missed.",
+ "seconds": 2.0
+}

@@ -1,0 +1,18 @@
+{
+  "id": "K1-18",
+  "title": "Grocery payment at a shop",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "She pays ₹2,400 at the neighbourhood kirana store by scanning its QR.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C26331",
+  "payee_type": "shop",
+  "amount": 2400,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "lang": "en",
+  "expected": "no_interrupt",
+  "why": "A merchant payment: these skip scoring entirely and should never be interrupted."
+}

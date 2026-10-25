@@ -1,0 +1,348 @@
+{
+ "data": "synthetic test days 42-59, frozen model hgb-86it-677lab-nocallerid, policy v4",
+ "rows": [
+  {
+   "variant": "baseline",
+   "label": "Nothing switched off (baseline)",
+   "victims_warned": {
+    "k": 691,
+    "n": 720,
+    "value": 0.959722,
+    "lo": 0.942753,
+    "hi": 0.971812
+   },
+   "victims_warned_first_payment": {
+    "k": 536,
+    "n": 720,
+    "value": 0.744444,
+    "lo": 0.711346,
+    "hi": 0.774949
+   },
+   "scam_payments_paused": {
+    "k": 2376,
+    "n": 2680,
+    "value": 0.886567,
+    "lo": 0.874003,
+    "hi": 0.898024
+   },
+   "false_pauses_per_10k": {
+    "k": 82,
+    "n": 786121,
+    "value": 1.0431,
+    "lo": 0.829606,
+    "hi": 1.29476
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.931789,
+   "gain_victims_warned_points": 0.0,
+   "gain_false_pauses_per_10k": 0.0
+  },
+  {
+   "variant": "phone_off",
+   "label": "Phone signals off (nobody opted in)",
+   "victims_warned": {
+    "k": 689,
+    "n": 720,
+    "value": 0.956944,
+    "lo": 0.939535,
+    "hi": 0.969504
+   },
+   "victims_warned_first_payment": {
+    "k": 533,
+    "n": 720,
+    "value": 0.740278,
+    "lo": 0.707034,
+    "hi": 0.770971
+   },
+   "scam_payments_paused": {
+    "k": 2391,
+    "n": 2680,
+    "value": 0.892164,
+    "lo": 0.879855,
+    "hi": 0.903351
+   },
+   "false_pauses_per_10k": {
+    "k": 99,
+    "n": 786121,
+    "value": 1.25935,
+    "lo": 1.02354,
+    "hi": 1.53321
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.929028,
+   "gain_victims_warned_points": 0.277778,
+   "gain_false_pauses_per_10k": -0.216252
+  },
+  {
+   "variant": "network_off",
+   "label": "Mule-network flag off",
+   "victims_warned": {
+    "k": 671,
+    "n": 720,
+    "value": 0.931944,
+    "lo": 0.911163,
+    "hi": 0.948141
+   },
+   "victims_warned_first_payment": {
+    "k": 442,
+    "n": 720,
+    "value": 0.613889,
+    "lo": 0.577812,
+    "hi": 0.648757
+   },
+   "scam_payments_paused": {
+    "k": 2141,
+    "n": 2680,
+    "value": 0.798881,
+    "lo": 0.783282,
+    "hi": 0.813624
+   },
+   "false_pauses_per_10k": {
+    "k": 77,
+    "n": 786121,
+    "value": 0.979493,
+    "lo": 0.773001,
+    "hi": 1.2242
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.87193,
+   "gain_victims_warned_points": 2.77778,
+   "gain_false_pauses_per_10k": 0.0636034
+  },
+  {
+   "variant": "feeds_off",
+   "label": "Outside feeds off (registry, telecom FRI)",
+   "victims_warned": {
+    "k": 685,
+    "n": 720,
+    "value": 0.951389,
+    "lo": 0.933145,
+    "hi": 0.964842
+   },
+   "victims_warned_first_payment": {
+    "k": 503,
+    "n": 720,
+    "value": 0.698611,
+    "lo": 0.664113,
+    "hi": 0.731001
+   },
+   "scam_payments_paused": {
+    "k": 2321,
+    "n": 2680,
+    "value": 0.866045,
+    "lo": 0.852624,
+    "hi": 0.878418
+   },
+   "false_pauses_per_10k": {
+    "k": 80,
+    "n": 786121,
+    "value": 1.01766,
+    "lo": 0.806937,
+    "hi": 1.26656
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.919538,
+   "gain_victims_warned_points": 0.833333,
+   "gain_false_pauses_per_10k": 0.0254414
+  },
+  {
+   "variant": "hooks_off",
+   "label": "Hooks off (FD break, small credits from strangers)",
+   "victims_warned": {
+    "k": 678,
+    "n": 720,
+    "value": 0.941667,
+    "lo": 0.922089,
+    "hi": 0.956557
+   },
+   "victims_warned_first_payment": {
+    "k": 475,
+    "n": 720,
+    "value": 0.659722,
+    "lo": 0.624348,
+    "hi": 0.693401
+   },
+   "scam_payments_paused": {
+    "k": 2274,
+    "n": 2680,
+    "value": 0.848507,
+    "lo": 0.834435,
+    "hi": 0.861582
+   },
+   "false_pauses_per_10k": {
+    "k": 66,
+    "n": 786121,
+    "value": 0.839565,
+    "lo": 0.64932,
+    "hi": 1.06813
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.926327,
+   "gain_victims_warned_points": 1.80556,
+   "gain_false_pauses_per_10k": 0.203531
+  },
+  {
+   "variant": "memory_off",
+   "label": "Memory off (no escalation after Continue)",
+   "victims_warned": {
+    "k": 691,
+    "n": 720,
+    "value": 0.959722,
+    "lo": 0.942753,
+    "hi": 0.971812
+   },
+   "victims_warned_first_payment": {
+    "k": 535,
+    "n": 720,
+    "value": 0.743056,
+    "lo": 0.709908,
+    "hi": 0.773623
+   },
+   "scam_payments_paused": {
+    "k": 2268,
+    "n": 2680,
+    "value": 0.846269,
+    "lo": 0.832118,
+    "hi": 0.859428
+   },
+   "false_pauses_per_10k": {
+    "k": 68,
+    "n": 786121,
+    "value": 0.865007,
+    "lo": 0.671712,
+    "hi": 1.0966
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.926869,
+   "gain_victims_warned_points": 0.0,
+   "gain_false_pauses_per_10k": 0.17809
+  },
+  {
+   "variant": "gate_off",
+   "label": "Two-family gate off (one kind of evidence can delay money)",
+   "victims_warned": {
+    "k": 691,
+    "n": 720,
+    "value": 0.959722,
+    "lo": 0.942753,
+    "hi": 0.971812
+   },
+   "victims_warned_first_payment": {
+    "k": 536,
+    "n": 720,
+    "value": 0.744444,
+    "lo": 0.711346,
+    "hi": 0.774949
+   },
+   "scam_payments_paused": {
+    "k": 2376,
+    "n": 2680,
+    "value": 0.886567,
+    "lo": 0.874003,
+    "hi": 0.898024
+   },
+   "false_pauses_per_10k": {
+    "k": 82,
+    "n": 786121,
+    "value": 1.0431,
+    "lo": 0.829606,
+    "hi": 1.29476
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 15,
+    "n": 786121,
+    "value": 0.19081,
+    "lo": 0.106795,
+    "hi": 0.314713
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.938281,
+   "gain_victims_warned_points": 0.0,
+   "gain_false_pauses_per_10k": 0.0
+  }
+ ]
+}

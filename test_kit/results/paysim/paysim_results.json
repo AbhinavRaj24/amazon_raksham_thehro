@@ -1,0 +1,164 @@
+{
+ "file": "PS_20174392719_1491204439457_log.csv",
+ "data": "PaySim (public synthetic, Kaggle ealaxi/paysim1)",
+ "main": {
+  "rows": {
+   "train": 5787030,
+   "valid": 274777,
+   "test": 300813
+  },
+  "frauds": {
+   "train": 4477,
+   "valid": 1084,
+   "test": 2652
+  },
+  "features": [
+   "type",
+   "amount_log",
+   "hour",
+   "amt_vs_balance",
+   "empties_account",
+   "orig_zero_balance",
+   "dest_is_merchant",
+   "dest_prev_in_count",
+   "dest_new_payers_24",
+   "dest_inflow_24_log",
+   "dest_steps_since_first_seen"
+  ],
+  "n_iter": 155,
+  "budgets": {
+   "1e-03": {
+    "budget": 0.001,
+    "line": 0.000280549,
+    "frauds_caught": {
+     "k": 2637,
+     "n": 2652,
+     "value": 0.994344,
+     "lo": 0.990688,
+     "hi": 0.996569
+    },
+    "false_alarms_per_10k": {
+     "k": 289,
+     "n": 300813,
+     "value": 9.6073,
+     "lo": 8.53147,
+     "hi": 10.7812
+    },
+    "precision": {
+     "k": 2637,
+     "n": 2926,
+     "value": 0.90123,
+     "lo": 0.889888,
+     "hi": 0.91152
+    },
+    "money_caught_share": 0.999722,
+    "alerts": 2926
+   },
+   "1e-04": {
+    "budget": 0.0001,
+    "line": 0.240003,
+    "frauds_caught": {
+     "k": 2425,
+     "n": 2652,
+     "value": 0.914404,
+     "lo": 0.903148,
+     "hi": 0.924462
+    },
+    "false_alarms_per_10k": {
+     "k": 24,
+     "n": 300813,
+     "value": 0.797838,
+     "lo": 0.51119,
+     "hi": 1.18712
+    },
+    "precision": {
+     "k": 2425,
+     "n": 2449,
+     "value": 0.9902,
+     "lo": 0.985459,
+     "hi": 0.993406
+    },
+    "money_caught_share": 0.992773,
+    "alerts": 2449
+   }
+  },
+  "baselines": {
+   "PaySim's own isFlaggedFraud (transfers over 200,000)": {
+    "frauds_caught": {
+     "k": 10,
+     "n": 2652,
+     "value": 0.00377074,
+     "lo": 0.0020495,
+     "hi": 0.00692748
+    },
+    "false_alarms_per_10k": {
+     "k": 0,
+     "n": 300813,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.12263
+    },
+    "precision": {
+     "k": 10,
+     "n": 10,
+     "value": 1.0,
+     "lo": 0.722467,
+     "hi": 1.0
+    },
+    "money_caught_share": 0.0115016,
+    "alerts": 10
+   },
+   "TRANSFER or CASH_OUT that empties the account": {
+    "frauds_caught": {
+     "k": 2578,
+     "n": 2652,
+     "value": 0.972097,
+     "lo": 0.965113,
+     "hi": 0.977714
+    },
+    "false_alarms_per_10k": {
+     "k": 58998,
+     "n": 300813,
+     "value": 1961.28,
+     "lo": 1945.49,
+     "hi": 1977.18
+    },
+    "precision": {
+     "k": 2578,
+     "n": 61576,
+     "value": 0.041867,
+     "lo": 0.0403134,
+     "hi": 0.0434777
+    },
+    "money_caught_share": 0.844653,
+    "alerts": 61576
+   },
+   "Amount over 200,000": {
+    "frauds_caught": {
+     "k": 1780,
+     "n": 2652,
+     "value": 0.671192,
+     "lo": 0.653076,
+     "hi": 0.688812
+    },
+    "false_alarms_per_10k": {
+     "k": 73946,
+     "n": 300813,
+     "value": 2458.2,
+     "lo": 2440.52,
+     "hi": 2475.99
+    },
+    "precision": {
+     "k": 1780,
+     "n": 75726,
+     "value": 0.0235058,
+     "lo": 0.0224507,
+     "hi": 0.0246093
+    },
+    "money_caught_share": 0.982284,
+    "alerts": 75726
+   }
+  },
+  "seconds": 37.3
+ }
+}

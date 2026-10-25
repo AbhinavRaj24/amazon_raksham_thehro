@@ -28,15 +28,24 @@ VALID_END = 42             # days 35-41: set alert thresholds against the alert 
 # Budgets are shares of ALL payments a customer makes (shop payments included),
 # measured on genuine payments. 1e-4 = one interruption per 10,000 payments.
 ALERT_BUDGET_T2 = 1e-4     # Tier 2+ (pause and explain, or stronger)
+JOURNEY_LINE_SHARE = 0.3            # policy v4: 30% of the tier-2 budget goes to a journey-only pause line, so
+                                    # silencing the payee and phone signals can't hide a scam-like journey; the
+                                    # fused line gets the other 70%, so the total budget is unchanged
 NUDGE_BUDGET_T1 = 1e-3     # Tier 1 (one-line, non-blocking note)
 REVIEW_BUDGET_T4 = 1e-5    # Tier 4 (payment held for human review)
 TRUSTED_CHECK_MIN_AMOUNT = 50_000   # Tier 3 applies to high-risk payments of Rs 50,000+
                                     # (same line as RBI's April 2026 trusted-person option)
+CALLBACK_SLA_MINUTES = 15           # tier 3 without a trusted person: the bank calls back within 15 min
+                                    # (if it can't reach them, they can still wait the hour)
 HOLD_MIN_AMOUNT = 10_000            # Tier 4 holds only payments of Rs 10,000+ (or any amount
                                     # after the customer continued past a warning)
 FAMILY_ELEVATED_PCTL = 99.0         # a signal family is "elevated" above this percentile
                                     # of genuine scored payments in validation
 OVERRIDE_MEMORY_DAYS = 7            # after a warning is overridden, keep escalating for 7 days
+RETRY_MEMORY_HOURS = 24.0           # policy v2 (finale): after a tier 2+ warning the customer did NOT go ahead
+                                    # with (cancelled, called the bank, trusted person declined, or no answer),
+                                    # a payment to a new payee, or to the payee they cancelled, within 24 h is at
+                                    # least a pause. 0 gives Round 1's policy (v1).
 
 TIER_NAMES = {
     0: "Allow",

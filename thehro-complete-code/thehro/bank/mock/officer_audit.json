@@ -1,0 +1,27 @@
+{
+ "_mock": true,
+ "_source": "placeholder",
+ "reads": [
+  {
+   "at": "Day 48 · 11:04",
+   "user": "officer.demo",
+   "role": "officer",
+   "action": "read",
+   "what": "case H-0001"
+  },
+  {
+   "at": "Day 48 · 11:06",
+   "user": "officer.demo",
+   "role": "officer",
+   "action": "cancel_scam",
+   "what": "case H-0001"
+  },
+  {
+   "at": "Day 48 · 11:20",
+   "user": "auditor.demo",
+   "role": "auditor",
+   "action": "read",
+   "what": "audit log"
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "machine": {
+  "cpus": 16,
+  "python": "3.13.7"
+ },
+ "decision_service": [
+  {
+   "concurrency": 1,
+   "requests": 2000,
+   "errors": 0,
+   "rejected_inputs": 0,
+   "throughput_per_s": 76.6527,
+   "p50_ms": 12.5746,
+   "p95_ms": 15.0978,
+   "p99_ms": 18.1559,
+   "max_ms": 72.5242,
+   "service_p50_ms": 10.78,
+   "service_p99_ms": 15.7601
+  },
+  {
+   "concurrency": 8,
+   "requests": 2000,
+   "errors": 0,
+   "rejected_inputs": 0,
+   "throughput_per_s": 56.5904,
+   "p50_ms": 136.053,
+   "p95_ms": 151.169,
+   "p99_ms": 200.667,
+   "max_ms": 807.557,
+   "service_p50_ms": 129.745,
+   "service_p99_ms": 160.637
+  },
+  {
+   "concurrency": 32,
+   "requests": 2000,
+   "errors": 0,
+   "rejected_inputs": 0,
+   "throughput_per_s": 54.4777,
+   "p50_ms": 560.773,
+   "p95_ms": 626.198,
+   "p99_ms": 681.618,
+   "max_ms": 3630.8,
+   "service_p50_ms": 536.5,
+   "service_p99_ms": 629.296
+  }
+ ],
+ "bank_server": [
+  {
+   "concurrency": 1,
+   "requests": 400,
+   "errors": 0,
+   "rejected_inputs": 10,
+   "throughput_per_s": 32.8267,
+   "p50_ms": 26.6119,
+   "p95_ms": 40.1657,
+   "p99_ms": 44.389,
+   "max_ms": 46.6081,
+   "service_p50_ms": null,
+   "service_p99_ms": null
+  },
+  {
+   "concurrency": 8,
+   "requests": 400,
+   "errors": 0,
+   "rejected_inputs": 10,
+   "throughput_per_s": 22.8796,
+   "p50_ms": 336.996,
+   "p95_ms": 437.848,
+   "p99_ms": 457.021,
+   "max_ms": 497.86,
+   "service_p50_ms": null,
+   "service_p99_ms": null
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "K1-24",
+  "title": "Marketplace scam: the first tiny test payment",
+  "group": "hard",
+  "truth": "scam",
+  "story": "The fake buyer asks her to 'scan and enter ₹2,700 to check the QR works' before the real advance.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C27360",
+  "payee_type": "new_account",
+  "amount": 2700,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 4,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Below her usual payment, only a short call. We expect to miss this (a known Round 1 failure case): the amount is too ordinary to cross the pause line."
+}

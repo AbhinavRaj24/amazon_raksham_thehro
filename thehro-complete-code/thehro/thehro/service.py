@@ -17,11 +17,11 @@ import numpy as np
 import pandas as pd
 
 from .config import TIER_NAMES
-from .explain import (EvidenceLog, advice_keys, build_message, decision_record, ncrp_draft, top_reasons,
-                      workflow_guess)
+from .explain import (EvidenceLog, advice_keys, build_message, decision_record, memory_reason, ncrp_draft,
+                      top_reasons, workflow_guess)
 from .features import ALL_FEATURES
-from .models import WORKFLOW_CONFIDENCE_FLOOR, score
-from .policy import PolicyEngine
+from .models import WORKFLOW_CONFIDENCE_FLOOR, score, workflow_scores
+from .policy import CURRENT, Rules, PolicyEngine
 from .simulate import CHANNELS
 
 
@@ -31,12 +31,14 @@ def load_bundle(path: str | Path) -> dict:
 
 
 class DecisionService:
-    def __init__(self, bundle: dict):
+    def __init__(self, bundle: dict, rules: Rules = CURRENT):
+        """rules=policy.V1 runs Round 1's policy; the default is the current one."""
         self.models = bundle["models"]
         self.thr = bundle["thresholds"]
         self.weights = bundle["reason_weights"]
-        self.versions = bundle["versions"]
-        self.policy = PolicyEngine(self.thr)
+        self.versions = dict(bundle["versions"], policy=rules.name)
+        self.rules = rules
+        self.policy = PolicyEngine(self.thr, rules=rules)
         self.log = EvidenceLog()
         self._pending: dict[int, dict] = {}
 
@@ -48,18 +50,23 @@ class DecisionService:
                       "remote_app", "app_switches"):
                 row[c] = np.nan
         X = pd.DataFrame([row])
-        s = score(self.models, X).iloc[0].to_dict()
+        s = score(self.models, X, recogniser=False).iloc[0].to_dict()   # the scam-type guess only if needed below
         feats = dict(row, amount=float(payment["amount"]), consent=bool(consent))
         dec = self.policy.decide(s, feats, str(payment["customer_ref"]), str(payment["payee_ref"]),
                                  float(payment.get("t_min", 0.0)))
         tier = dec["tier"]
-        reasons = top_reasons(feats, self.weights, k=3) if tier >= 1 else []
-        advice = advice_keys(pd.DataFrame([feats]))[0]
-        guess = workflow_guess(s.get("wf_pred"), s.get("wf_conf"), WORKFLOW_CONFIDENCE_FLOOR)
+        reasons = top_reasons(feats, self.weights, k=3, fallback=True, caller_id=self.rules.caller_id) if tier >= 1 else []
+        if dec.get("memory"):              # memory raised the tier: say so first
+            reasons = [memory_reason(dec["memory"])] + reasons[:2]
+        advice = advice_keys(pd.DataFrame([feats]), self.rules.caller_id)[0]
+        guess = None
+        if tier >= 2:                      # the guess is for the officer's record only
+            s.update(workflow_scores(self.models, X).iloc[0].to_dict())
+            guess = workflow_guess(s.get("wf_pred"), s.get("wf_conf"), WORKFLOW_CONFIDENCE_FLOOR)
         out = {
             "tier": tier, "tier_name": TIER_NAMES[tier],
             "families": dec["families"], "gate": dec["gate"], "payee_flag": dec["payee_flag"],
-            "memory_note": dec["memory_note"],
+            "memory_note": dec["memory_note"], "memory": dec.get("memory"),
             "scores": {k: round(float(v), 4) for k, v in s.items() if k.startswith("s_")},
             "reasons": reasons, "advice": advice,
             "message": build_message(tier, reasons, advice, lang),

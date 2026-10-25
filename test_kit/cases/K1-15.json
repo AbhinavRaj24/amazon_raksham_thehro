@@ -1,0 +1,21 @@
+{
+  "id": "K1-15",
+  "title": "Wedding caterer advance by IMPS",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "A trader pays the caterer ₹1.2 lakh advance for his daughter's wedding after a tasting.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C29358",
+  "payee_type": "new_individual",
+  "amount": 120000,
+  "channel": "IMPS",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 0
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "₹1.2 lakh to a first-time payee is 11× his usual, so a pause is acceptable for a sum this large. Nothing else is wrong; no hold."
+}

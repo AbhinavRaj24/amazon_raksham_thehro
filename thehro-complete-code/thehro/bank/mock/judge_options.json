@@ -1,0 +1,272 @@
+{
+ "_mock": true,
+ "_source": "personas from outputs/demo_scenarios.json; lists as in FINALE_PLAN.md §5.1",
+ "now": {
+  "t_min": 68340,
+  "label": "Day 48 · 11:00"
+ },
+ "customers": [
+  {
+   "id": "C18694",
+   "label": "Retiree, 60+, tier-2",
+   "age_band": "60+",
+   "lang": "bn",
+   "region": "tier-2",
+   "segment": "retiree",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 1316,
+   "usual_payment_text": "₹1,316"
+  },
+  {
+   "id": "C23724",
+   "label": "Homemaker, 60+, metro",
+   "age_band": "60+",
+   "lang": "bn",
+   "region": "metro",
+   "segment": "homemaker",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 287,
+   "usual_payment_text": "₹287"
+  },
+  {
+   "id": "C28404",
+   "label": "Salaried, 26-40, tier-2",
+   "age_band": "26-40",
+   "lang": "hi",
+   "region": "tier-2",
+   "segment": "salaried",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 722,
+   "usual_payment_text": "₹722"
+  },
+  {
+   "id": "C15852",
+   "label": "Retiree, 60+, tier-2",
+   "age_band": "60+",
+   "lang": "en",
+   "region": "tier-2",
+   "segment": "retiree",
+   "consent": true,
+   "trusted_contact": true,
+   "usual_payment": 1083,
+   "usual_payment_text": "₹1,083"
+  },
+  {
+   "id": "C27360",
+   "label": "Homemaker, 26-40, metro",
+   "age_band": "26-40",
+   "lang": "kn",
+   "region": "metro",
+   "segment": "homemaker",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 3894,
+   "usual_payment_text": "₹3,894"
+  },
+  {
+   "id": "C26331",
+   "label": "Homemaker, 60+, tier-2",
+   "age_band": "60+",
+   "lang": "en",
+   "region": "tier-2",
+   "segment": "homemaker",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 790,
+   "usual_payment_text": "₹790"
+  },
+  {
+   "id": "C29358",
+   "label": "Trader, 26-40, metro",
+   "age_band": "26-40",
+   "lang": "mr",
+   "region": "metro",
+   "segment": "trader",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 10506,
+   "usual_payment_text": "₹10,506"
+  },
+  {
+   "id": "C27084",
+   "label": "Salaried, 26-40, rural",
+   "age_band": "26-40",
+   "lang": "en",
+   "region": "rural",
+   "segment": "salaried",
+   "consent": false,
+   "trusted_contact": false,
+   "usual_payment": 3507,
+   "usual_payment_text": "₹3,507"
+  },
+  {
+   "id": "C734",
+   "label": "Trader, 18-25, tier-2",
+   "age_band": "18-25",
+   "lang": "en",
+   "region": "tier-2",
+   "segment": "trader",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 9621,
+   "usual_payment_text": "₹9,621"
+  },
+  {
+   "id": "C3547",
+   "label": "Trader, 26-40, rural",
+   "age_band": "26-40",
+   "lang": "kn",
+   "region": "rural",
+   "segment": "trader",
+   "consent": true,
+   "trusted_contact": false,
+   "usual_payment": 2669,
+   "usual_payment_text": "₹2,669"
+  }
+ ],
+ "payee_types": [
+  {
+   "id": "saved_contact",
+   "label": "Saved contact",
+   "scored": true
+  },
+  {
+   "id": "shop",
+   "label": "Shop (merchant)",
+   "scored": false,
+   "note": "merchant payments skip scoring"
+  },
+  {
+   "id": "regular_vendor",
+   "label": "Regular vendor",
+   "scored": true
+  },
+  {
+   "id": "new_individual",
+   "label": "New individual (clean)",
+   "scored": true
+  },
+  {
+   "id": "new_landlord",
+   "label": "New landlord",
+   "scored": true
+  },
+  {
+   "id": "new_account",
+   "label": "Account opened < 30 days ago",
+   "scored": true
+  },
+  {
+   "id": "dormant",
+   "label": "Dormant account woken up",
+   "scored": true
+  },
+  {
+   "id": "registry",
+   "label": "Reported on the cybercrime portal",
+   "scored": true
+  },
+  {
+   "id": "fri_high",
+   "label": "High telecom fraud-risk number",
+   "scored": true
+  },
+  {
+   "id": "flagged_genuine",
+   "label": "Genuine account wrongly flagged by DoT (false positive)",
+   "scored": true
+  },
+  {
+   "id": "mule_network",
+   "label": "In a live mule network",
+   "scored": true
+  },
+  {
+   "id": "mule_unflagged",
+   "label": "Mule not yet flagged (clean-looking)",
+   "scored": true
+  }
+ ],
+ "channels": [
+  "UPI to person",
+  "IMPS",
+  "NEFT"
+ ],
+ "history_kinds": [
+  {
+   "id": "new_payee_payment",
+   "label": "Paid a new payee earlier",
+   "fields": [
+    "amount",
+    "hours_ago"
+   ]
+  },
+  {
+   "id": "fd_break",
+   "label": "Broke a fixed deposit",
+   "fields": [
+    "hours_ago"
+   ]
+  },
+  {
+   "id": "stranger_credit",
+   "label": "Small credit from an unknown account",
+   "fields": [
+    "amount",
+    "hours_ago"
+   ]
+  },
+  {
+   "id": "sent_today",
+   "label": "Money already sent to people today",
+   "fields": [
+    "amount"
+   ]
+  }
+ ],
+ "context_fields": [
+  {
+   "id": "on_call",
+   "type": "bool",
+   "label": "On a call"
+  },
+  {
+   "id": "call_ott",
+   "type": "bool",
+   "label": "Internet call (WhatsApp, Meet)"
+  },
+  {
+   "id": "call_min",
+   "type": "number",
+   "label": "Call length so far (min)"
+  },
+  {
+   "id": "caller_unknown",
+   "type": "bool",
+   "label": "Caller not in contacts",
+   "note": "model v1 input; an Android bank app can't read this, so model v2 drops it"
+  },
+  {
+   "id": "screen_share",
+   "type": "bool",
+   "label": "Screen being shared"
+  },
+  {
+   "id": "remote_app",
+   "type": "bool",
+   "label": "Remote-access app running"
+  },
+  {
+   "id": "app_switches",
+   "type": "int",
+   "label": "App switches during this payment"
+  }
+ ],
+ "languages": [
+  "en",
+  "hi"
+ ]
+}

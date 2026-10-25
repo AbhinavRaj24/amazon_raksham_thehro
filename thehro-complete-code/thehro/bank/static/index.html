@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thehro · judge mode</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">ठ</div>
+      <div><b>Thehro · judge mode</b><small>Build any payment and see what the customer and the bank see</small></div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <a role="tab" href="#judge" data-tab="judge" aria-selected="true">Judge</a>
+      <a role="tab" href="#officer" data-tab="officer" aria-selected="false">Officer</a>
+      <a role="tab" href="#kit" data-tab="kit" aria-selected="false">Kit</a>
+      <a role="tab" href="#results" data-tab="results" aria-selected="false">Results</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Phone language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="hi" aria-pressed="false" lang="hi">हिं</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="judge" role="tabpanel" data-panel="judge">
+    <div class="jgrid">
+      <form class="panel builder" id="builder" autocomplete="off" novalidate>
+        <p class="muted">Connecting to the bank server…</p>
+      </form>
+      <div class="stage">
+        <div class="phone" aria-label="Customer's phone"><div class="screen" id="screen"></div></div>
+        <div class="below" id="below"></div>
+        <div class="timeline" id="timeline" aria-label="This session's payments"></div>
+      </div>
+      <div class="bank" id="bank" aria-label="Bank view"></div>
+    </div>
+  </section>
+
+  <section id="officer" role="tabpanel" data-panel="officer" class="tabpage" hidden>
+    <div class="panel">
+      <div class="panel-h"><h3>Officer review</h3><a href="officer.html" target="_blank" rel="noopener">Open in a new window ↗</a></div>
+      <div id="officer-body"><p class="muted">Loading…</p></div>
+    </div>
+  </section>
+
+  <section id="kit" role="tabpanel" data-panel="kit" class="tabpage" hidden>
+    <div class="kitgrid">
+      <div class="panel" id="kit-k2"></div>
+      <div class="panel" id="kit-k1"><p class="muted">Loading the hand-written cases…</p></div>
+    </div>
+  </section>
+
+  <section id="results" role="tabpanel" data-panel="results" class="tabpage" hidden>
+    <div class="panel">
+      <div class="panel-h"><h3>Results</h3><span class="label" id="report-updated">test_kit/report.md</span></div>
+      <div id="report" class="md"><p class="muted">Loading…</p></div>
+    </div>
+  </section>
+</main>
+
+<div id="toasts" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

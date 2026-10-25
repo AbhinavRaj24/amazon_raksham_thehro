@@ -1,0 +1,3120 @@
+{
+ "data": "synthetic test days 42-59, frozen model hgb-86it-677lab-nocallerid, policy v4",
+ "missed": {
+  "n": 29,
+  "of": 720,
+  "groups": [
+   {
+    "group": "one_small_payment",
+    "title": "One small payment (under ₹10,000) and nothing else on file",
+    "count": 10,
+    "scam_types": {
+     "investment": 4,
+     "marketplace": 4,
+     "customer_care": 1,
+     "loan_fee": 1
+    },
+    "not_opted_in": 2,
+    "on_a_call": 3,
+    "got_a_note": 3,
+    "got_nothing": 7,
+    "money": 40701.0,
+    "explanation": "The whole scam was a single small payment. With no history building up and no flag on the payee, there is almost nothing to separate it from the many genuine first payments of that size.",
+    "example": {
+     "journey": 391,
+     "scam_type": "investment",
+     "n_payments": 1,
+     "total": 7109.0,
+     "largest": 7109.0,
+     "highest_tier": 0,
+     "opted_in": true,
+     "on_a_call": true,
+     "outside_flag": false,
+     "closest_step": {
+      "amount": 7109.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 9.54228,
+      "recent_payee_payments_7d": 0.0,
+      "payee_age_days": 1833.2,
+      "payee_idle_days": 191.564,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": 1.0,
+      "caller_unknown": 1.0,
+      "call_ott": 1.0,
+      "call_min": 8.82608,
+      "screen_share": 0.0,
+      "remote_app": 0.0,
+      "consent": true,
+      "fused_risk": 0.0008,
+      "pause_line": 0.1058,
+      "tier": "0 Allow"
+     },
+     "reasons_it_would_show": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 10x your usual payment"
+      },
+      {
+       "code": "APP_SWITCHING",
+       "en": "You switched between apps 4 times during this payment"
+      },
+      {
+       "code": "DORMANT",
+       "en": "This account had no activity for 6 months before today"
+      }
+     ]
+    }
+   },
+   {
+    "group": "one_large_payment_clean_payee",
+    "title": "One larger payment to a payee with no outside flag",
+    "count": 9,
+    "scam_types": {
+     "digital_arrest": 3,
+     "voice_clone": 3,
+     "customer_care": 2,
+     "investment": 1
+    },
+    "not_opted_in": 5,
+    "on_a_call": 2,
+    "got_a_note": 7,
+    "got_nothing": 2,
+    "money": 878344.0,
+    "explanation": "A single larger payment to an account that had never been reported and was not in a detected mule network. Without a second payment, the journey signals (rising amounts, several new payees) never appear, and the payee family has nothing to go on.",
+    "example": {
+     "journey": 508,
+     "scam_type": "digital_arrest",
+     "n_payments": 1,
+     "total": 503724.0,
+     "largest": 503724.0,
+     "highest_tier": 1,
+     "opted_in": false,
+     "on_a_call": false,
+     "outside_flag": false,
+     "closest_step": {
+      "amount": 503724.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 759.765,
+      "recent_payee_payments_7d": 0.0,
+      "payee_age_days": 2700.06,
+      "payee_idle_days": 828.601,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": null,
+      "caller_unknown": null,
+      "call_ott": null,
+      "call_min": null,
+      "screen_share": null,
+      "remote_app": null,
+      "consent": false,
+      "fused_risk": 0.0807,
+      "pause_line": 0.1058,
+      "tier": "1 Note"
+     },
+     "reasons_it_would_show": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 760x your usual payment"
+      },
+      {
+       "code": "DORMANT",
+       "en": "This account had no activity for 27 months before today"
+      }
+     ]
+    }
+   },
+   {
+    "group": "run_of_small_payments",
+    "title": "A short run of small payments (all under ₹10,000), payee never flagged",
+    "count": 7,
+    "scam_types": {
+     "loan_fee": 5,
+     "marketplace": 2
+    },
+    "not_opted_in": 1,
+    "on_a_call": 4,
+    "got_a_note": 5,
+    "got_nothing": 2,
+    "money": 54489.0,
+    "explanation": "Two to five small payments, often 'fees' or 'test' amounts, to clean-looking accounts. Each one is small enough to look like everyday spending, and the run ended before the series features or the mule-network detector caught up. Loan-fee and marketplace scams make up most of this group.",
+    "example": {
+     "journey": 1597,
+     "scam_type": "loan_fee",
+     "n_payments": 2,
+     "total": 11355.0,
+     "largest": 6453.0,
+     "highest_tier": 1,
+     "opted_in": false,
+     "on_a_call": false,
+     "outside_flag": false,
+     "closest_step": {
+      "amount": 6453.0,
+      "is_new_payee": 0.0,
+      "amt_vs_usual": 4.79065,
+      "recent_payee_payments_7d": 1.0,
+      "payee_age_days": 1953.45,
+      "payee_idle_days": 0.0210764,
+      "payee_new_payers_24h": 2.0,
+      "payee_passthrough_24h": 0.552587,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": null,
+      "caller_unknown": null,
+      "call_ott": null,
+      "call_min": null,
+      "screen_share": null,
+      "remote_app": null,
+      "consent": false,
+      "fused_risk": 0.0862,
+      "pause_line": 0.1058,
+      "tier": "1 Note"
+     },
+     "reasons_it_would_show": []
+    }
+   },
+   {
+    "group": "several_larger_payments",
+    "title": "Several larger payments that stayed just under the pause line, payee never flagged",
+    "count": 3,
+    "scam_types": {
+     "investment": 1,
+     "voice_clone": 1,
+     "loan_fee": 1
+    },
+    "not_opted_in": 0,
+    "on_a_call": 3,
+    "got_a_note": 3,
+    "got_nothing": 0,
+    "money": 211248.0,
+    "explanation": "Several larger payments, but each step stayed just under the pause line: the payee was never flagged and the growth from one payment to the next was gradual. The memory rule only escalates after a warning, so it never started.",
+    "example": {
+     "journey": 1421,
+     "scam_type": "voice_clone",
+     "n_payments": 2,
+     "total": 136794.0,
+     "largest": 106006.0,
+     "highest_tier": 1,
+     "opted_in": true,
+     "on_a_call": true,
+     "outside_flag": false,
+     "closest_step": {
+      "amount": 106006.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 3.49751,
+      "recent_payee_payments_7d": 1.0,
+      "payee_age_days": 2391.17,
+      "payee_idle_days": 1.06846,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": 0.0,
+      "caller_unknown": 0.0,
+      "call_ott": 0.0,
+      "call_min": 0.0,
+      "screen_share": 0.0,
+      "remote_app": 0.0,
+      "consent": true,
+      "fused_risk": 0.0964,
+      "pause_line": 0.1058,
+      "tier": "1 Note"
+     },
+     "reasons_it_would_show": []
+    }
+   }
+  ],
+  "victims": [
+   {
+    "journey": 0,
+    "victim": 21147,
+    "scam_type": "investment",
+    "n_payments": 1,
+    "total": 6139.0,
+    "largest": 6139.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0540408,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 6139.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 4.28402,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 44.9121,
+     "payee_idle_days": 44.9121,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.054,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 18,
+    "victim": 7755,
+    "scam_type": "investment",
+    "n_payments": 4,
+    "total": 43359.0,
+    "largest": 16680.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.101564,
+    "group": "several_larger_payments",
+    "closest_step": {
+     "amount": 9047.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 16.2424,
+     "recent_payee_payments_7d": 3.0,
+     "payee_age_days": 3464.09,
+     "payee_idle_days": 0.107691,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": 1.34221,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.1016,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 16x your usual payment"
+     },
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 4 times during this payment"
+     },
+     {
+      "code": "PASS_THROUGH",
+      "en": "This account sent on 100% of what it received in the last 24 hours"
+     }
+    ]
+   },
+   {
+    "journey": 51,
+    "victim": 29886,
+    "scam_type": "investment",
+    "n_payments": 1,
+    "total": 14763.0,
+    "largest": 14763.0,
+    "highest_tier": 1,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.0604064,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 14763.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 10.7289,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 708.069,
+     "payee_idle_days": 605.018,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.0604,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 11x your usual payment"
+     },
+     {
+      "code": "DORMANT",
+      "en": "This account had no activity for 20 months before today"
+     }
+    ]
+   },
+   {
+    "journey": 163,
+    "victim": 38728,
+    "scam_type": "investment",
+    "n_payments": 1,
+    "total": 6048.0,
+    "largest": 6048.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.000390246,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 6048.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 5.27289,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 5046.29,
+     "payee_idle_days": 0.556001,
+     "payee_new_payers_24h": 1.0,
+     "payee_passthrough_24h": 0.975317,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 1.0,
+     "call_min": 16.3424,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0004,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 5x your usual payment"
+     },
+     {
+      "code": "PASS_THROUGH",
+      "en": "This account sent on 97% of what it received in the last 24 hours"
+     },
+     {
+      "code": "ON_CALL",
+      "en": "You are on an internet call (16 min so far)"
+     }
+    ]
+   },
+   {
+    "journey": 226,
+    "victim": 10782,
+    "scam_type": "investment",
+    "n_payments": 1,
+    "total": 5377.0,
+    "largest": 5377.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00223684,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 5377.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 5.80043,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 3230.7,
+     "payee_idle_days": 0.0661036,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0022,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 6x your usual payment"
+     }
+    ]
+   },
+   {
+    "journey": 391,
+    "victim": 22644,
+    "scam_type": "investment",
+    "n_payments": 1,
+    "total": 7109.0,
+    "largest": 7109.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.000810367,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 7109.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 9.54228,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 1833.2,
+     "payee_idle_days": 191.564,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 1.0,
+     "call_min": 8.82608,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0008,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 10x your usual payment"
+     },
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 4 times during this payment"
+     },
+     {
+      "code": "DORMANT",
+      "en": "This account had no activity for 6 months before today"
+     }
+    ]
+   },
+   {
+    "journey": 508,
+    "victim": 11435,
+    "scam_type": "digital_arrest",
+    "n_payments": 1,
+    "total": 503724.0,
+    "largest": 503724.0,
+    "highest_tier": 1,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.080724,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 503724.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 759.765,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 2700.06,
+     "payee_idle_days": 828.601,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.0807,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 760x your usual payment"
+     },
+     {
+      "code": "DORMANT",
+      "en": "This account had no activity for 27 months before today"
+     }
+    ]
+   },
+   {
+    "journey": 534,
+    "victim": 30671,
+    "scam_type": "digital_arrest",
+    "n_payments": 1,
+    "total": 129727.0,
+    "largest": 129727.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.00151669,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 129727.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 179.677,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 1467.23,
+     "payee_idle_days": 1.06442,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0015,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 180x your usual payment"
+     }
+    ]
+   },
+   {
+    "journey": 619,
+    "victim": 1670,
+    "scam_type": "digital_arrest",
+    "n_payments": 1,
+    "total": 109096.0,
+    "largest": 109096.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.0215764,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 109096.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 24.9419,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 2825.57,
+     "payee_idle_days": 1.37468,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0216,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 25x your usual payment"
+     },
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 4 times during this payment"
+     }
+    ]
+   },
+   {
+    "journey": 1059,
+    "victim": 24378,
+    "scam_type": "customer_care",
+    "n_payments": 1,
+    "total": 10197.0,
+    "largest": 10197.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.0169254,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 10197.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 4.341,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 881.881,
+     "payee_idle_days": 0.528517,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 0.0,
+     "call_min": 6.06578,
+     "screen_share": 0.0,
+     "remote_app": 1.0,
+     "consent": true,
+     "fused_risk": 0.0169,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "REMOTE_APP",
+      "en": "A remote-access app is running on your phone"
+     },
+     {
+      "code": "ON_CALL",
+      "en": "You are on a phone call (6 min so far)"
+     }
+    ]
+   },
+   {
+    "journey": 1084,
+    "victim": 17619,
+    "scam_type": "customer_care",
+    "n_payments": 1,
+    "total": 5245.0,
+    "largest": 5245.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00735416,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 5245.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 6.75032,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 881.431,
+     "payee_idle_days": 1.60915,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 1.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0074,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "SCREEN_SHARE",
+      "en": "Your screen is being shared right now"
+     },
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 7x your usual payment"
+     }
+    ]
+   },
+   {
+    "journey": 1127,
+    "victim": 2793,
+    "scam_type": "customer_care",
+    "n_payments": 1,
+    "total": 29412.0,
+    "largest": 29412.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.0756607,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 29412.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 12.799,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 3137.12,
+     "payee_idle_days": 1.93626,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 0.0,
+     "call_min": 6.86278,
+     "screen_share": 0.0,
+     "remote_app": 1.0,
+     "consent": true,
+     "fused_risk": 0.0757,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "REMOTE_APP",
+      "en": "A remote-access app is running on your phone"
+     },
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 13x your usual payment"
+     },
+     {
+      "code": "ON_CALL",
+      "en": "You are on a phone call (7 min so far)"
+     }
+    ]
+   },
+   {
+    "journey": 1245,
+    "victim": 11960,
+    "scam_type": "marketplace",
+    "n_payments": 1,
+    "total": 2368.0,
+    "largest": 2368.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00134862,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 2368.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 3.27978,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 3706.39,
+     "payee_idle_days": 1.709,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0013,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1246,
+    "victim": 21278,
+    "scam_type": "marketplace",
+    "n_payments": 1,
+    "total": 2031.0,
+    "largest": 2031.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00138637,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 2031.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 1.85819,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 84.5649,
+     "payee_idle_days": 44.395,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0014,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1280,
+    "victim": 28648,
+    "scam_type": "marketplace",
+    "n_payments": 1,
+    "total": 2945.0,
+    "largest": 2945.0,
+    "highest_tier": 1,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0609516,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 2945.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 2.5128,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 70.2443,
+     "payee_idle_days": 44.4282,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.061,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1292,
+    "victim": 32961,
+    "scam_type": "marketplace",
+    "n_payments": 2,
+    "total": 9540.0,
+    "largest": 6193.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0568107,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 6193.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 0.590597,
+     "recent_payee_payments_7d": 2.0,
+     "payee_age_days": 81.0652,
+     "payee_idle_days": 46.496,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 1.0,
+     "call_min": 15.723,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0568,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "ON_CALL",
+      "en": "You are on an internet call (16 min so far)"
+     }
+    ]
+   },
+   {
+    "journey": 1300,
+    "victim": 16767,
+    "scam_type": "marketplace",
+    "n_payments": 2,
+    "total": 9895.0,
+    "largest": 6459.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0460219,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 6459.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 0.415009,
+     "recent_payee_payments_7d": 2.0,
+     "payee_age_days": 50.495,
+     "payee_idle_days": 2.41861,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.046,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1364,
+    "victim": 30912,
+    "scam_type": "marketplace",
+    "n_payments": 1,
+    "total": 1776.0,
+    "largest": 1776.0,
+    "highest_tier": 0,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00681202,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 1776.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 3.9292,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 89.2465,
+     "payee_idle_days": 2.09182,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.0068,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "DAY_OUTFLOW",
+      "en": "You have sent 23x your usual daily amount to people today"
+     }
+    ]
+   },
+   {
+    "journey": 1421,
+    "victim": 36501,
+    "scam_type": "voice_clone",
+    "n_payments": 2,
+    "total": 136794.0,
+    "largest": 106006.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.0964164,
+    "group": "several_larger_payments",
+    "closest_step": {
+     "amount": 106006.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 3.49751,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 2391.17,
+     "payee_idle_days": 1.06846,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0964,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1423,
+    "victim": 30176,
+    "scam_type": "voice_clone",
+    "n_payments": 1,
+    "total": 31604.0,
+    "largest": 31604.0,
+    "highest_tier": 1,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.076663,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 31604.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 43.7729,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 54.5551,
+     "payee_idle_days": 54.5551,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.0767,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 44x your usual payment"
+     }
+    ]
+   },
+   {
+    "journey": 1428,
+    "victim": 18490,
+    "scam_type": "voice_clone",
+    "n_payments": 1,
+    "total": 16300.0,
+    "largest": 16300.0,
+    "highest_tier": 0,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.00502621,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 16300.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 4.53913,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 87.5363,
+     "payee_idle_days": 47.419,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.005,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1483,
+    "victim": 20296,
+    "scam_type": "voice_clone",
+    "n_payments": 1,
+    "total": 33521.0,
+    "largest": 33521.0,
+    "highest_tier": 1,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.054413,
+    "group": "one_large_payment_clean_payee",
+    "closest_step": {
+     "amount": 33521.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 22.5579,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 88.1723,
+     "payee_idle_days": 1.25172,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.0544,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_PAYEE_LARGE",
+      "en": "First payment to this account, 23x your usual payment"
+     }
+    ]
+   },
+   {
+    "journey": 1500,
+    "victim": 26484,
+    "scam_type": "loan_fee",
+    "n_payments": 2,
+    "total": 5847.0,
+    "largest": 3835.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00519004,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 2012.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 0.520704,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 1307.95,
+     "payee_idle_days": 440.422,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 0.0,
+     "call_min": 11.073,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0052,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "DORMANT",
+      "en": "This account had no activity for 14 months before today"
+     },
+     {
+      "code": "ON_CALL",
+      "en": "You are on a phone call (11 min so far)"
+     }
+    ]
+   },
+   {
+    "journey": 1526,
+    "victim": 34284,
+    "scam_type": "loan_fee",
+    "n_payments": 1,
+    "total": 1663.0,
+    "largest": 1663.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0110057,
+    "group": "one_small_payment",
+    "closest_step": {
+     "amount": 1663.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 0.660052,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 58.6454,
+     "payee_idle_days": 58.6454,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 1.0,
+     "caller_unknown": 1.0,
+     "call_ott": 0.0,
+     "call_min": 4.13012,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.011,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 5 times during this payment"
+     },
+     {
+      "code": "ON_CALL",
+      "en": "You are on a phone call (4 min so far)"
+     }
+    ]
+   },
+   {
+    "journey": 1560,
+    "victim": 21138,
+    "scam_type": "loan_fee",
+    "n_payments": 3,
+    "total": 31095.0,
+    "largest": 16426.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": false,
+    "highest_fused_risk": 0.0807259,
+    "group": "several_larger_payments",
+    "closest_step": {
+     "amount": 9707.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 0.544649,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 26.0184,
+     "payee_idle_days": 26.0184,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0807,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_ACCOUNT",
+      "en": "This account was opened 26 days ago"
+     },
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 4 times during this payment"
+     }
+    ]
+   },
+   {
+    "journey": 1570,
+    "victim": 23895,
+    "scam_type": "loan_fee",
+    "n_payments": 2,
+    "total": 3088.0,
+    "largest": 1594.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": true,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0406956,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 1594.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 0.0834206,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 7.94421,
+     "payee_idle_days": 7.94421,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0407,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "NEW_ACCOUNT",
+      "en": "This account was opened 7 days ago"
+     }
+    ]
+   },
+   {
+    "journey": 1597,
+    "victim": 11012,
+    "scam_type": "loan_fee",
+    "n_payments": 2,
+    "total": 11355.0,
+    "largest": 6453.0,
+    "highest_tier": 1,
+    "opted_in": false,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0862033,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 6453.0,
+     "is_new_payee": 0.0,
+     "amt_vs_usual": 4.79065,
+     "recent_payee_payments_7d": 1.0,
+     "payee_age_days": 1953.45,
+     "payee_idle_days": 0.0210764,
+     "payee_new_payers_24h": 2.0,
+     "payee_passthrough_24h": 0.552587,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": null,
+     "caller_unknown": null,
+     "call_ott": null,
+     "call_min": null,
+     "screen_share": null,
+     "remote_app": null,
+     "consent": false,
+     "fused_risk": 0.0862,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": []
+   },
+   {
+    "journey": 1629,
+    "victim": 19605,
+    "scam_type": "loan_fee",
+    "n_payments": 2,
+    "total": 4934.0,
+    "largest": 3148.0,
+    "highest_tier": 0,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.00552957,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 1786.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 3.17229,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 1293.61,
+     "payee_idle_days": 465.688,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0055,
+     "pause_line": 0.1058,
+     "tier": "0 Allow"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 6 times during this payment"
+     },
+     {
+      "code": "DORMANT",
+      "en": "This account had no activity for 15 months before today"
+     }
+    ]
+   },
+   {
+    "journey": 1645,
+    "victim": 330,
+    "scam_type": "loan_fee",
+    "n_payments": 2,
+    "total": 9830.0,
+    "largest": 6742.0,
+    "highest_tier": 1,
+    "opted_in": true,
+    "on_a_call": false,
+    "outside_flag": false,
+    "all_under_10k": true,
+    "highest_fused_risk": 0.0384804,
+    "group": "run_of_small_payments",
+    "closest_step": {
+     "amount": 3088.0,
+     "is_new_payee": 1.0,
+     "amt_vs_usual": 2.66437,
+     "recent_payee_payments_7d": 0.0,
+     "payee_age_days": 79.9484,
+     "payee_idle_days": 43.7703,
+     "payee_new_payers_24h": 0.0,
+     "payee_passthrough_24h": null,
+     "payee_registry": 0.0,
+     "payee_fri_band": 0.0,
+     "payee_in_campaign": 0.0,
+     "on_call": 0.0,
+     "caller_unknown": 0.0,
+     "call_ott": 0.0,
+     "call_min": 0.0,
+     "screen_share": 0.0,
+     "remote_app": 0.0,
+     "consent": true,
+     "fused_risk": 0.0385,
+     "pause_line": 0.1058,
+     "tier": "1 Note"
+    },
+    "reasons_it_would_show": [
+     {
+      "code": "APP_SWITCHING",
+      "en": "You switched between apps 7 times during this payment"
+     }
+    ]
+   }
+  ]
+ },
+ "false_pauses": {
+  "n": 82,
+  "customer_payments": 786121,
+  "rate": {
+   "k": 82,
+   "n": 786121,
+   "value": 1.0431,
+   "lo": 0.829606,
+   "hi": 1.29476
+  },
+  "groups": [
+   {
+    "group": "new_individual",
+    "count": 55,
+    "scored_payments_of_kind": 14410,
+    "false_pauses_per_10k_of_kind": {
+     "k": 55,
+     "n": 14410,
+     "value": 38.1679,
+     "lo": 28.7533,
+     "hi": 49.6808
+    },
+    "trusted_checks": 2,
+    "holds": 0,
+    "on_a_call": 24,
+    "escalated_by_memory": 11,
+    "top_reasons": {
+     "NEW_PAYEE_LARGE": 32,
+     "STRANGER_CREDITS": 9,
+     "NONE": 3
+    },
+    "example": {
+     "pid": 2770698,
+     "amount": 51288.0,
+     "tier": 3,
+     "features": {
+      "amount": 51288.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 43.1899,
+      "recent_payee_payments_7d": 0.0,
+      "payee_age_days": 74.8103,
+      "payee_idle_days": 3.46502,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": 1.0,
+      "caller_unknown": 0.0,
+      "call_ott": 1.0,
+      "call_min": 9.42825,
+      "screen_share": 0.0,
+      "remote_app": 0.0,
+      "consent": true,
+      "fused_risk": 0.2169,
+      "pause_line": 0.1058,
+      "tier": "3 Trusted check"
+     },
+     "reasons_shown": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 43x your usual payment"
+      },
+      {
+       "code": "ON_CALL",
+       "en": "You are on an internet call (9 min so far)"
+      }
+     ]
+    }
+   },
+   {
+    "group": "supplier",
+    "count": 14,
+    "scored_payments_of_kind": 32732,
+    "false_pauses_per_10k_of_kind": {
+     "k": 14,
+     "n": 32732,
+     "value": 4.27716,
+     "lo": 2.33836,
+     "hi": 7.17635
+    },
+    "trusted_checks": 0,
+    "holds": 0,
+    "on_a_call": 1,
+    "escalated_by_memory": 2,
+    "top_reasons": {
+     "NEW_PAYEE_LARGE": 9,
+     "STRANGER_CREDITS": 3,
+     "FRI": 1
+    },
+    "example": {
+     "pid": 2008294,
+     "amount": 18444.0,
+     "tier": 2,
+     "features": {
+      "amount": 18444.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 19.5796,
+      "recent_payee_payments_7d": 2.0,
+      "payee_age_days": 868.031,
+      "payee_idle_days": 1.55868,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": null,
+      "caller_unknown": null,
+      "call_ott": null,
+      "call_min": null,
+      "screen_share": null,
+      "remote_app": null,
+      "consent": false,
+      "fused_risk": 0.1968,
+      "pause_line": 0.1058,
+      "tier": "2 Pause and explain"
+     },
+     "reasons_shown": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 20x your usual payment"
+      },
+      {
+       "code": "DAY_OUTFLOW",
+       "en": "You have sent 43x your usual daily amount to people today"
+      }
+     ]
+    }
+   },
+   {
+    "group": "medical",
+    "count": 6,
+    "scored_payments_of_kind": 85,
+    "false_pauses_per_10k_of_kind": {
+     "k": 6,
+     "n": 85,
+     "value": 705.882,
+     "lo": 259.046,
+     "hi": 1536.41
+    },
+    "trusted_checks": 2,
+    "holds": 0,
+    "on_a_call": 5,
+    "escalated_by_memory": 0,
+    "top_reasons": {
+     "NEW_PAYEE_LARGE": 3,
+     "FD_BREAK": 2,
+     "STRANGER_CREDITS": 1
+    },
+    "example": {
+     "pid": 2080729,
+     "amount": 64759.0,
+     "tier": 3,
+     "features": {
+      "amount": 64759.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 20.2562,
+      "recent_payee_payments_7d": 0.0,
+      "payee_age_days": 1122.16,
+      "payee_idle_days": 54.6989,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": 1.0,
+      "caller_unknown": 0.0,
+      "call_ott": 1.0,
+      "call_min": 22.9546,
+      "screen_share": 0.0,
+      "remote_app": 0.0,
+      "consent": true,
+      "fused_risk": 0.1805,
+      "pause_line": 0.1058,
+      "tier": "3 Trusted check"
+     },
+     "reasons_shown": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 20x your usual payment"
+      },
+      {
+       "code": "ON_CALL",
+       "en": "You are on an internet call (23 min so far)"
+      }
+     ]
+    }
+   },
+   {
+    "group": "new_landlord",
+    "count": 4,
+    "scored_payments_of_kind": 238,
+    "false_pauses_per_10k_of_kind": {
+     "k": 4,
+     "n": 238,
+     "value": 168.067,
+     "lo": 45.7927,
+     "hi": 430.319
+    },
+    "trusted_checks": 2,
+    "holds": 0,
+    "on_a_call": 3,
+    "escalated_by_memory": 1,
+    "top_reasons": {
+     "NEW_PAYEE_LARGE": 3,
+     "APP_SWITCHING": 1
+    },
+    "example": {
+     "pid": 2007574,
+     "amount": 66626.0,
+     "tier": 3,
+     "features": {
+      "amount": 66626.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 7.83789,
+      "recent_payee_payments_7d": 1.0,
+      "payee_age_days": 162.523,
+      "payee_idle_days": 51.868,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": 1.0,
+      "caller_unknown": 1.0,
+      "call_ott": 0.0,
+      "call_min": 31.8286,
+      "screen_share": 0.0,
+      "remote_app": 0.0,
+      "consent": true,
+      "fused_risk": 0.2148,
+      "pause_line": 0.1058,
+      "tier": "3 Trusted check"
+     },
+     "reasons_shown": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 8x your usual payment"
+      },
+      {
+       "code": "ON_CALL",
+       "en": "You are on a phone call (32 min so far)"
+      }
+     ]
+    }
+   },
+   {
+    "group": "gray_invest",
+    "count": 3,
+    "scored_payments_of_kind": 53,
+    "false_pauses_per_10k_of_kind": {
+     "k": 3,
+     "n": 53,
+     "value": 566.038,
+     "lo": 116.731,
+     "hi": 1654.2
+    },
+    "trusted_checks": 0,
+    "holds": 0,
+    "on_a_call": 1,
+    "escalated_by_memory": 0,
+    "top_reasons": {
+     "NEW_PAYEE_LARGE": 2,
+     "FD_BREAK": 1
+    },
+    "example": {
+     "pid": 2009572,
+     "amount": 145049.0,
+     "tier": 2,
+     "features": {
+      "amount": 145049.0,
+      "is_new_payee": 1.0,
+      "amt_vs_usual": 158.005,
+      "recent_payee_payments_7d": 0.0,
+      "payee_age_days": 55.5857,
+      "payee_idle_days": 55.5857,
+      "payee_new_payers_24h": 0.0,
+      "payee_passthrough_24h": null,
+      "payee_registry": 0.0,
+      "payee_fri_band": 0.0,
+      "payee_in_campaign": 0.0,
+      "on_call": null,
+      "caller_unknown": null,
+      "call_ott": null,
+      "call_min": null,
+      "screen_share": null,
+      "remote_app": null,
+      "consent": false,
+      "fused_risk": 0.1673,
+      "pause_line": 0.1058,
+      "tier": "2 Pause and explain"
+     },
+     "reasons_shown": [
+      {
+       "code": "NEW_PAYEE_LARGE",
+       "en": "First payment to this account, 158x your usual payment"
+      }
+     ]
+    }
+   }
+  ],
+  "way_out": {
+   "pauses": 76,
+   "trusted_checks": 6,
+   "holds": 0,
+   "escalated_by_memory": 14,
+   "text": "76 of the 82 were a pause: the customer sees three facts, waits 30 seconds and can press Continue, so the cost is about half a minute. 6 reached a trusted check (₹50,000+ with two kinds of evidence, or within 7 days of continuing past a warning): the payment waits for the trusted person or up to an hour, then the customer decides. 0 reached a hold, so no genuine payment was stopped for an officer."
+  },
+  "by_call": {
+   "not on a call": 48,
+   "on a call": 34
+  },
+  "by_top_reason": {
+   "NEW_PAYEE_LARGE": 49,
+   "STRANGER_CREDITS": 13,
+   "FD_BREAK": 4,
+   "APP_SWITCHING": 3,
+   "NONE": 3,
+   "FRI": 2,
+   "CAMPAIGN": 2,
+   "DORMANT": 2,
+   "PASS_THROUGH": 1,
+   "ESCALATING": 1,
+   "DAY_OUTFLOW": 1,
+   "NIGHT_NEW": 1
+  },
+  "payments": [
+   {
+    "pid": 2002460,
+    "kind": "new_individual",
+    "amount": 10529.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "APP_SWITCHING",
+    "reasons": [
+     "APP_SWITCHING",
+     "DAY_OUTFLOW",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0950022
+   },
+   {
+    "pid": 2007574,
+    "kind": "new_landlord",
+    "amount": 66626.0,
+    "tier": 3,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.214782
+   },
+   {
+    "pid": 2008294,
+    "kind": "supplier",
+    "amount": 18444.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.196777
+   },
+   {
+    "pid": 2009572,
+    "kind": "gray_invest",
+    "amount": 145049.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.167261
+   },
+   {
+    "pid": 2021985,
+    "kind": "supplier",
+    "amount": 389964.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0641437
+   },
+   {
+    "pid": 2022057,
+    "kind": "supplier",
+    "amount": 69635.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "FRI",
+    "reasons": [
+     "FRI"
+    ],
+    "fused_risk": 0.00138953
+   },
+   {
+    "pid": 2024253,
+    "kind": "new_individual",
+    "amount": 22412.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0227294
+   },
+   {
+    "pid": 2024363,
+    "kind": "new_landlord",
+    "amount": 72656.0,
+    "tier": 3,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.132292
+   },
+   {
+    "pid": 2042790,
+    "kind": "new_individual",
+    "amount": 12943.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.00707078
+   },
+   {
+    "pid": 2052448,
+    "kind": "new_individual",
+    "amount": 2274.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NONE",
+    "reasons": [],
+    "fused_risk": 0.130542
+   },
+   {
+    "pid": 2080729,
+    "kind": "medical",
+    "amount": 64759.0,
+    "tier": 3,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.180549
+   },
+   {
+    "pid": 2080885,
+    "kind": "new_individual",
+    "amount": 10319.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NONE",
+    "reasons": [],
+    "fused_risk": 0.118766
+   },
+   {
+    "pid": 2086152,
+    "kind": "new_individual",
+    "amount": 13560.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "ESCALATING",
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.033461
+   },
+   {
+    "pid": 2099681,
+    "kind": "medical",
+    "amount": 64759.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "FD_BREAK",
+    "reasons": [
+     "FD_BREAK",
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0874374
+   },
+   {
+    "pid": 2100066,
+    "kind": "new_individual",
+    "amount": 15632.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.182068
+   },
+   {
+    "pid": 2101292,
+    "kind": "new_individual",
+    "amount": 19311.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.00693613
+   },
+   {
+    "pid": 2102178,
+    "kind": "new_individual",
+    "amount": 18734.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.220106
+   },
+   {
+    "pid": 2104871,
+    "kind": "new_individual",
+    "amount": 18799.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.105977
+   },
+   {
+    "pid": 2109097,
+    "kind": "gray_invest",
+    "amount": 145049.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.0776458
+   },
+   {
+    "pid": 2114079,
+    "kind": "new_individual",
+    "amount": 11382.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0148945
+   },
+   {
+    "pid": 2114793,
+    "kind": "medical",
+    "amount": 64759.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "FD_BREAK",
+    "reasons": [
+     "FD_BREAK",
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.192107
+   },
+   {
+    "pid": 2143055,
+    "kind": "new_individual",
+    "amount": 23932.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.0686519
+   },
+   {
+    "pid": 2165807,
+    "kind": "new_individual",
+    "amount": 74312.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "FD_BREAK",
+    "reasons": [
+     "FD_BREAK",
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.190002
+   },
+   {
+    "pid": 2185997,
+    "kind": "new_individual",
+    "amount": 28942.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.195197
+   },
+   {
+    "pid": 2194395,
+    "kind": "supplier",
+    "amount": 103716.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.107921
+   },
+   {
+    "pid": 2217659,
+    "kind": "new_individual",
+    "amount": 1613.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "DORMANT",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.00632892
+   },
+   {
+    "pid": 2231411,
+    "kind": "new_individual",
+    "amount": 2031.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "NIGHT_NEW",
+     "PASS_THROUGH"
+    ],
+    "fused_risk": 0.0989344
+   },
+   {
+    "pid": 2240947,
+    "kind": "new_individual",
+    "amount": 3754.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.0230257
+   },
+   {
+    "pid": 2251071,
+    "kind": "new_individual",
+    "amount": 16262.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.142081
+   },
+   {
+    "pid": 2280091,
+    "kind": "new_individual",
+    "amount": 14673.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0301286
+   },
+   {
+    "pid": 2282662,
+    "kind": "new_individual",
+    "amount": 19512.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "DORMANT"
+    ],
+    "fused_risk": 0.499054
+   },
+   {
+    "pid": 2306585,
+    "kind": "new_individual",
+    "amount": 16727.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.277636
+   },
+   {
+    "pid": 2315076,
+    "kind": "new_individual",
+    "amount": 4884.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS"
+    ],
+    "fused_risk": 0.00273835
+   },
+   {
+    "pid": 2330551,
+    "kind": "new_individual",
+    "amount": 171545.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.125552
+   },
+   {
+    "pid": 2342411,
+    "kind": "supplier",
+    "amount": 17390.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS"
+    ],
+    "fused_risk": 0.00366609
+   },
+   {
+    "pid": 2343374,
+    "kind": "supplier",
+    "amount": 23115.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0121558
+   },
+   {
+    "pid": 2345276,
+    "kind": "supplier",
+    "amount": 25778.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS"
+    ],
+    "fused_risk": 0.00258522
+   },
+   {
+    "pid": 2372421,
+    "kind": "new_individual",
+    "amount": 13515.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.107604
+   },
+   {
+    "pid": 2374138,
+    "kind": "new_landlord",
+    "amount": 42741.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "APP_SWITCHING",
+    "reasons": [
+     "APP_SWITCHING",
+     "DAY_OUTFLOW",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.343872
+   },
+   {
+    "pid": 2374822,
+    "kind": "gray_invest",
+    "amount": 145049.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "FD_BREAK",
+    "reasons": [
+     "FD_BREAK",
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0394904
+   },
+   {
+    "pid": 2380819,
+    "kind": "new_individual",
+    "amount": 28901.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.118962
+   },
+   {
+    "pid": 2392880,
+    "kind": "new_individual",
+    "amount": 44577.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "ESCALATING"
+    ],
+    "fused_risk": 0.00780315
+   },
+   {
+    "pid": 2406121,
+    "kind": "medical",
+    "amount": 64759.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.012008
+   },
+   {
+    "pid": 2435046,
+    "kind": "new_individual",
+    "amount": 5954.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0191906
+   },
+   {
+    "pid": 2436126,
+    "kind": "new_individual",
+    "amount": 2134.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "CAMPAIGN",
+    "reasons": [
+     "CAMPAIGN",
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.317234
+   },
+   {
+    "pid": 2448904,
+    "kind": "new_individual",
+    "amount": 13434.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.0197782
+   },
+   {
+    "pid": 2460067,
+    "kind": "new_landlord",
+    "amount": 39499.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0305622
+   },
+   {
+    "pid": 2463244,
+    "kind": "medical",
+    "amount": 64759.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.151129
+   },
+   {
+    "pid": 2467559,
+    "kind": "new_individual",
+    "amount": 29056.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.146082
+   },
+   {
+    "pid": 2479685,
+    "kind": "supplier",
+    "amount": 50380.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0395003
+   },
+   {
+    "pid": 2486135,
+    "kind": "supplier",
+    "amount": 11160.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.073353
+   },
+   {
+    "pid": 2494117,
+    "kind": "new_individual",
+    "amount": 8097.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "PASS_THROUGH",
+    "reasons": [
+     "PASS_THROUGH",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.104231
+   },
+   {
+    "pid": 2497518,
+    "kind": "supplier",
+    "amount": 14741.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS"
+    ],
+    "fused_risk": 0.00877183
+   },
+   {
+    "pid": 2500975,
+    "kind": "new_individual",
+    "amount": 14002.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.324403
+   },
+   {
+    "pid": 2514205,
+    "kind": "new_individual",
+    "amount": 17346.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.154028
+   },
+   {
+    "pid": 2526002,
+    "kind": "new_individual",
+    "amount": 2287.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0128982
+   },
+   {
+    "pid": 2526193,
+    "kind": "new_individual",
+    "amount": 7670.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "DORMANT",
+    "reasons": [
+     "DORMANT",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0136023
+   },
+   {
+    "pid": 2527361,
+    "kind": "new_individual",
+    "amount": 73001.0,
+    "tier": 3,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.137169
+   },
+   {
+    "pid": 2529091,
+    "kind": "new_individual",
+    "amount": 18162.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.199787
+   },
+   {
+    "pid": 2532435,
+    "kind": "new_individual",
+    "amount": 17522.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.245845
+   },
+   {
+    "pid": 2532503,
+    "kind": "new_individual",
+    "amount": 32487.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.169226
+   },
+   {
+    "pid": 2577706,
+    "kind": "new_individual",
+    "amount": 4622.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NONE",
+    "reasons": [],
+    "fused_risk": 0.0109877
+   },
+   {
+    "pid": 2595794,
+    "kind": "supplier",
+    "amount": 148633.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0181641
+   },
+   {
+    "pid": 2621178,
+    "kind": "new_individual",
+    "amount": 20551.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.208755
+   },
+   {
+    "pid": 2624250,
+    "kind": "new_individual",
+    "amount": 23546.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0165792
+   },
+   {
+    "pid": 2634946,
+    "kind": "new_individual",
+    "amount": 4399.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "STRANGER_CREDITS",
+    "reasons": [
+     "STRANGER_CREDITS",
+     "APP_SWITCHING"
+    ],
+    "fused_risk": 0.0221288
+   },
+   {
+    "pid": 2647190,
+    "kind": "new_individual",
+    "amount": 2048.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "FRI",
+    "reasons": [
+     "FRI",
+     "NIGHT_NEW"
+    ],
+    "fused_risk": 0.000946376
+   },
+   {
+    "pid": 2651621,
+    "kind": "new_individual",
+    "amount": 12232.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.148536
+   },
+   {
+    "pid": 2654214,
+    "kind": "supplier",
+    "amount": 251681.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE"
+    ],
+    "fused_risk": 0.0349903
+   },
+   {
+    "pid": 2655115,
+    "kind": "new_individual",
+    "amount": 42676.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.170371
+   },
+   {
+    "pid": 2656722,
+    "kind": "new_individual",
+    "amount": 14704.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.119177
+   },
+   {
+    "pid": 2664538,
+    "kind": "supplier",
+    "amount": 208932.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.19505
+   },
+   {
+    "pid": 2670512,
+    "kind": "new_individual",
+    "amount": 13419.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "APP_SWITCHING",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.00273115
+   },
+   {
+    "pid": 2672755,
+    "kind": "new_individual",
+    "amount": 78624.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.196325
+   },
+   {
+    "pid": 2673047,
+    "kind": "new_individual",
+    "amount": 1914.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "CAMPAIGN",
+    "reasons": [
+     "CAMPAIGN",
+     "APP_SWITCHING",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.269408
+   },
+   {
+    "pid": 2675104,
+    "kind": "medical",
+    "amount": 64759.0,
+    "tier": 3,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.119269
+   },
+   {
+    "pid": 2676038,
+    "kind": "new_individual",
+    "amount": 14760.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": false,
+    "top_reason": "ESCALATING",
+    "reasons": [
+     "ESCALATING",
+     "NEW_PAYEE_LARGE",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.106932
+   },
+   {
+    "pid": 2727408,
+    "kind": "new_individual",
+    "amount": 3855.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "APP_SWITCHING",
+    "reasons": [
+     "APP_SWITCHING",
+     "DORMANT",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.0133584
+   },
+   {
+    "pid": 2748993,
+    "kind": "new_individual",
+    "amount": 4297.0,
+    "tier": 2,
+    "escalated_by_memory": true,
+    "opted_in": false,
+    "on_a_call": false,
+    "top_reason": "DORMANT",
+    "reasons": [
+     "DORMANT",
+     "DAY_OUTFLOW"
+    ],
+    "fused_risk": 0.0143014
+   },
+   {
+    "pid": 2770698,
+    "kind": "new_individual",
+    "amount": 51288.0,
+    "tier": 3,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NEW_PAYEE_LARGE",
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.216942
+   },
+   {
+    "pid": 2776285,
+    "kind": "supplier",
+    "amount": 42751.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "DAY_OUTFLOW",
+    "reasons": [
+     "DAY_OUTFLOW",
+     "ON_CALL"
+    ],
+    "fused_risk": 0.127653
+   },
+   {
+    "pid": 2782449,
+    "kind": "new_individual",
+    "amount": 12514.0,
+    "tier": 2,
+    "escalated_by_memory": false,
+    "opted_in": true,
+    "on_a_call": true,
+    "top_reason": "NIGHT_NEW",
+    "reasons": [
+     "NIGHT_NEW",
+     "NEW_PAYEE_LARGE",
+     "DORMANT"
+    ],
+    "fused_risk": 0.317581
+   }
+  ]
+ },
+ "round1": [
+  {
+   "what": "Marketplace ('scan to receive') scams",
+   "measured": "82% of victims warned, 35% at the first payment, 76% when the type is hidden from training (n = 34)",
+   "why": "small amounts to clean accounts, often without a call; the 'pay to receive' QR trick is not modelled",
+   "source": "outputs/tables/per_workflow.csv, held_out_workflows.csv"
+  },
+  {
+   "what": "All three scammer tactics at once (no calls, clean mules, no hooks)",
+   "measured": "65% of victims warned (model not retrained)",
+   "why": "each tactic silences one kind of evidence; together they leave mostly the journey family",
+   "source": "outputs/tables/stress_tests.csv"
+  },
+  {
+   "what": "Scam-type guesser on the new loan-fee scam",
+   "measured": "right 0.3% of the time when it names a type (it names one for 72% of warned loan-fee payments)",
+   "why": "it had only 2 loan-fee labels, so it confidently names a known type instead of saying 'unfamiliar'; officers would see a wrong label exactly when a new scam appears. It never changes the tier or the advice the customer sees",
+   "source": "outputs/metrics.json: recogniser.by_workflow.loan_fee"
+  }
+ ]
+}

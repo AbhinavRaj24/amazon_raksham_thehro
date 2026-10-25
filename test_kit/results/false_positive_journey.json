@@ -1,0 +1,132 @@
+{
+ "what": "Genuine payments interrupted (tier 2+) on synthetic test days 42-59; frozen model hgb-86it-677lab-nocallerid, policy v4. Counts measured; times are the product's own limits, not measured behaviour.",
+ "genuine_payments_interrupted": 82,
+ "customer_payments": 786121,
+ "false_pauses_per_10k": 1.0431,
+ "customers_interrupted": 81,
+ "customers": 40000,
+ "interruptions_per_customer_per_year": 0.0415718,
+ "by_screen": {
+  "Pause and explain": {
+   "payments": 76,
+   "what_the_customer_does": "reads the three reasons, waits 30 s, then Continue (or Cancel, or calls the bank)",
+   "how_long": "about 35 seconds"
+  },
+  "Trusted check": {
+   "payments": 6,
+   "what_the_customer_does": "asks their trusted person to approve; with no trusted person, gets a call-back from the bank; or waits one hour",
+   "how_long": "minutes with a trusted person; at most 15 minutes for a call-back (bank's target); one hour at most",
+   "with_a_trusted_contact": 0
+  },
+  "Hold for review": {
+   "payments": 0,
+   "what_the_customer_does": "a bank officer calls within 30 minutes and releases it; the payee is then confirmed",
+   "how_long": "at most 30 minutes (officer SLA)"
+  }
+ },
+ "raised_by_memory": 14,
+ "raised_by_memory_after_a_warning_on_their_own_scam": 14,
+ "customers_interrupted_more_than_once": 1,
+ "repeat_interruptions_within_7_days": 1,
+ "genuine_payments_let_through_because_the_payee_was_confirmed": 0,
+ "genuine_holds": 0,
+ "first_reason_shown": {
+  "NEW_PAYEE_LARGE": 41,
+  "RECENT_WARNING": 14,
+  "STRANGER_CREDITS": 12,
+  "FD_BREAK": 4,
+  "APP_SWITCHING": 2,
+  "FRI": 2,
+  "FIRST_PAYMENT": 2,
+  "CAMPAIGN": 2,
+  "ESCALATING": 1,
+  "DAY_OUTFLOW": 1,
+  "NIGHT_NEW": 1
+ },
+ "by_kind": {
+  "new_individual": 55,
+  "supplier": 14,
+  "medical": 6,
+  "new_landlord": 4,
+  "gray_invest": 3
+ },
+ "by_age_band": {
+  "41-59": 31,
+  "26-40": 31,
+  "18-25": 12,
+  "60+": 8
+ },
+ "examples": [
+  {
+   "pid": 2002460,
+   "customer": 8283,
+   "kind": "new_individual",
+   "customer_is_scam_victim": true,
+   "after_a_warning_on_their_own_scam": true,
+   "amount": 10529.0,
+   "tier": 2,
+   "raised_by_memory": false,
+   "first_reason": "APP_SWITCHING",
+   "reason_text": "You switched between apps 5 times during this payment",
+   "trusted_contact": false,
+   "age_band": "18-25"
+  },
+  {
+   "pid": 2007574,
+   "customer": 7288,
+   "kind": "new_landlord",
+   "customer_is_scam_victim": false,
+   "after_a_warning_on_their_own_scam": false,
+   "amount": 66626.0,
+   "tier": 3,
+   "raised_by_memory": false,
+   "first_reason": "NEW_PAYEE_LARGE",
+   "reason_text": "First payment to this account, 8x your usual payment",
+   "trusted_contact": false,
+   "age_band": "41-59"
+  },
+  {
+   "pid": 2008294,
+   "customer": 38586,
+   "kind": "supplier",
+   "customer_is_scam_victim": false,
+   "after_a_warning_on_their_own_scam": false,
+   "amount": 18444.0,
+   "tier": 2,
+   "raised_by_memory": false,
+   "first_reason": "NEW_PAYEE_LARGE",
+   "reason_text": "First payment to this account, 20x your usual payment",
+   "trusted_contact": true,
+   "age_band": "60+"
+  },
+  {
+   "pid": 2009572,
+   "customer": 5054,
+   "kind": "gray_invest",
+   "customer_is_scam_victim": true,
+   "after_a_warning_on_their_own_scam": false,
+   "amount": 145049.0,
+   "tier": 2,
+   "raised_by_memory": false,
+   "first_reason": "NEW_PAYEE_LARGE",
+   "reason_text": "First payment to this account, 158x your usual payment",
+   "trusted_contact": false,
+   "age_band": "26-40"
+  },
+  {
+   "pid": 2021985,
+   "customer": 39350,
+   "kind": "supplier",
+   "customer_is_scam_victim": false,
+   "after_a_warning_on_their_own_scam": false,
+   "amount": 389964.0,
+   "tier": 2,
+   "raised_by_memory": false,
+   "first_reason": "NEW_PAYEE_LARGE",
+   "reason_text": "First payment to this account, 29x your usual payment",
+   "trusted_contact": true,
+   "age_band": "41-59"
+  }
+ ],
+ "seconds": 0
+}

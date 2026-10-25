@@ -1,0 +1,463 @@
+{
+ "seed": 25,
+ "attack_seed": 7,
+ "world": {
+  "payments": 2788206,
+  "test_customer_payments": 788013
+ },
+ "systems": {
+  "Round 1 system, frozen": {
+   "rebuild": {
+    "victims_warned": {
+     "k": 801,
+     "n": 868,
+     "value": 0.922811,
+     "lo": 0.903135,
+     "hi": 0.938762
+    },
+    "false_pauses_per_10k": {
+     "k": 76,
+     "n": 788013,
+     "value": 0.964451,
+     "lo": 0.759878,
+     "hi": 1.20715
+    },
+    "first_payment": 0.665899,
+    "genuine_trusted_checks": 6,
+    "genuine_holds": 0,
+    "money_protected_modelled": 0.912636,
+    "journeys": 868,
+    "customer_payments": 788013
+   },
+   "chat_only": {
+    "victims_warned": {
+     "k": 785,
+     "n": 868,
+     "value": 0.904378,
+     "lo": 0.882995,
+     "hi": 0.922197
+    },
+    "false_pauses_per_10k": {
+     "k": 76,
+     "n": 788013,
+     "value": 0.964451,
+     "lo": 0.759878,
+     "hi": 1.20715
+    }
+   },
+   "split": {
+    "victims_warned": {
+     "k": 820,
+     "n": 868,
+     "value": 0.9447,
+     "lo": 0.927443,
+     "hi": 0.958039
+    },
+    "false_pauses_per_10k": {
+     "k": 74,
+     "n": 801186,
+     "value": 0.923631,
+     "lo": 0.725249,
+     "hi": 1.15953
+    }
+   },
+   "aged_mules": {
+    "victims_warned": {
+     "k": 610,
+     "n": 868,
+     "value": 0.702765,
+     "lo": 0.671521,
+     "hi": 0.732223
+    },
+    "false_pauses_per_10k": {
+     "k": 74,
+     "n": 788013,
+     "value": 0.939071,
+     "lo": 0.737373,
+     "hi": 1.17892
+    }
+   },
+   "clean_mules": {
+    "victims_warned": {
+     "k": 588,
+     "n": 868,
+     "value": 0.677419,
+     "lo": 0.645598,
+     "hi": 0.707677
+    },
+    "false_pauses_per_10k": {
+     "k": 71,
+     "n": 788013,
+     "value": 0.901,
+     "lo": 0.703689,
+     "hi": 1.13649
+    }
+   },
+   "all": {
+    "victims_warned": {
+     "k": 615,
+     "n": 868,
+     "value": 0.708525,
+     "lo": 0.677427,
+     "hi": 0.737786
+    },
+    "false_pauses_per_10k": {
+     "k": 70,
+     "n": 801186,
+     "value": 0.873705,
+     "lo": 0.681096,
+     "hi": 1.10387
+    }
+   },
+   "passes": {
+    "single_tactics": false,
+    "combined": false
+   },
+   "system": {
+    "model": "hgb-92it-677lab",
+    "policy": "v1",
+    "lines": "frozen (seed 7)"
+   }
+  },
+  "Finale system, frozen": {
+   "rebuild": {
+    "victims_warned": {
+     "k": 819,
+     "n": 868,
+     "value": 0.943548,
+     "lo": 0.92615,
+     "hi": 0.957038
+    },
+    "false_pauses_per_10k": {
+     "k": 77,
+     "n": 788013,
+     "value": 0.977141,
+     "lo": 0.771145,
+     "hi": 1.22126
+    },
+    "first_payment": 0.697005,
+    "genuine_trusted_checks": 3,
+    "genuine_holds": 0,
+    "money_protected_modelled": 0.916887,
+    "journeys": 868,
+    "customer_payments": 788013
+   },
+   "chat_only": {
+    "victims_warned": {
+     "k": 809,
+     "n": 868,
+     "value": 0.932028,
+     "lo": 0.913309,
+     "hi": 0.94694
+    },
+    "false_pauses_per_10k": {
+     "k": 77,
+     "n": 788013,
+     "value": 0.977141,
+     "lo": 0.771145,
+     "hi": 1.22126
+    }
+   },
+   "split": {
+    "victims_warned": {
+     "k": 840,
+     "n": 868,
+     "value": 0.967742,
+     "lo": 0.953773,
+     "hi": 0.977589
+    },
+    "false_pauses_per_10k": {
+     "k": 77,
+     "n": 801186,
+     "value": 0.961075,
+     "lo": 0.758466,
+     "hi": 1.20118
+    }
+   },
+   "aged_mules": {
+    "victims_warned": {
+     "k": 706,
+     "n": 868,
+     "value": 0.813364,
+     "lo": 0.786084,
+     "hi": 0.837883
+    },
+    "false_pauses_per_10k": {
+     "k": 76,
+     "n": 788013,
+     "value": 0.964451,
+     "lo": 0.759878,
+     "hi": 1.20715
+    }
+   },
+   "clean_mules": {
+    "victims_warned": {
+     "k": 628,
+     "n": 868,
+     "value": 0.723502,
+     "lo": 0.692812,
+     "hi": 0.752223
+    },
+    "false_pauses_per_10k": {
+     "k": 74,
+     "n": 788013,
+     "value": 0.939071,
+     "lo": 0.737373,
+     "hi": 1.17892
+    }
+   },
+   "all": {
+    "victims_warned": {
+     "k": 717,
+     "n": 868,
+     "value": 0.826037,
+     "lo": 0.799397,
+     "hi": 0.849804
+    },
+    "false_pauses_per_10k": {
+     "k": 75,
+     "n": 801186,
+     "value": 0.936112,
+     "lo": 0.736312,
+     "hi": 1.17342
+    }
+   },
+   "passes": {
+    "single_tactics": false,
+    "combined": false
+   },
+   "system": {
+    "model": "hgb-86it-677lab-nocallerid",
+    "policy": "v4",
+    "lines": "frozen (seed 7)"
+   }
+  },
+  "Round 1 recipe, retrained here": {
+   "rebuild": {
+    "victims_warned": {
+     "k": 816,
+     "n": 868,
+     "value": 0.940092,
+     "lo": 0.922281,
+     "hi": 0.954025
+    },
+    "false_pauses_per_10k": {
+     "k": 98,
+     "n": 788013,
+     "value": 1.24363,
+     "lo": 1.00964,
+     "hi": 1.51559
+    },
+    "first_payment": 0.680876,
+    "genuine_trusted_checks": 19,
+    "genuine_holds": 0,
+    "money_protected_modelled": 0.922246,
+    "journeys": 868,
+    "customer_payments": 788013
+   },
+   "chat_only": {
+    "victims_warned": {
+     "k": 805,
+     "n": 868,
+     "value": 0.927419,
+     "lo": 0.908212,
+     "hi": 0.942861
+    },
+    "false_pauses_per_10k": {
+     "k": 98,
+     "n": 788013,
+     "value": 1.24363,
+     "lo": 1.00964,
+     "hi": 1.51559
+    }
+   },
+   "split": {
+    "victims_warned": {
+     "k": 828,
+     "n": 868,
+     "value": 0.953917,
+     "lo": 0.937857,
+     "hi": 0.965977
+    },
+    "false_pauses_per_10k": {
+     "k": 108,
+     "n": 801186,
+     "value": 1.348,
+     "lo": 1.10579,
+     "hi": 1.6275
+    }
+   },
+   "aged_mules": {
+    "victims_warned": {
+     "k": 609,
+     "n": 868,
+     "value": 0.701613,
+     "lo": 0.67034,
+     "hi": 0.731109
+    },
+    "false_pauses_per_10k": {
+     "k": 88,
+     "n": 788013,
+     "value": 1.11673,
+     "lo": 0.895652,
+     "hi": 1.37585
+    }
+   },
+   "clean_mules": {
+    "victims_warned": {
+     "k": 638,
+     "n": 868,
+     "value": 0.735023,
+     "lo": 0.704675,
+     "hi": 0.7633
+    },
+    "false_pauses_per_10k": {
+     "k": 89,
+     "n": 788013,
+     "value": 1.12942,
+     "lo": 0.907019,
+     "hi": 1.38985
+    }
+   },
+   "all": {
+    "victims_warned": {
+     "k": 691,
+     "n": 868,
+     "value": 0.796083,
+     "lo": 0.768002,
+     "hi": 0.821555
+    },
+    "false_pauses_per_10k": {
+     "k": 103,
+     "n": 801186,
+     "value": 1.28559,
+     "lo": 1.04934,
+     "hi": 1.55916
+    }
+   },
+   "passes": {
+    "single_tactics": false,
+    "combined": false
+   },
+   "system": {
+    "model": "refit, 916 labels",
+    "policy": "v1",
+    "lines": "validation week of this world"
+   }
+  },
+  "Finale recipe, retrained here": {
+   "rebuild": {
+    "victims_warned": {
+     "k": 817,
+     "n": 868,
+     "value": 0.941244,
+     "lo": 0.923569,
+     "hi": 0.955031
+    },
+    "false_pauses_per_10k": {
+     "k": 108,
+     "n": 788013,
+     "value": 1.37054,
+     "lo": 1.12428,
+     "hi": 1.6547
+    },
+    "first_payment": 0.692396,
+    "genuine_trusted_checks": 9,
+    "genuine_holds": 0,
+    "money_protected_modelled": 0.910779,
+    "journeys": 868,
+    "customer_payments": 788013
+   },
+   "chat_only": {
+    "victims_warned": {
+     "k": 810,
+     "n": 868,
+     "value": 0.93318,
+     "lo": 0.914586,
+     "hi": 0.947956
+    },
+    "false_pauses_per_10k": {
+     "k": 108,
+     "n": 788013,
+     "value": 1.37054,
+     "lo": 1.12428,
+     "hi": 1.6547
+    }
+   },
+   "split": {
+    "victims_warned": {
+     "k": 834,
+     "n": 868,
+     "value": 0.960829,
+     "lo": 0.945762,
+     "hi": 0.971836
+    },
+    "false_pauses_per_10k": {
+     "k": 119,
+     "n": 801186,
+     "value": 1.4853,
+     "lo": 1.23045,
+     "hi": 1.77738
+    }
+   },
+   "aged_mules": {
+    "victims_warned": {
+     "k": 715,
+     "n": 868,
+     "value": 0.823733,
+     "lo": 0.796973,
+     "hi": 0.84764
+    },
+    "false_pauses_per_10k": {
+     "k": 107,
+     "n": 788013,
+     "value": 1.35785,
+     "lo": 1.11279,
+     "hi": 1.64082
+    }
+   },
+   "clean_mules": {
+    "victims_warned": {
+     "k": 657,
+     "n": 868,
+     "value": 0.756912,
+     "lo": 0.727285,
+     "hi": 0.784276
+    },
+    "false_pauses_per_10k": {
+     "k": 105,
+     "n": 788013,
+     "value": 1.33247,
+     "lo": 1.08982,
+     "hi": 1.61303
+    }
+   },
+   "all": {
+    "victims_warned": {
+     "k": 745,
+     "n": 868,
+     "value": 0.858295,
+     "lo": 0.833513,
+     "hi": 0.879919
+    },
+    "false_pauses_per_10k": {
+     "k": 118,
+     "n": 801186,
+     "value": 1.47282,
+     "lo": 1.21909,
+     "hi": 1.76378
+    }
+   },
+   "passes": {
+    "single_tactics": true,
+    "combined": false
+   },
+   "system": {
+    "model": "refit, 916 labels",
+    "policy": "v4",
+    "lines": "validation week of this world"
+   }
+  }
+ },
+ "seconds": 71
+}

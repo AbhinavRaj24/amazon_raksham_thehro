@@ -1,0 +1,12 @@
+{
+ "_mock": true,
+ "_source": "placeholder",
+ "case_id": "K1-EX3",
+ "expected": "interrupt",
+ "got": {
+  "tier": 0,
+  "tier_name": "Allow"
+ },
+ "right": false,
+ "note": "a named failure case: small first step, clean payee"
+}

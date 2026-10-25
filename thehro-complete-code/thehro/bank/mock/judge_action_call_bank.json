@@ -1,0 +1,8 @@
+{
+ "_mock": true,
+ "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "decision_id": "D-0008",
+ "action": "call_bank",
+ "state": "call_bank",
+ "note": "Call your bank on the number printed on your card or saved in this app, never a number someone gave you."
+}

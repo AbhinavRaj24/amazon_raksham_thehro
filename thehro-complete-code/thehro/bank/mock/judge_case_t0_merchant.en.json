@@ -1,0 +1,67 @@
+{
+ "_mock": true,
+ "_source": "hand-built: payment to a shop (merchant), which skips scoring",
+ "decision_id": "D-0010",
+ "state": "pin",
+ "payment": {
+  "customer": "C23724",
+  "amount": 15693.0,
+  "amount_text": "₹15,693",
+  "channel": "UPI to person",
+  "time": "Day 48 · 11:00"
+ },
+ "payee": {
+  "ref": "Shop ••3301",
+  "type": "shop",
+  "facts": [
+   "registered merchant"
+  ]
+ },
+ "phone": {},
+ "phone_by_lang": {
+  "en": {},
+  "hi": {}
+ },
+ "phone_meta": {
+  "lang": "en",
+  "continue_after_s": null,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 0,
+  "tier_name": "Allow",
+  "fast_path": "merchant payment: not scored",
+  "scores": null,
+  "reasons": [],
+  "timing_ms": {
+   "total": 2
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••4119",
+  "amount": 15693.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 69.5543,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 5.0
+  }
+ },
+ "stored": {
+  "kind": "none",
+  "note": "Nothing stored beyond the bank's normal payment ledger.",
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

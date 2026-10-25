@@ -1,0 +1,17 @@
+{
+  "id": "K1-29",
+  "title": "Fake customer care on a customer who has not opted in",
+  "group": "hard",
+  "truth": "scam",
+  "story": "The same remote-access refund scam as K1-05, but this customer never opted in to phone signals.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C27084",
+  "payee_type": "new_account",
+  "amount": 25000,
+  "channel": "UPI to person",
+  "history": [],
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Screen sharing and the call are invisible without consent. 7× usual to a newly opened account may be enough for a pause; we may miss it because the payee family alone may not cross its line."
+}

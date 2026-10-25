@@ -1,0 +1,50 @@
+{
+ "about": "Judge mode's fixed setup, frozen from the Round 1 demo scenarios (outputs/demo_scenarios.json at commit b84dbb3) so that the judge page, the K1 cases and the deck's slide-5 case keep the same customers and the same moment when the model or policy changes.",
+ "now": {
+  "just_before_payment": "P2194884",
+  "minutes_before": 0.01,
+  "why": "the first payment of the slide-5 digital-arrest journey"
+ },
+ "customers": [
+  {
+   "id": "C18694",
+   "from_scenario": "investment"
+  },
+  {
+   "id": "C23724",
+   "from_scenario": "digital_arrest"
+  },
+  {
+   "id": "C28404",
+   "from_scenario": "task"
+  },
+  {
+   "id": "C15852",
+   "from_scenario": "customer_care"
+  },
+  {
+   "id": "C27360",
+   "from_scenario": "marketplace"
+  },
+  {
+   "id": "C26331",
+   "from_scenario": "voice_clone"
+  },
+  {
+   "id": "C29358",
+   "from_scenario": "loan_fee"
+  },
+  {
+   "id": "C27084",
+   "from_scenario": "new_landlord"
+  },
+  {
+   "id": "C734",
+   "from_scenario": "medical"
+  },
+  {
+   "id": "C3547",
+   "from_scenario": "false_alarm"
+  }
+ ]
+}

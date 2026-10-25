@@ -70,12 +70,12 @@ def _when(t: float) -> str:
     return f"Day {day + 1} · {mins // 60:02d}:{mins % 60:02d}"
 
 
-def _step(i, f, S, pol, weights, log: EvidenceLog, versions):
+def _step(i, f, S, pol, weights, log: EvidenceLog, versions, caller_id: bool = False):
     row = f.loc[i]
     rd = {c: _clean(row[c]) for c in ALL_FEATURES + ["amount"]}
     tier = int(pol.loc[i, "tier"])
-    reasons = top_reasons(rd, weights, k=3)
-    adv = advice_keys(f.loc[[i]])[0]
+    reasons = top_reasons(rd, weights, k=3, caller_id=caller_id)
+    adv = advice_keys(f.loc[[i]], caller_id)[0]
     guess = workflow_guess(S.loc[i, "wf_pred"], S.loc[i, "wf_conf"], WORKFLOW_CONFIDENCE_FLOOR)
     payment = {"payment_id": f"P{int(row.pid)}", "customer_ref": f"C{int(row.payer)}", "payee_ref": _acct(int(row.payee)),
                "amount": float(row.amount), "channel": CHANNELS[int(row.channel)], "time": _when(row.t)}
@@ -123,12 +123,12 @@ SELECTION_NOTE = ("Each scam scenario is a real journey from the test weeks, cho
                   "2-6 payments, and a customer who opted in to call signals so every signal family is visible.")
 
 
-def pick_journeys(jt: pd.DataFrame, f: pd.DataFrame) -> dict:
+def pick_journeys(jt: pd.DataFrame, f: pd.DataFrame, caller_id: bool = False) -> dict:
     """One typical, warned journey per scam type (see SELECTION_NOTE)."""
     from .explain import ADVICE_FIT, advice_keys
     consent = f.groupby("payer").consent.first()
     scam = f[f.is_scam.values == 1]
-    adv = pd.Series(advice_keys(scam), index=scam.index)
+    adv = pd.Series(advice_keys(scam, caller_id), index=scam.index)
     picks = {}
     for wf in WORKFLOWS:
         g = jt[(jt.workflow == wf) & jt.warned].copy()
@@ -147,16 +147,16 @@ def pick_journeys(jt: pd.DataFrame, f: pd.DataFrame) -> dict:
     return picks
 
 
-def export(world, f, S, pol_test, jt, weights, metrics: dict, versions: dict) -> dict:
+def export(world, f, S, pol_test, jt, weights, metrics: dict, versions: dict, caller_id: bool = False) -> dict:
     """Everything the demo shows. f/S cover the test weeks; pol_test is the policy output for them."""
     out = {"meta": {"versions": versions, "note": "All data synthetic. " + SELECTION_NOTE},
            "scenarios": []}
-    picks = pick_journeys(jt, f)
+    picks = pick_journeys(jt, f, caller_id)
     for wf, jid in picks.items():
         log = EvidenceLog()
         idx = f.index[(f.journey.values == jid) & (f.is_scam.values == 1)]
         idx = f.loc[idx].sort_values("t").index
-        steps = [_step(i, f, S, pol_test, weights, log, versions) for i in idx]
+        steps = [_step(i, f, S, pol_test, weights, log, versions, caller_id) for i in idx]
         user = int(f.loc[idx[0], "payer"])
         jrow = jt.set_index("journey").loc[jid]
         first = next((s for s in steps if s["tier"] >= 2), None)
@@ -191,7 +191,7 @@ def export(world, f, S, pol_test, jt, weights, metrics: dict, versions: dict) ->
             "id": key, "kind": "genuine", "title": {"new_landlord": "New landlord", "medical": "Hospital bill",
                                                     "false_alarm": "A false alarm"}[key],
             "story": GENUINE_STORIES[key], "persona": _persona(world, int(f.loc[i, "payer"])),
-            "steps": [_step(i, f, S, pol_test, weights, log, versions)],
+            "steps": [_step(i, f, S, pol_test, weights, log, versions, caller_id)],
         })
     out["results"] = metrics
     return out

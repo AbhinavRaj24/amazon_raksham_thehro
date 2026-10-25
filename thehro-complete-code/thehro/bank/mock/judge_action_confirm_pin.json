@@ -1,0 +1,15 @@
+{
+ "_mock": true,
+ "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "decision_id": "D-0008",
+ "action": "confirm_pin",
+ "state": "paid",
+ "utr": "MOCK604812345678",
+ "alert_tier": 2,
+ "time_to_get_past_s": 34,
+ "history_added": {
+  "kind": "payment",
+  "amount": 15693.0,
+  "payee": "A/c ••4119"
+ }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "K1-16",
+  "title": "Trader pays a new supplier",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "A young trader with high daily volumes pays a new textile supplier ₹22,000 by NEFT.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C734",
+  "payee_type": "new_individual",
+  "amount": 22000,
+  "channel": "NEFT",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 0
+  },
+  "lang": "en",
+  "expected": "no_interrupt",
+  "why": "About 2× his usual and a third of what he moves on a normal day. New suppliers are routine for him."
+}

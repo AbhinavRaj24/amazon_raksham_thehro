@@ -1,0 +1,29 @@
+{
+  "id": "K1-23",
+  "title": "Digital arrest with consent off: no phone signals at all",
+  "group": "hard",
+  "truth": "scam",
+  "story": "The same 'CBI' video-call story as K1-01, but this customer has switched phone signals off.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C23724",
+  "payee_type": "mule_network",
+  "amount": 85000,
+  "channel": "IMPS",
+  "history": [
+    {
+      "kind": "fd_break",
+      "hours_ago": 3
+    }
+  ],
+  "consent": false,
+  "context": {
+    "on_call": 1,
+    "call_ott": 1,
+    "call_min": 95,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Without consent the context family cannot vote, so the call is invisible. Journey (FD break, 296× usual, new payee) and payee (mule network) should still agree. Context is sent here to check it is dropped."
+}

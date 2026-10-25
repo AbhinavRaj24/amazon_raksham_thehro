@@ -1,0 +1,8 @@
+{
+ "_mock": true,
+ "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "decision_id": "D-0008",
+ "action": "trusted",
+ "state": "trusted_pending",
+ "note": "Request sent to your trusted person."
+}

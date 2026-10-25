@@ -1,0 +1,129 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: new_landlord, payment 1 (genuine)",
+ "decision_id": "D-0001",
+ "state": "pin",
+ "payment": {
+  "customer": "C27084",
+  "amount": 44300.0,
+  "amount_text": "₹44,300",
+  "channel": "UPI to person",
+  "time": "Day 48 · 08:43"
+ },
+ "payee": {
+  "ref": "A/c ••2049",
+  "type": "new_individual",
+  "facts": [
+   "first payment from this customer",
+   "opened 3393 days ago"
+  ]
+ },
+ "phone": {},
+ "phone_by_lang": {
+  "en": {},
+  "hi": {}
+ },
+ "phone_meta": {
+  "lang": "hi",
+  "continue_after_s": null,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 0,
+  "tier_name": "Allow",
+  "base_tier": 0,
+  "scores": {
+   "s_fused": 0.003,
+   "s_journey": 0.0049,
+   "s_payee": 0.0002,
+   "s_context": 0.0021
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": false,
+   "payee": false,
+   "context": false
+  },
+  "gate": false,
+  "payee_flag": false,
+  "reasons": [
+   {
+    "code": "NEW_PAYEE_LARGE",
+    "family": "journey",
+    "weight": 26.3,
+    "en": "First payment to this account, 13x your usual payment",
+    "hi": "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 13 गुना"
+   }
+  ],
+  "advice": "generic",
+  "features": {
+   "amount_log": 4.6464,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 12.6319,
+   "new_payees_7d": 1.0,
+   "recent_payee_payments_7d": 1.0,
+   "recent_payee_sum_7d_log": 2.8457,
+   "push_out_24h_vs_usual": 0.0,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 0,
+   "payee_age_days": 3393.87,
+   "payee_idle_days": 55.1076,
+   "payee_new_payers_24h": 0.0,
+   "payee_inflow_24h_log": 0.0,
+   "payee_passthrough_24h": null,
+   "payee_registry": 0,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 0,
+   "payee_campaign_size": 1,
+   "on_call": null,
+   "caller_unknown": null,
+   "call_ott": null,
+   "call_min": null,
+   "caller_fri_band": null,
+   "screen_share": null,
+   "remote_app": null,
+   "app_switches": null
+  },
+  "memory_note": null,
+  "workflow_guess": null,
+  "workflow_confidence": 0.531,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••2049",
+  "amount": 44300.0,
+  "channel": "UPI to person",
+  "consent": false
+ },
+ "stored": {
+  "kind": "none",
+  "note": "Nothing stored beyond the bank's normal payment ledger; phone flags discarded.",
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

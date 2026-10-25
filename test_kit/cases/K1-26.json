@@ -1,0 +1,24 @@
+{
+  "id": "K1-26",
+  "title": "Digital arrest paid into a dormant account",
+  "group": "hard",
+  "truth": "scam",
+  "story": "A 'customs officer' on a video call has her send ₹40,000 to an account that has been idle for months.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C15852",
+  "payee_type": "dormant",
+  "amount": 40000,
+  "channel": "IMPS",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 1,
+    "call_min": 50,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "No outside flag on a dormant account, so no hold is possible. Journey and a 50-minute unknown internet call should give at least a pause or trusted check; we may miss it if the dormant account looks ordinary."
+}

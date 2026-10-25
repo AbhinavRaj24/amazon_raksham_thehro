@@ -1,0 +1,43 @@
+{
+  "id": "K1-04",
+  "title": "Task scam: 'like YouTube videos' job asks for a bigger prepaid task",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "A Telegram 'HR' paid him ₹300 and ₹800 for liking videos, then asked for ₹2,000 and ₹4,000 'prepaid tasks', and now says ₹6,000 more is needed to withdraw his commission.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C3547",
+  "payee_type": "new_account",
+  "amount": 6000,
+  "channel": "UPI to person",
+  "history": [
+    {
+      "kind": "stranger_credit",
+      "amount": 300,
+      "hours_ago": 26
+    },
+    {
+      "kind": "stranger_credit",
+      "amount": 800,
+      "hours_ago": 20
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 2000,
+      "hours_ago": 6
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 4000,
+      "hours_ago": 2
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 0,
+    "app_switches": 5
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Two small credits from strangers followed by a rising series to new accounts (₹2k → ₹4k → ₹6k), the last to a newly opened account. The amounts are small, but the shape is the textbook task-scam ladder."
+}

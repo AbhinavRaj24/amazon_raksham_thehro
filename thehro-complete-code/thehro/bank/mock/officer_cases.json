@@ -1,0 +1,67 @@
+{
+ "_mock": true,
+ "_source": "tier 4 payments from outputs/demo_scenarios.json",
+ "now": {
+  "t_min": 68340,
+  "label": "Day 48 · 11:00"
+ },
+ "sla_minutes": 30,
+ "cases": [
+  {
+   "case_id": "H-0001",
+   "decision_id": "D-0001",
+   "status": "open",
+   "outcome": null,
+   "customer_note": null,
+   "opened_at": "Day 48 · 11:00",
+   "minutes_left": 26,
+   "amount": 15693.0,
+   "amount_text": "₹15,693",
+   "customer": "C23724",
+   "payee": "A/c ••4119",
+   "top_reason": "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes",
+   "families": [
+    "journey",
+    "payee",
+    "context"
+   ]
+  },
+  {
+   "case_id": "H-0002",
+   "decision_id": "D-0002",
+   "status": "open",
+   "outcome": null,
+   "customer_note": "customer says this payment is genuine",
+   "opened_at": "Day 49 · 16:05",
+   "minutes_left": 14,
+   "amount": 25290.0,
+   "amount_text": "₹25,290",
+   "customer": "C15852",
+   "payee": "A/c ••6415",
+   "top_reason": "The number calling you is rated very high fraud risk by the telecom department",
+   "families": [
+    "journey",
+    "payee",
+    "context"
+   ]
+  },
+  {
+   "case_id": "H-0003",
+   "decision_id": "D-0003",
+   "status": "open",
+   "outcome": null,
+   "customer_note": null,
+   "opened_at": "Day 54 · 10:53",
+   "minutes_left": 3,
+   "amount": 18906.0,
+   "amount_text": "₹18,906",
+   "customer": "C18694",
+   "payee": "A/c ••6868",
+   "top_reason": "This account is part of a network of 14 accounts that collect money from many new payers and move it on within minutes",
+   "families": [
+    "journey",
+    "payee"
+   ]
+  }
+ ]
+}

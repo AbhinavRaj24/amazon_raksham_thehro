@@ -1,0 +1,38 @@
+{
+  "id": "K1-21",
+  "title": "Splitting: fourth ₹9,500 transfer in two hours to a clean-looking mule",
+  "group": "hard",
+  "truth": "scam",
+  "story": "A scammer tells her to send ₹38,000 'in parts under ₹10,000 so the bank doesn't block it'. Three parts have gone to different accounts; this is the fourth.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C27360",
+  "payee_type": "mule_unflagged",
+  "amount": 9500,
+  "channel": "UPI to person",
+  "history": [
+    {
+      "kind": "new_payee_payment",
+      "amount": 9500,
+      "hours_ago": 1.8
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 9500,
+      "hours_ago": 1.2
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 9500,
+      "hours_ago": 0.6
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 0,
+    "app_switches": 5
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Each part is only 2.4× her usual and the payee is unflagged, but four payments to four new accounts in two hours is a series. We may miss it if the series features don't push the journey family high enough."
+}

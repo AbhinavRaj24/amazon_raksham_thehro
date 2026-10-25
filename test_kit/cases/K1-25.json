@@ -1,0 +1,21 @@
+{
+  "id": "K1-25",
+  "title": "Loan-fee scam: the very first ₹999 fee, no call",
+  "group": "hard",
+  "truth": "scam",
+  "story": "An instant-loan app asks for a ₹999 'file charge' by UPI. No call, no earlier payments.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C28404",
+  "payee_type": "new_account",
+  "amount": 999,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 0
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "A single small fee to a new account with nothing else unusual. We expect to miss it; the series that would give it away has not started yet."
+}

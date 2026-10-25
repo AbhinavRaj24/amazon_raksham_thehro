@@ -1,0 +1,21 @@
+{
+  "id": "K1-28",
+  "title": "60+ customer buys gold from a new jeweller",
+  "group": "hard",
+  "truth": "genuine",
+  "story": "For Dhanteras he pays a new jeweller ₹95,000 by IMPS for a gold chain after visiting the shop.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C18694",
+  "payee_type": "new_individual",
+  "amount": 95000,
+  "channel": "IMPS",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 0
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "72× his usual to a new payee looks alarming, so a pause is fair, but there's no call and no flag: never a hold."
+}

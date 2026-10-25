@@ -1,0 +1,145 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: marketplace, payment 1 (scam)",
+ "decision_id": "D-0003",
+ "state": "pin",
+ "payment": {
+  "customer": "C27360",
+  "amount": 2728.0,
+  "amount_text": "₹2,728",
+  "channel": "UPI to person",
+  "time": "Day 43 · 16:13"
+ },
+ "payee": {
+  "ref": "A/c ••2095",
+  "type": "new_individual",
+  "facts": [
+   "first payment from this customer",
+   "opened 3227 days ago"
+  ]
+ },
+ "phone": {},
+ "phone_by_lang": {
+  "en": {},
+  "hi": {}
+ },
+ "phone_meta": {
+  "lang": "hi",
+  "continue_after_s": null,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 0,
+  "tier_name": "Allow",
+  "base_tier": 0,
+  "scores": {
+   "s_fused": 0.0006,
+   "s_journey": 0.0011,
+   "s_payee": 0.0013,
+   "s_context": 0.043
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": false,
+   "payee": false,
+   "context": true
+  },
+  "gate": false,
+  "payee_flag": false,
+  "reasons": [
+   {
+    "code": "CALL_UNKNOWN",
+    "family": "context",
+    "weight": 17.5,
+    "en": "You are on an internet call with an unknown number (5 min so far)",
+    "hi": "आप एक अनजान नंबर से इंटरनेट कॉल पर हैं (अब तक 5 मिनट)"
+   },
+   {
+    "code": "APP_SWITCHING",
+    "family": "context",
+    "weight": 14.9,
+    "en": "You switched between apps 7 times during this payment",
+    "hi": "इस भुगतान के दौरान आपने 7 बार ऐप बदले"
+   }
+  ],
+  "advice": "known_person",
+  "features": {
+   "amount_log": 3.4358,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 0.7005,
+   "new_payees_7d": 0.0,
+   "recent_payee_payments_7d": 0.0,
+   "recent_payee_sum_7d_log": 0.0,
+   "push_out_24h_vs_usual": 0.0,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 0,
+   "payee_age_days": 3227.92,
+   "payee_idle_days": 2.5141,
+   "payee_new_payers_24h": 0.0,
+   "payee_inflow_24h_log": 0.0,
+   "payee_passthrough_24h": null,
+   "payee_registry": 0,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 0,
+   "payee_campaign_size": 1,
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 4.8866,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 7.0
+  },
+  "memory_note": null,
+  "workflow_guess": null,
+  "workflow_confidence": 0.584,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••2095",
+  "amount": 2728.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 4.8866,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 7.0
+  }
+ },
+ "stored": {
+  "kind": "none",
+  "note": "Nothing stored beyond the bank's normal payment ledger; phone flags discarded.",
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

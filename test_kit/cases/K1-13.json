@@ -1,0 +1,24 @@
+{
+  "id": "K1-13",
+  "title": "Buying a second-hand bike from a seller he met",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "He test-rode the bike yesterday and is paying the seller ₹30,000 while on a call with him (number saved).",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C3547",
+  "payee_type": "new_individual",
+  "amount": 30000,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 4,
+    "caller_unknown": 0
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "11× usual to a new individual: a pause is understandable. The caller is a saved contact and the payee is clean, so no hold."
+}

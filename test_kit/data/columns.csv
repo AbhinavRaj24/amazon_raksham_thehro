@@ -1,0 +1,14 @@
+columns,meaning
+"pid, t_min, day","payment id, minutes since day 0, day number (42-59)"
+"payer, payee, amount",pseudonymous customer and receiving account ids; amount in rupees
+kind,"what the payment really is (simulator ground truth): scam, new_individual, new_landlord, medical, ..."
+"amount_log, channel, hour, is_night, is_new_payee, n_prev_to_payee, days_since_first_to_payee, amt_vs_usual, amt_vs_prev_same_payee, growth_vs_payee_first, new_payees_7d, recent_payee_payments_7d, recent_payee_sum_7d_log, growth_vs_recent_avg, push_out_24h_vs_usual, n_payments_1h, fd_break_48h, stranger_credits_24h, is_investor",journey family: the payer's own history before this payment (model inputs)
+"payee_type, payee_is_valid, payee_age_days, payee_idle_days, payee_new_payers_24h, payee_new_payers_7d, payee_inflow_24h_log, payee_passthrough_24h, payee_registry, payee_fri_band, payee_in_campaign, payee_campaign_size",payee family: the receiving account before this payment (model inputs)
+"on_call, caller_unknown, call_ott, call_min, caller_fri_band, screen_share, remote_app, app_switches","context family: phone flags, blank when the customer did not opt in (model inputs)"
+consent,customer opted in to phone signals; without it the context family does not vote
+"is_scam, scam_type, journey, step, campaign",ground truth labels; journey links the payments of one victim
+"reported, report_day",whether and when the victim complained (half never do)
+bank_label_by_day_60,"the label a bank would hold at the end of the data: a scam reported by day 60. The training rule (reported before day 38) gives 0 for every test-day row, so it is not repeated here"
+"audit_age_band, audit_lang, audit_region","AUDIT ONLY, never a model input: used for the fairness check"
+"thehro_s_fused, thehro_s_journey, thehro_s_payee, thehro_s_context",frozen model scores (outputs/)
+"thehro_base_tier, thehro_tier","tier before and after customer memory (0 allow ... 4 hold), frozen lines"

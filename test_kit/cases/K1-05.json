@@ -1,0 +1,27 @@
+{
+  "id": "K1-05",
+  "title": "Fake customer care: screen shared and remote app open during a refund call",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "Searching for a courier helpline, she called a number from a search ad. The 'agent' had her install a screen-sharing app 'to process the refund' and is now guiding her to pay ₹25,000.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C26331",
+  "payee_type": "new_account",
+  "amount": 25000,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 22,
+    "caller_unknown": 1,
+    "screen_share": 1,
+    "remote_app": 1,
+    "app_switches": 4
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Screen sharing and a remote-access app during a call from an unknown number, paying 32× her usual amount to a new account. Screen sharing during a payment is close to a scam by itself."
+}

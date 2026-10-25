@@ -1,0 +1,337 @@
+{
+ "what": "Policy versions v1 (Round 1) to v4 on the same frozen model hgb-86it-677lab-nocallerid, each with lines calibrated for it on the validation week. Synthetic test days 42-59. Measured, except the genuine cancel cost (modelled).",
+ "lines": {
+  "v1": {
+   "t2": 0.088515,
+   "tj": null
+  },
+  "v2": {
+   "t2": 0.088515,
+   "tj": null
+  },
+  "v3": {
+   "t2": 0.088515,
+   "tj": null
+  },
+  "v4": {
+   "t2": 0.105755,
+   "tj": 0.341909
+  }
+ },
+ "current": "v4",
+ "outputs_policy": "v4",
+ "test_days": {
+  "v1": {
+   "victims_warned": 0.943056,
+   "victims_warned_ci": [
+    0.923659,
+    0.957749
+   ],
+   "victims_warned_first_payment": 0.704167,
+   "victims_warned_first_payment_ci": [
+    0.669816,
+    0.73635
+   ],
+   "scam_payments_paused": 0.861567,
+   "scam_payments_held": 0.481343,
+   "genuine_pauses": 79,
+   "false_pauses_per_10k": 1.00493,
+   "false_pauses_per_10k_ci": [
+    0.795616,
+    1.25245
+   ],
+   "genuine_trusted_checks": 17,
+   "genuine_holds": 0,
+   "customers_interrupted": 78,
+   "money_protected_modelled": 0.925955
+  },
+  "v2": {
+   "victims_warned": 0.943056,
+   "victims_warned_ci": [
+    0.923659,
+    0.957749
+   ],
+   "victims_warned_first_payment": 0.704167,
+   "victims_warned_first_payment_ci": [
+    0.669816,
+    0.73635
+   ],
+   "scam_payments_paused": 0.861567,
+   "scam_payments_held": 0.481343,
+   "genuine_pauses": 79,
+   "false_pauses_per_10k": 1.00493,
+   "false_pauses_per_10k_ci": [
+    0.795616,
+    1.25245
+   ],
+   "genuine_trusted_checks": 17,
+   "genuine_holds": 0,
+   "customers_interrupted": 78,
+   "money_protected_modelled": 0.925955
+  },
+  "v3": {
+   "victims_warned": 0.951389,
+   "victims_warned_ci": [
+    0.933145,
+    0.964842
+   ],
+   "victims_warned_first_payment": 0.755556,
+   "victims_warned_first_payment_ci": [
+    0.722862,
+    0.785536
+   ],
+   "scam_payments_paused": 0.887313,
+   "scam_payments_held": 0.484328,
+   "genuine_pauses": 81,
+   "false_pauses_per_10k": 1.03038,
+   "false_pauses_per_10k_ci": [
+    0.818267,
+    1.28066
+   ],
+   "genuine_trusted_checks": 7,
+   "genuine_holds": 0,
+   "customers_interrupted": 80,
+   "money_protected_modelled": 0.933356
+  },
+  "v4": {
+   "victims_warned": 0.959722,
+   "victims_warned_ci": [
+    0.942753,
+    0.971812
+   ],
+   "victims_warned_first_payment": 0.744444,
+   "victims_warned_first_payment_ci": [
+    0.711346,
+    0.774949
+   ],
+   "scam_payments_paused": 0.886567,
+   "scam_payments_held": 0.469403,
+   "genuine_pauses": 82,
+   "false_pauses_per_10k": 1.0431,
+   "false_pauses_per_10k_ci": [
+    0.829606,
+    1.29476
+   ],
+   "genuine_trusted_checks": 6,
+   "genuine_holds": 0,
+   "customers_interrupted": 81,
+   "money_protected_modelled": 0.931789
+  }
+ },
+ "v1_equals_v2_when_customers_continue": true,
+ "genuine_cancel_path_modelled": {
+  "policy": "v4",
+  "false_alarms": 82,
+  "false_alarms_followed_by_a_new_payee_within_24h": 1,
+  "extra_pauses_if_every_one_is_cancelled": 1,
+  "extra_pauses_expected": 0.08,
+  "false_pauses_per_10k_with_expected_cancels": 1.04411,
+  "false_pauses_per_10k_if_every_one_is_cancelled": 1.05582,
+  "cancel_rates_assumed": {
+   "2": 0.08,
+   "3": 0.03,
+   "4": 0.01
+  }
+ },
+ "cancel_and_retry_attack": {
+  "setup": "each victim Round 1's policy warned cancels that first warned payment and retries 60% of it to another mule of the same campaign 30-120 min later; the same retries for every version; retry features from the live path with the cancelled payment removed from history",
+  "seed": 2026,
+  "v1": {
+   "retries": 658,
+   "retries_interrupted": 0.806991,
+   "retries_interrupted_ci": [
+    0.775089,
+    0.835329
+   ],
+   "retries_held": 0.232523,
+   "retry_money_stopped_share": 0.908185,
+   "cancelled_payment_warned": "658 of 658",
+   "warned_first": 658,
+   "retries_interrupted_after_a_warning": 0.806991,
+   "tier_counts": {
+    "0": 33,
+    "1": 94,
+    "2": 365,
+    "3": 13,
+    "4": 153
+   },
+   "by_scam_type": {
+    "customer_care": {
+     "interrupted": 0.851,
+     "n": 67
+    },
+    "digital_arrest": {
+     "interrupted": 0.896,
+     "n": 96
+    },
+    "investment": {
+     "interrupted": 0.797,
+     "n": 172
+    },
+    "loan_fee": {
+     "interrupted": 0.725,
+     "n": 138
+    },
+    "marketplace": {
+     "interrupted": 0.704,
+     "n": 27
+    },
+    "task": {
+     "interrupted": 0.821,
+     "n": 117
+    },
+    "voice_clone": {
+     "interrupted": 0.878,
+     "n": 41
+    }
+   }
+  },
+  "v2": {
+   "retries": 658,
+   "retries_interrupted": 1.0,
+   "retries_interrupted_ci": [
+    0.994196,
+    1.0
+   ],
+   "retries_held": 0.504559,
+   "retry_money_stopped_share": 1.0,
+   "cancelled_payment_warned": "658 of 658",
+   "warned_first": 658,
+   "retries_interrupted_after_a_warning": 1.0,
+   "tier_counts": {
+    "2": 199,
+    "3": 127,
+    "4": 332
+   },
+   "by_scam_type": {
+    "customer_care": {
+     "interrupted": 1.0,
+     "n": 67
+    },
+    "digital_arrest": {
+     "interrupted": 1.0,
+     "n": 96
+    },
+    "investment": {
+     "interrupted": 1.0,
+     "n": 172
+    },
+    "loan_fee": {
+     "interrupted": 1.0,
+     "n": 138
+    },
+    "marketplace": {
+     "interrupted": 1.0,
+     "n": 27
+    },
+    "task": {
+     "interrupted": 1.0,
+     "n": 117
+    },
+    "voice_clone": {
+     "interrupted": 1.0,
+     "n": 41
+    }
+   }
+  },
+  "v3": {
+   "retries": 658,
+   "retries_interrupted": 1.0,
+   "retries_interrupted_ci": [
+    0.994196,
+    1.0
+   ],
+   "retries_held": 0.504559,
+   "retry_money_stopped_share": 1.0,
+   "cancelled_payment_warned": "658 of 658",
+   "warned_first": 658,
+   "retries_interrupted_after_a_warning": 1.0,
+   "tier_counts": {
+    "2": 299,
+    "3": 27,
+    "4": 332
+   },
+   "by_scam_type": {
+    "customer_care": {
+     "interrupted": 1.0,
+     "n": 67
+    },
+    "digital_arrest": {
+     "interrupted": 1.0,
+     "n": 96
+    },
+    "investment": {
+     "interrupted": 1.0,
+     "n": 172
+    },
+    "loan_fee": {
+     "interrupted": 1.0,
+     "n": 138
+    },
+    "marketplace": {
+     "interrupted": 1.0,
+     "n": 27
+    },
+    "task": {
+     "interrupted": 1.0,
+     "n": 117
+    },
+    "voice_clone": {
+     "interrupted": 1.0,
+     "n": 41
+    }
+   }
+  },
+  "v4": {
+   "retries": 658,
+   "retries_interrupted": 0.987842,
+   "retries_interrupted_ci": [
+    0.976194,
+    0.993827
+   ],
+   "retries_held": 0.493921,
+   "retry_money_stopped_share": 0.996963,
+   "cancelled_payment_warned": "640 of 658",
+   "warned_first": 640,
+   "retries_interrupted_after_a_warning": 1.0,
+   "tier_counts": {
+    "0": 4,
+    "1": 4,
+    "2": 295,
+    "3": 30,
+    "4": 325
+   },
+   "by_scam_type": {
+    "customer_care": {
+     "interrupted": 0.985,
+     "n": 67
+    },
+    "digital_arrest": {
+     "interrupted": 1.0,
+     "n": 96
+    },
+    "investment": {
+     "interrupted": 0.983,
+     "n": 172
+    },
+    "loan_fee": {
+     "interrupted": 0.971,
+     "n": 138
+    },
+    "marketplace": {
+     "interrupted": 1.0,
+     "n": 27
+    },
+    "task": {
+     "interrupted": 1.0,
+     "n": 117
+    },
+    "voice_clone": {
+     "interrupted": 1.0,
+     "n": 41
+    }
+   }
+  }
+ },
+ "seconds": 291
+}

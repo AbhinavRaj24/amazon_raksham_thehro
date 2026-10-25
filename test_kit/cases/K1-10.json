@@ -1,0 +1,38 @@
+{
+  "id": "K1-10",
+  "title": "Fake trading: trader's largest 'deposit' after weeks of fake gains",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "A trader was coached on an 'institutional account' app: ₹25,000, then ₹40,000, with a ₹5,000 'profit' payout. Now the 'mentor' says ₹75,000 is needed to qualify for a block deal.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C29358",
+  "payee_type": "mule_network",
+  "amount": 75000,
+  "channel": "IMPS",
+  "history": [
+    {
+      "kind": "new_payee_payment",
+      "amount": 25000,
+      "hours_ago": 96
+    },
+    {
+      "kind": "stranger_credit",
+      "amount": 5000,
+      "hours_ago": 60
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 40000,
+      "hours_ago": 40
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 0,
+    "app_switches": 4
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "For a trader ₹75,000 is only 7× usual, but it follows a rising series to new accounts and a stranger credit, and the payee is in a live mule network."
+}

@@ -1,0 +1,8 @@
+{
+ "_mock": true,
+ "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "decision_id": "D-0008",
+ "action": "cancel",
+ "state": "cancelled",
+ "note": "Payment cancelled. No money left your account."
+}

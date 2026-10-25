@@ -1,0 +1,24 @@
+{
+  "id": "K1-07",
+  "title": "Cloned voice of a grandson asking for bail money",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "A call from an unknown number in what sounds exactly like her grandson's voice: he has been in an accident and needs ₹25,000 for the police right now, and she must not tell his parents.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C15852",
+  "payee_type": "mule_unflagged",
+  "amount": 25000,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 8,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "First payment, 23× the customer's usual, during an 8-minute phone call from an unknown number. The payee looks clean (no flag yet), so only journey and context can carry this; a pause or trusted check is right, a hold may not be reachable without an outside flag."
+}

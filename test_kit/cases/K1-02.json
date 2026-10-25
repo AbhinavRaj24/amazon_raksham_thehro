@@ -1,0 +1,29 @@
+{
+  "id": "K1-02",
+  "title": "Digital arrest: retiree sends ₹1.5 lakh by RTGS to a brand-new account",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "A retired teacher is kept on a Skype 'court hearing' for over two hours and told to deposit his savings for 'fund verification' or be arrested today.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C15852",
+  "payee_type": "new_account",
+  "amount": 150000,
+  "channel": "RTGS",
+  "history": [
+    {
+      "kind": "fd_break",
+      "hours_ago": 5
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 1,
+    "call_min": 140,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "₹1.5 lakh to an account opened weeks ago, after an FD break, during a 140-minute internet call from an unknown number. He has a trusted contact, so a trusted check or hold is the right response."
+}

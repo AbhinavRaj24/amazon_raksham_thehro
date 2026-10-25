@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thehro Officer Console</title>
+<style>
+/* Officer console: hold queue | case review. Plain HTML/CSS/JS, no CDN (works offline on the demo laptop).
+   Colour tokens, .fam, .scale, .case, .kv and pre.json are ported from demo/template.html. */
+:root {
+  --bg: #f2f5f3;
+  --surface: #ffffff;
+  --sunk: #e8eeeb;
+  --ink: #14201b;
+  --muted: #56665f;
+  --line: #d6dfdb;
+  --accent: #0d6a54;
+  --accent-ink: #ffffff;
+  --accent-soft: #d9eee6;
+  --t0: #2e7a4c; --t0-soft: #e0efe5;
+  --t1: #2a5f9e; --t1-soft: #e1eaf6;
+  --t2: #9a6208; --t2-soft: #f6ebd3;
+  --t3: #b84d0c; --t3-soft: #f8e2d3;
+  --t4: #ad2219; --t4-soft: #f7dcd9;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-deva: "IBM Plex Sans Devanagari", "Noto Sans Devanagari", "Mangal", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, Menlo, monospace;
+  --r: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1210; --surface: #141c19; --sunk: #1a2420; --ink: #e3ebe7; --muted: #98aaa2; --line: #28352f;
+    --accent: #47b893; --accent-ink: #06130e; --accent-soft: #163128;
+    --t0: #5cc086; --t0-soft: #142a1d; --t1: #74a6e8; --t1-soft: #162338;
+    --t2: #e2a640; --t2-soft: #2f2511; --t3: #f28b4c; --t3-soft: #341f12; --t4: #f1736a; --t4-soft: #381816;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1210; --surface: #141c19; --sunk: #1a2420; --ink: #e3ebe7; --muted: #98aaa2; --line: #28352f;
+  --accent: #47b893; --accent-ink: #06130e; --accent-soft: #163128;
+  --t0: #5cc086; --t0-soft: #142a1d; --t1: #74a6e8; --t1-soft: #162338;
+  --t2: #e2a640; --t2-soft: #2f2511; --t3: #f28b4c; --t3-soft: #341f12; --t4: #f1736a; --t4-soft: #381816;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 14px; line-height: 1.5; display: flex; flex-direction: column; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; letter-spacing: 0.005em; }
+h2 { font-size: 20px; line-height: 1.2; }
+h3 { font-size: 15px; line-height: 1.3; }
+p { margin: 0; }
+button, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--font-mono); font-size: 12px; }
+.muted { color: var(--muted); }
+.label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- top bar ---------- */
+.top { background: var(--surface); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 10px 16px; }
+.brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+.mark { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-family: var(--font-deva); font-size: 20px; font-weight: 600; }
+.brand b { font-family: var(--font-display); font-size: 18px; display: block; line-height: 1.1; }
+.brand small { color: var(--muted); font-size: 12px; }
+.who { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.who select { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 4px 8px; }
+.conn { font-size: 12px; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+.conn i { width: 8px; height: 8px; border-radius: 50%; background: var(--t0); display: inline-block; }
+.conn.down i { background: var(--t4); }
+.conn.down { color: var(--t4); }
+
+/* ---------- layout ---------- */
+.app { flex: 1; min-height: 0; display: grid; grid-template-columns: 330px minmax(0, 1fr); }
+@media (max-width: 860px) { .app { grid-template-columns: minmax(0, 1fr); } }
+.side { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; overflow-y: auto; padding: 14px 14px 20px; gap: 14px; }
+.main { min-height: 0; overflow-y: auto; padding: 14px 18px 30px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- queue ---------- */
+.qlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.q { width: 100%; text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: var(--r); padding: 9px 11px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; }
+.q:hover { border-color: var(--muted); }
+.q[aria-current="true"] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.q .clock { font-family: var(--font-mono); font-size: 12.5px; font-weight: 500; color: var(--t2); }
+.q .clock.urgent { color: var(--t4); font-weight: 700; }
+.q b { font-size: 14px; font-variant-numeric: tabular-nums; }
+.q .cust { font-size: 12px; color: var(--muted); }
+.q small { grid-column: 1 / -1; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.badge { grid-column: 1 / -1; justify-self: start; font-size: 11.5px; font-weight: 600; color: var(--t1); background: var(--t1-soft); border-radius: 999px; padding: 1px 8px; }
+.closed-q { font-size: 12.5px; }
+.closed-q summary { cursor: pointer; color: var(--muted); font-weight: 500; padding: 4px 0; }
+.closed-q .q { grid-template-columns: auto minmax(0, 1fr); opacity: 0.85; }
+.empty { font-size: 12.5px; color: var(--muted); padding: 10px; border: 1px dashed var(--line); border-radius: var(--r); }
+.side-btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 7px 10px; font-weight: 500; text-align: left; }
+.side-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.side-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.rules { font-size: 12px; color: var(--muted); margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+.rules b { color: var(--ink); font-weight: 600; }
+
+/* ---------- case ---------- */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.panel-h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.panel-h .label { margin-left: auto; }
+.head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.head .amt { font-family: var(--font-display); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 3px 10px; background: var(--sunk); color: var(--muted); }
+.pill.open { background: var(--t2-soft); color: var(--t2); }
+.pill.urgent { background: var(--t4-soft); color: var(--t4); }
+.pill.closed { background: var(--t0-soft); color: var(--t0); }
+.only { font-size: 12.5px; padding: 7px 10px; border-radius: 8px; background: var(--sunk); }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+@media (max-width: 1100px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.reasons { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.reasons li { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 8px; font-size: 13px; align-items: baseline; }
+.lr { font-size: 11.5px; font-family: var(--font-mono); background: var(--sunk); border-radius: 6px; padding: 1px 6px; white-space: nowrap; text-align: center; }
+.fam-tag { font-size: 11px; color: var(--muted); }
+.fams { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 1100px) { .fams { grid-template-columns: minmax(0, 1fr); } }
+.fam { border: 1px solid var(--line); border-radius: 9px; padding: 9px 11px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.fam.el { border-color: color-mix(in srgb, var(--t2) 55%, var(--line)); }
+.fam-h { display: flex; align-items: center; gap: 8px; }
+.fam-h b { font-size: 13.5px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; padding: 2px 8px; border-radius: 999px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.fam-h .chip { margin-left: auto; }
+.chip.el { background: var(--t2-soft); color: var(--t2); }
+.scale { position: relative; height: 30px; }
+.scale .track { position: absolute; left: 0; right: 0; top: 9px; height: 6px; border-radius: 3px; background: var(--sunk); }
+.scale .fill { position: absolute; left: 0; top: 9px; height: 6px; border-radius: 3px; background: var(--muted); }
+.scale .tick { position: absolute; top: 4px; width: 2px; height: 16px; background: var(--ink); opacity: 0.55; }
+.scale .tick span { position: absolute; top: 15px; transform: translateX(-50%); font-size: 10px; white-space: nowrap; color: var(--muted); }
+.scale .val { position: absolute; top: 5px; width: 14px; height: 14px; border-radius: 50%; transform: translateX(-50%); border: 2px solid var(--surface); }
+.case { border: 1px dashed color-mix(in srgb, var(--t4) 60%, var(--line)); border-radius: 9px; padding: 12px; display: flex; flex-direction: column; gap: 8px; background: color-mix(in srgb, var(--t4-soft) 45%, var(--surface)); }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; font-size: 12.5px; margin: 0; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+pre.json { margin: 0; background: var(--sunk); border-radius: 8px; padding: 10px; font-family: var(--font-mono); font-size: 11px; line-height: 1.45; max-height: 240px; overflow: auto; white-space: pre; }
+details summary { cursor: pointer; font-size: 12.5px; font-weight: 500; }
+.facts { margin: 0; padding-left: 18px; font-size: 12.5px; display: flex; flex-direction: column; gap: 2px; }
+.members { display: flex; flex-wrap: wrap; gap: 4px; }
+.members .chip { font-family: var(--font-mono); font-size: 11px; }
+.members .chip.me { background: var(--t4-soft); color: var(--t4); }
+.officer-only { border-left: 3px solid var(--t1); }
+.guess { font-family: var(--font-display); font-size: 17px; font-weight: 600; }
+.info { cursor: help; border-bottom: 1px dotted var(--muted); font-size: 12px; color: var(--muted); }
+table { border-collapse: collapse; width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-weight: 500; color: var(--muted); font-size: 11.5px; }
+.tbl-wrap { overflow-x: auto; }
+.chain { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 9px; font-family: var(--font-display); font-size: 17px; font-weight: 600; }
+.chain.ok { background: var(--t0-soft); color: var(--t0); }
+.chain.bad { background: var(--t4-soft); color: var(--t4); }
+.script { margin: 0; padding-left: 20px; font-size: 13px; display: flex; flex-direction: column; gap: 3px; }
+.script .never { color: var(--t4); font-weight: 600; }
+.acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 9px 14px; font-weight: 600; }
+.btn.release { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.scam { background: var(--t4); color: #fff; border-color: var(--t4); }
+.btn.ghost { background: transparent; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+textarea { width: 100%; min-height: 54px; border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: var(--surface); resize: vertical; font-size: 13px; }
+.msg { font-size: 13px; padding: 9px 12px; border-radius: 9px; }
+.msg.warn { background: var(--t2-soft); color: var(--ink); border: 1px solid color-mix(in srgb, var(--t2) 40%, transparent); }
+.msg.err { background: var(--t4-soft); color: var(--ink); border: 1px solid color-mix(in srgb, var(--t4) 40%, transparent); }
+.msg.ok { background: var(--t0-soft); color: var(--ink); border: 1px solid color-mix(in srgb, var(--t0) 40%, transparent); }
+.sms { font-size: 13px; padding: 9px 12px; border-radius: 12px 12px 12px 3px; background: var(--sunk); max-width: 520px; }
+.placeholder { margin: auto; text-align: center; color: var(--muted); max-width: 420px; display: flex; flex-direction: column; gap: 8px; padding: 40px 0; }
+dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); padding: 18px; max-width: 440px; width: calc(100% - 32px); }
+dialog::backdrop { background: rgb(0 0 0 / 0.4); }
+dialog h3 { margin-bottom: 8px; }
+dialog .acts { justify-content: flex-end; margin-top: 14px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">ठ</div>
+      <div><b>Thehro · fraud officer console</b><small>Every hold and call-back lands here. Bank staff only.</small></div>
+    </div>
+    <span class="conn" id="conn"><i></i><span>connecting…</span></span>
+    <label class="who">signed in as
+      <select id="user" aria-label="Signed-in user">
+        <option value="officer.demo">officer.demo (officer)</option>
+        <option value="auditor.demo">auditor.demo (auditor)</option>
+      </select>
+      <span class="info" title="The prototype does not check passwords. A bank would use its own staff login (SSO) and its own roles.">no password check</span>
+    </label>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="side" aria-label="Hold queue">
+    <div class="panel-h"><h3>Holds and call-backs</h3><span class="label">most urgent first</span></div>
+    <ul class="qlist" id="queue"><li class="empty">Loading…</li></ul>
+    <details class="closed-q" id="closed-wrap"><summary id="closed-sum">Closed (0)</summary><ul class="qlist" id="closed"></ul></details>
+    <button class="side-btn" id="audit-btn" aria-pressed="false">Audit log</button>
+    <div>
+      <div class="label" style="margin-bottom:4px">How this console works</div>
+      <ul class="rules">
+        <li><b>Only a person releases or cancels.</b> If nobody acts within 30 minutes, the payment is cancelled and the money stays.</li>
+        <li><b>Only this one payment is held.</b> Nothing else on the account is touched.</li>
+        <li><b>Every case you open is logged</b> under your name and role; auditors can see who read what.</li>
+        <li><b>Scores and the model's guess stay here.</b> They never reach the customer's phone.</li>
+      </ul>
+    </div>
+  </aside>
+  <main class="main" id="main">
+    <div class="placeholder"><h2>No case open</h2><p>Pick a hold from the queue. Opening a case writes an entry to the read log.</p></div>
+  </main>
+</div>
+
+<dialog id="confirm">
+  <h3 id="c-title">Are you sure?</h3>
+  <p id="c-body" style="font-size:13.5px"></p>
+  <div class="acts"><button class="btn ghost" value="no" id="c-no">Go back</button><button class="btn" value="yes" id="c-yes">Yes, do it</button></div>
+</dialog>
+
+<script>
+(function () {
+"use strict";
+// Same origin by default; ?api=http://<laptop>:8080 points the page at another server. ?case=H-0001 opens a case.
+const QS = new URLSearchParams(location.search);
+const API = (QS.get("api") || "").replace(/\/$/, "");
+const POLL_MS = 3000;
+const ROLE = { "officer.demo": "officer", "auditor.demo": "auditor" };
+const WF = {
+  investment: "Fake trading / IPO", digital_arrest: "Digital arrest", task: "Task / part-time job",
+  customer_care: "Fake customer care", marketplace: "Marketplace 'scan to receive'",
+  voice_clone: "Cloned voice of a relative", loan_fee: "Fake loan fee"
+};
+const LANG_NAME = { hi: "Hindi", en: "English", ta: "Tamil", te: "Telugu", bn: "Bengali", mr: "Marathi", kn: "Kannada", gu: "Gujarati" };
+const FAM = { journey: "Journey", payee: "Payee", context: "Context", memory: "Memory" };
+const CONFIRM = {
+  release_confirm: ["Release this payment?", (a, kind) => `The ${kind === "callback" ? "wait" : "hold"} on ${a} is lifted and this payee is marked confirmed. The customer then finishes with their own PIN. Only do this if you reached the customer on their registered number and they explained the payment.`, "release"],
+  cancel_scam: ["Cancel as a scam?", a => `The ${a} payment is cancelled and the money stays in the account. A 1930 / NCRP complaint draft and a mule report are prepared, and the customer gets an SMS.`, "scam"],
+  no_answer: ["Customer not reached?", (a, kind) => kind === "callback"
+    ? `Nothing is cancelled: the ${a} payment goes back to the customer, who can wait an hour and then pay, or cancel. They get an SMS.`
+    : `The ${a} payment is cancelled and the money stays. The customer is told by SMS and can try again after speaking to the bank.`, ""]
+};
+const KIND = { hold: "hold", callback: "call-back" };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const inr = x => "₹" + Math.round(x).toLocaleString("en-IN");
+// reasons with no weight are not model signals: memory of an earlier warning, or a plain fact about the payment
+const wt = (x, fam) => x == null ? (fam === "memory" ? "memory" : "fact") : "×" + (x >= 10 ? Math.round(x) : Math.round(x * 10) / 10);
+
+let user = "officer.demo";
+let queue = [], fetchedAt = 0;           // the last /officer/cases answer and when it arrived
+let selected = QS.get("case"), detail = null, detailError = null;
+let view = "case";                       // "case" or "audit"
+let audit = null;
+const results = {};                      // case_id -> {action, body} from the last action on it
+const notices = {};                      // case_id -> {kind, text}
+
+// ---------------------------------------------------------------- server
+async function api(path, opts = {}) {
+  const r = await fetch(API + path, { headers: { "Content-Type": "application/json" }, cache: "no-store", ...opts });
+  let body = null;
+  try { body = await r.json(); } catch (e) { /* not JSON */ }
+  if (!r.ok) {
+    const err = new Error((body && body.detail) || r.statusText || "request failed");
+    err.status = r.status;
+    throw err;
+  }
+  return body;
+}
+function setConn(ok, text) {
+  const c = $("#conn");
+  c.classList.toggle("down", !ok);
+  c.querySelector("span").textContent = text;
+}
+
+async function poll() {
+  try {
+    const out = await api("/officer/cases");
+    queue = out.cases || [];
+    fetchedAt = Date.now();
+    setConn(true, `live · ${queue.filter(c => c.status === "open").length} open`);
+    renderQueue();
+    // the server may have closed the open case (timeout, or the customer cancelled): fetch it once to show why
+    const q = queue.find(c => c.case_id === selected);
+    if (view === "case" && q && detail && detail.case_id === selected && q.status !== detail.status) await loadDetail(selected);
+    if (view === "audit") await loadAudit();
+  } catch (e) {
+    setConn(false, "bank server not reachable · retrying");
+  }
+}
+
+async function loadDetail(id) {
+  detailError = null;
+  try {
+    detail = await api(`/officer/cases/${encodeURIComponent(id)}?user=${encodeURIComponent(user)}&role=${ROLE[user]}`);
+  } catch (e) {
+    detail = null;
+    detailError = e.status === 404 ? `Case ${id} doesn't exist on this server (it may have been reset).` : `Couldn't load case ${id}: ${e.message}`;
+  }
+  renderMain();
+}
+
+async function loadAudit() {
+  try { audit = await api("/officer/audit"); } catch (e) { audit = { error: e.message }; }
+  if (view === "audit") renderMain();
+}
+
+// ---------------------------------------------------------------- countdown
+function secondsLeft(c) {
+  if (c.status !== "open" || c.minutes_left == null) return null;
+  return Math.max(0, c.minutes_left * 60 - (Date.now() - fetchedAt) / 1000);
+}
+function clock(sec) {
+  if (sec == null) return "";
+  if (sec <= 0) return "0:00";
+  const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+function tickClocks() {
+  document.querySelectorAll("[data-clock]").forEach(el => {
+    const c = queue.find(q => q.case_id === el.dataset.clock);
+    if (!c) return;
+    const sec = secondsLeft(c);
+    if (sec == null) return;
+    el.textContent = sec <= 0 ? "⏱ deadline: cancelling…" : `⏱ ${clock(sec)}${el.dataset.long ? " left" : ""}`;
+    el.classList.toggle("urgent", sec < 600);
+  });
+}
+
+// ---------------------------------------------------------------- queue
+function renderQueue() {
+  const open = queue.filter(c => c.status === "open").sort((a, b) => (a.minutes_left ?? 0) - (b.minutes_left ?? 0));
+  const closed = queue.filter(c => c.status !== "open");
+  $("#queue").innerHTML = open.length ? open.map(c => `<li><button class="q" data-id="${esc(c.case_id)}" aria-current="${c.case_id === selected && view === "case"}">
+      <span class="clock" data-clock="${esc(c.case_id)}">⏱ ${clock(secondsLeft(c))}</span><b>${esc(c.amount_text)}</b><span class="cust">${esc(c.customer)}</span>
+      ${c.kind === "callback" ? `<span class="badge" title="Trusted check for a customer with no trusted person: the bank calls back">☎ call-back</span>` : ""}
+      ${c.customer_note ? `<span class="badge" title="The customer pressed 'This was me' on the hold screen">● ${esc(c.customer_note)}</span>` : ""}
+      <small title="${esc(c.top_reason)}">${esc(c.case_id)} · ${esc(c.payee)} · ${esc(c.top_reason || "")}</small></button></li>`).join("")
+    : `<li class="empty">No open holds or call-backs. A hold, or a call-back the customer asks for, appears here within 3 seconds.</li>`;
+  $("#closed-sum").textContent = `Closed (${closed.length})`;
+  $("#closed").innerHTML = closed.map(c => `<li><button class="q" data-id="${esc(c.case_id)}" aria-current="${c.case_id === selected && view === "case"}">
+      <span>${/scam/.test(c.outcome || "") ? "✓" : "–"}</span><span><b>${esc(c.case_id)}</b> ${esc(c.amount_text)} · ${esc(c.outcome || "closed")}</span></button></li>`).join("");
+  document.querySelectorAll(".q[data-id]").forEach(b => b.addEventListener("click", () => openCase(b.dataset.id)));
+  tickClocks();
+}
+
+function openCase(id) {
+  selected = id; view = "case";
+  $("#audit-btn").setAttribute("aria-pressed", "false");
+  history.replaceState(null, "", `?${new URLSearchParams({ ...(API ? { api: API } : {}), case: id })}`);
+  renderQueue();
+  loadDetail(id);
+}
+
+// ---------------------------------------------------------------- score scales (from demo/template.html)
+const LO = 1e-4;
+function pos(v) { const x = Math.max(LO, Math.min(1, v)); return (Math.log10(x) - Math.log10(LO)) / (0 - Math.log10(LO)) * 100; }
+function scale(v, ticks, color) {
+  return `<div class="scale" aria-hidden="true"><div class="track"></div><div class="fill" style="width:${pos(v)}%;background:${color}"></div>
+    ${ticks.map(t => `<div class="tick" style="left:${pos(t[0])}%"><span>${esc(t[1])}</span></div>`).join("")}
+    <div class="val" style="left:${pos(v)}%;background:${color}"></div></div>`;
+}
+function lineTicks(lines) {
+  // pause and hold share a line in Round 1; show one tick labelled with both
+  const by = {};
+  for (const [k, v] of Object.entries(lines || {})) (by[v] = by[v] || []).push(k);
+  return Object.entries(by).map(([v, ks]) => [Number(v), ks.join(" · ")]);
+}
+
+// ---------------------------------------------------------------- the case
+function renderMain() {
+  if (view === "audit") return renderAudit();
+  const m = $("#main");
+  if (detailError) { m.innerHTML = `<div class="msg err">${esc(detailError)}</div>`; return; }
+  if (!detail) {
+    m.innerHTML = `<div class="placeholder"><h2>${selected ? "Loading…" : "No case open"}</h2><p>Pick a hold from the queue. Opening a case writes an entry to the read log.</p></div>`;
+    return;
+  }
+  const d = detail, w = d.why_held || {}, open = d.status === "open";
+  const isOfficer = ROLE[user] === "officer";
+  const q = queue.find(c => c.case_id === d.case_id) || d;
+  const sec = secondsLeft({ ...q, status: d.status });
+  const amt = d.payment.amount_text || inr(d.payment.amount);
+
+  const head = `<div class="panel">
+    <div class="head"><h2>${d.kind === "callback" ? "Call-back" : "Case"} ${esc(d.case_id)}</h2><span class="amt">${esc(amt)}</span>
+      ${open ? `<span class="pill open" data-clock="${esc(d.case_id)}" data-long="1">⏱ ${clock(sec)} left</span>` : `<span class="pill closed">closed · ${esc(d.outcome || "")}</span>`}
+      <span class="muted" style="margin-left:auto;font-size:12.5px">opened ${esc(d.opened_at)} · decision ${esc(d.decision_id)} · ${esc(d.payment.channel)}</span></div>
+    ${d.kind === "callback"
+      ? `<p class="only">Call-back: <b>${esc(amt)} waits for your call.</b> A trusted check, and the customer has no trusted person set up, so the bank calls instead. ${open ? `Call within ${esc(d.sla_minutes)} minutes. If you can't reach them, nothing is cancelled: they can wait an hour and then pay, or cancel.` : ""}</p>`
+      : `<p class="only">Held: <b>${esc(amt)}, this payment only.</b> Nothing else on the account is frozen; the customer can still use their account. ${open ? "If nobody acts within 30 minutes, the payment is cancelled and the money stays." : ""}</p>`}
+    ${!open && /no officer action/.test(d.outcome || "") ? `<div class="msg warn">No officer action within 30 minutes: the payment was cancelled automatically and the money stayed in the account. The money never moves without a person.</div>` : ""}
+  </div>`;
+
+  const reasons = (w.reasons || []).map(r => `<li><span class="lr" title="How much more often this appears in reported scams than in other payments">${wt(r.weight, r.family)}</span>
+      <span>${esc(r.en)} <span class="fam-tag">· ${esc(FAM[r.family] || r.family || "")}</span></span></li>`).join("");
+  const fams = ["journey", "payee", "context"].map(k => {
+    const s = (w.scores || {})["s_" + k], el = (w.families || {})[k], line = (w.family_lines || {})[k];
+    const body = s == null ? `<p class="muted" style="font-size:12px">Not shared: no consent, so this family doesn't vote.</p>`
+      : scale(s, line != null ? [[line, "elevated"]] : [], el ? "var(--t2)" : "var(--muted)");
+    return `<div class="fam ${el ? "el" : ""}"><div class="fam-h"><b>${FAM[k]}</b><span class="chip ${el ? "el" : ""}">${s == null ? "off" : (el ? "elevated" : "normal")}</span></div>${body}
+      <span class="mono muted">${s == null ? "" : `score ${s.toFixed(4)}${line != null ? ` · line ${line.toFixed(4)}` : ""}`}</span></div>`;
+  }).join("");
+  const fused = (w.scores || {}).s_fused;
+  const why = `<div class="panel">
+    <div class="panel-h"><h3>${d.kind === "callback" ? "Why the bank is calling" : "Why held"}</h3><span class="label">officer view</span></div>
+    <p style="font-size:13.5px"><b>${esc(w.summary || "")}</b></p>
+    <ul class="reasons">${reasons || `<li class="muted">No reasons recorded.</li>`}</ul>
+    <div class="label">Families: score vs elevated line (log scale)</div>
+    <div class="fams">${fams}</div>
+    ${fused != null ? `<div class="label">Fused risk vs tier lines</div>${scale(fused, lineTicks(w.lines), "var(--t4)")}<span class="mono muted">fused ${fused.toFixed(4)}</span>` : ""}
+  </div>`;
+
+  const net = (d.payee || {}).network;
+  const payee = `<div class="panel"><div class="panel-h"><h3>Payee ${esc(d.payee.ref)}</h3></div>
+    <ul class="facts">${(d.payee.facts || []).map(f => `<li>${esc(f)}</li>`).join("")}</ul>
+    ${net && net.size ? `<dl class="kv"><dt>Network</dt><dd>${net.size} accounts${net.flagged_at ? ` · flagged ${esc(net.flagged_at)} by the label-free detector` : ""}</dd></dl>
+      <div class="members">${(net.members || []).map(a => `<span class="chip ${a === d.payee.ref ? "me" : ""}">${esc(a)}</span>`).join("")}</div>` : `<p class="muted" style="font-size:12.5px">Not part of a flagged network.</p>`}
+  </div>`;
+  const c = d.customer || {};
+  const customer = `<div class="panel"><div class="panel-h"><h3>Customer ${esc(c.ref)}</h3></div>
+    <dl class="kv"><dt>Age band</dt><dd>${esc(c.age_band)}</dd><dt>Language</dt><dd>${esc(LANG_NAME[c.lang] || c.lang)}</dd>
+      <dt>Registered mobile</dt><dd class="mono">${esc(c.registered_mobile)} <span class="muted">(call only this number)</span></dd>
+      <dt>Trusted contact</dt><dd>${c.trusted_contact ? "on file" : "none"}</dd>
+      <dt>Customer's note</dt><dd>${c.note ? `<b style="color:var(--t1)">● ${esc(c.note)}</b> <span class="muted">(pressed "This was me")</span>` : `<span class="muted">none</span>`}</dd></dl>
+  </div>`;
+
+  const g = d.model_guess || {};
+  const guess = `<div class="panel officer-only"><div class="panel-h"><h3>Model's guess</h3><span class="label">officers only</span></div>
+    <p class="guess">${esc(WF[g.scam_type] || g.scam_type || "not sure")}</p>
+    <p style="font-size:12.5px">${esc(g.note || "for the officer only; never shown to the customer")}.
+      <span class="info" title="The guess can be wrong. In Round 1 it confused fake customer care with investment scams. Decide from what the customer tells you, not from this label.">It can be wrong</span></p>
+  </div>`;
+
+  const ev = d.evidence;
+  const evidence = `<div class="panel"><div class="panel-h"><h3>Evidence</h3><span class="label">append-only, hash-chained</span></div>
+    ${ev ? `<div class="tbl-wrap"><table><thead><tr><th>#</th><th>kind</th><th>at</th><th>hash</th><th>prev</th></tr></thead><tbody>
+      ${(ev.records || []).map(r => `<tr><td>${r.seq}</td><td>${esc(r.kind)}</td><td>${esc(r.at)}</td><td class="mono">${esc(String(r.hash).slice(0, 12))}…</td><td class="mono">${esc(String(r.prev_hash).slice(0, 12))}…</td></tr>`).join("")}
+      </tbody></table></div>
+      ${ev.chain_ok ? `<div class="chain ok">chain verified ✓</div>` : `<div class="chain bad">⚠ chain broken: a stored record was changed. Escalate before acting.</div>`}
+      <details><summary>Full records</summary><pre class="json">${esc(JSON.stringify(ev.records, null, 1))}</pre></details>`
+      : `<p class="muted">No evidence record (the decision service was unavailable).</p>`}
+  </div>`;
+
+  const script = `<div class="panel"><div class="panel-h"><h3>Call script</h3></div>
+    <ol class="script">${(d.call_script || []).map(l => `<li class="${/never ask/i.test(l) ? "never" : ""}">${esc(l)}</li>`).join("")}</ol></div>`;
+
+  const n = notices[d.case_id];
+  const actions = `<div class="panel"><div class="panel-h"><h3>Decide</h3><span class="label">${isOfficer ? "officer action" : "auditors can read, not act"}</span></div>
+    ${n ? `<div class="msg ${n.kind}">${esc(n.text)}</div>` : ""}
+    <div class="acts">${(d.actions || []).map(a => `<button class="btn ${(CONFIRM[a.id] || [])[2] || "ghost"}" data-act="${esc(a.id)}" ${open && isOfficer ? "" : "disabled"}>${esc(a.label)}</button>`).join("")}</div>
+    <label style="font-size:12.5px" class="muted">Note for the record (optional)
+      <textarea id="note" ${open && isOfficer ? "" : "disabled"} placeholder="e.g. Customer says a 'CBI officer' is on WhatsApp video; explained the scam; customer agreed to cancel."></textarea></label>
+    ${!open ? `<p class="muted" style="font-size:12.5px">This case is closed: ${esc(d.outcome || "")}. Actions are disabled.</p>` : ""}
+  </div>`;
+
+  m.innerHTML = head + why + `<div class="grid2">${payee}${customer}</div>` + `<div class="grid2">${guess}${script}</div>` + evidence + actions + renderResult(d.case_id);
+  m.querySelectorAll("[data-act]").forEach(b => b.addEventListener("click", () => act(b.dataset.act)));
+  const cp = $("#copy-draft");
+  if (cp) cp.addEventListener("click", () => copyText(cp.dataset.text, cp));
+  tickClocks();
+}
+
+// ---------------------------------------------------------------- after an action
+function draftText(dr) {
+  const lines = [
+    `Complaint for ${dr.portal}`, `Category: ${dr.category} / ${dr.sub_category}`, `Incident time: ${dr.incident_time}`,
+    `Amount: ${inr(dr.amount)}`, `Transaction ref: ${dr.transaction_ref}`, `Payee: ${dr.payee}`, `Channel: ${dr.channel}`,
+    `Suspected scam type: ${WF[dr.suspected_scam_type] || dr.suspected_scam_type}`, `What the bank saw:`,
+    ...(dr.what_we_saw || []).map(x => `  - ${x}`), dr.note
+  ];
+  return lines.join("\n");
+}
+function renderResult(id) {
+  const r = results[id];
+  if (!r) return "";
+  const b = r.body;
+  const sms = b.customer_sms ? `<div><div class="label">SMS the customer received</div><p class="sms">${esc(b.customer_sms)}</p></div>` : "";
+  if (r.action === "cancel_scam") {
+    const dr = b.ncrp_draft;
+    const text = dr ? draftText(dr) : "";
+    return `<div class="case"><div class="panel-h"><h3>Cancelled as a scam: money stayed</h3><span class="label">${b.chain_ok ? "outcome recorded · chain ✓" : "outcome recorded"}</span></div>
+      ${dr ? `<div class="panel-h"><b>1930 / NCRP complaint draft</b><button class="btn" id="copy-draft" data-text="${esc(text)}" style="margin-left:auto;padding:5px 12px">Copy</button></div>
+        <dl class="kv"><dt>Portal</dt><dd>${esc(dr.portal)}</dd><dt>Category</dt><dd>${esc(dr.category)} / ${esc(dr.sub_category)}</dd>
+          <dt>Incident time</dt><dd>${esc(dr.incident_time)}</dd><dt>Amount</dt><dd>${inr(dr.amount)}</dd><dt>Transaction ref</dt><dd class="mono">${esc(dr.transaction_ref)}</dd>
+          <dt>Payee</dt><dd>${esc(dr.payee)}</dd><dt>Channel</dt><dd>${esc(dr.channel)}</dd><dt>Suspected type</dt><dd>${esc(WF[dr.suspected_scam_type] || dr.suspected_scam_type)}</dd>
+          <dt>What we saw</dt><dd><ul class="facts" style="padding-left:16px">${(dr.what_we_saw || []).map(x => `<li>${esc(x)}</li>`).join("")}</ul></dd></dl>
+        <p class="muted" style="font-size:12.5px">${esc(dr.note)} The customer checks and submits it; the bank never files in their name.</p>` : `<p class="muted">No complaint draft was returned.</p>`}
+      ${b.mule_report ? `<dl class="kv"><dt>Mule report</dt><dd>${esc(b.mule_report.payee)} · network of ${esc(b.mule_report.network_size)} · sent to ${esc(b.mule_report.sent_to)}</dd>
+        ${b.mule_report.flagged_for_all_customers ? `<dt>This bank</dt><dd><b>${esc(b.mule_report.note)}</b></dd>` : ""}</dl>` : ""}
+      ${sms}</div>`;
+  }
+  if (r.action === "release_confirm") {
+    return `<div class="panel"><div class="panel-h"><h3>Released</h3></div><div class="msg ok">The hold is lifted${b.payee_confirmed ? " and the payee is marked confirmed" : ""}. The customer finishes with their own PIN; the officer never sees or asks for it.</div>${sms}</div>`;
+  }
+  if (b.state === "not_reached") return `<div class="panel"><div class="panel-h"><h3>Not reached: back to the customer</h3></div><div class="msg ok">${esc(b.note || "")}</div>${sms}</div>`;
+  return `<div class="panel"><div class="panel-h"><h3>Cancelled: customer not reached</h3></div><div class="msg ok">${esc(b.note || "Cancelled; the money stayed in the account.")}</div>${sms}</div>`;
+}
+
+function ask(action) {
+  const [title, body, cls] = CONFIRM[action] || ["Are you sure?", () => "", ""];
+  const dlg = $("#confirm");
+  $("#c-title").textContent = title;
+  $("#c-body").textContent = body(detail.payment.amount_text || inr(detail.payment.amount), detail.kind);
+  $("#c-yes").className = "btn " + (cls || "");
+  return new Promise(resolve => {
+    if (typeof dlg.showModal !== "function") return resolve(window.confirm(`${title}\n\n${$("#c-body").textContent}`));
+    const done = v => () => { dlg.close(); resolve(v); };
+    $("#c-yes").onclick = done(true);
+    $("#c-no").onclick = done(false);
+    dlg.oncancel = () => resolve(false);
+    dlg.showModal();
+  });
+}
+
+async function act(action) {
+  const id = detail.case_id;
+  if (!(await ask(action))) return;
+  const note = ($("#note") || {}).value || "";
+  document.querySelectorAll("[data-act]").forEach(b => { b.disabled = true; });
+  delete notices[id];
+  try {
+    const body = await api(`/officer/cases/${encodeURIComponent(id)}/action`, {
+      method: "POST", body: JSON.stringify({ action, user, role: ROLE[user], note })
+    });
+    results[id] = { action, body };
+  } catch (e) {
+    notices[id] = e.status === 409
+      ? { kind: "warn", text: `This case is already closed, so nothing was changed. Someone else, the customer, or the 30-minute deadline got there first (${e.message.replace(/^case is already closed:\s*/, "")}).` }
+      : { kind: "err", text: `The action didn't go through: ${e.message}. Nothing was changed; try again.` };
+  }
+  await poll();
+  await loadDetail(id);
+}
+
+function copyText(text, btn) {
+  const ok = () => { btn.textContent = "Copied ✓"; setTimeout(() => { btn.textContent = "Copy"; }, 1500); };
+  // navigator.clipboard needs a secure context; the demo serves over plain http on the LAN, so fall back
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text).then(ok, () => fallback());
+  fallback();
+  function fallback() {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); ok(); } catch (e) { btn.textContent = "Select and copy by hand"; }
+    ta.remove();
+  }
+}
+
+// ---------------------------------------------------------------- audit log
+function renderAudit() {
+  const m = $("#main");
+  if (ROLE[user] !== "auditor") {
+    m.innerHTML = `<div class="msg warn">The audit log is for auditors. Switch "signed in as" to auditor.demo.</div>`;
+    return;
+  }
+  if (!audit) { m.innerHTML = `<div class="placeholder"><h2>Loading…</h2></div>`; return; }
+  if (audit.error) { m.innerHTML = `<div class="msg err">Couldn't load the audit log: ${esc(audit.error)}</div>`; return; }
+  const rows = (audit.reads || []).slice().reverse();
+  m.innerHTML = `<div class="panel"><div class="panel-h"><h2>Audit log</h2><span class="label">who read or acted on which case · newest first</span></div>
+    <p class="muted" style="font-size:12.5px">Every case opened in this console and every action is written here with the user and role. Refreshes every 3 seconds.</p>
+    <div class="tbl-wrap"><table><thead><tr><th>at</th><th>user</th><th>role</th><th>action</th><th>what</th></tr></thead><tbody>
+    ${rows.length ? rows.map(r => `<tr><td class="mono">${esc(r.at)}</td><td>${esc(r.user)}</td><td>${esc(r.role)}</td><td>${esc(r.action)}</td><td>${esc(r.what)}</td></tr>`).join("")
+      : `<tr><td colspan="5" class="muted">Nothing read yet.</td></tr>`}
+    </tbody></table></div></div>`;
+}
+
+// ---------------------------------------------------------------- wiring
+function syncRole() {
+  const auditor = ROLE[user] === "auditor";
+  $("#audit-btn").disabled = !auditor;
+  $("#audit-btn").title = auditor ? "" : "Auditors only";
+  if (!auditor && view === "audit") { view = "case"; $("#audit-btn").setAttribute("aria-pressed", "false"); }
+}
+$("#user").addEventListener("change", e => {
+  user = e.target.value;
+  syncRole();
+  if (view === "case" && selected) loadDetail(selected);   // the new user's read is logged under their own name
+  else renderMain();
+});
+$("#audit-btn").addEventListener("click", () => {
+  view = view === "audit" ? "case" : "audit";
+  $("#audit-btn").setAttribute("aria-pressed", String(view === "audit"));
+  renderQueue();
+  if (view === "audit") { audit = null; renderMain(); loadAudit(); } else renderMain();
+});
+
+syncRole();
+poll().then(() => { if (selected) loadDetail(selected); });
+setInterval(poll, POLL_MS);
+setInterval(tickClocks, 1000);
+})();
+</script>
+</body>
+</html>

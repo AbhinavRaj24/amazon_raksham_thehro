@@ -1,0 +1,24 @@
+{
+  "id": "K1-17",
+  "title": "Money to her son while talking to him",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "Her son calls asking for ₹3,000 for a train ticket home; she sends it to his saved account while on the call.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C23724",
+  "payee_type": "saved_contact",
+  "amount": 3000,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 15,
+    "caller_unknown": 0
+  },
+  "lang": "en",
+  "expected": "no_interrupt",
+  "why": "10× her usual, but to a saved contact she pays often, and the caller is in her contacts. At most a note."
+}

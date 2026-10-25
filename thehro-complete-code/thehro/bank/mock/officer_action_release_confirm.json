@@ -1,0 +1,9 @@
+{
+ "_mock": true,
+ "_source": "placeholder",
+ "case_id": "H-0001",
+ "state": "released",
+ "payee_confirmed": true,
+ "customer_sms": "Your payment of ₹15,693 was checked and released. Enter your PIN in the app to finish.",
+ "note": "This payee is now confirmed for this customer: later payments to it go through unless a new outside flag appears."
+}

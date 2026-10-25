@@ -1,0 +1,150 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: marketplace, payment 2 (scam)",
+ "decision_id": "D-0004",
+ "state": "awaiting_customer",
+ "payment": {
+  "customer": "C27360",
+  "amount": 5937.0,
+  "amount_text": "₹5,937",
+  "channel": "UPI to person",
+  "time": "Day 43 · 16:15"
+ },
+ "payee": {
+  "ref": "A/c ••2095",
+  "type": "saved_contact",
+  "facts": [
+   "opened 3227 days ago",
+   "passed on 0% of ₹2,728 received in 24 h"
+  ]
+ },
+ "phone": {
+  "tier": 1,
+  "headline": "भुगतान से पहले जाँच लें",
+  "note": "यह आपकी आम रकम का 1.5 गुना है"
+ },
+ "phone_by_lang": {
+  "en": {
+   "tier": 1,
+   "headline": "Check before you pay",
+   "note": "This is 1.5x your usual payment"
+  },
+  "hi": {
+   "tier": 1,
+   "headline": "भुगतान से पहले जाँच लें",
+   "note": "यह आपकी आम रकम का 1.5 गुना है"
+  }
+ },
+ "phone_meta": {
+  "lang": "hi",
+  "continue_after_s": null,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 1,
+  "tier_name": "Note",
+  "base_tier": 1,
+  "scores": {
+   "s_fused": 0.0734,
+   "s_journey": 0.422,
+   "s_payee": 0.0415,
+   "s_context": 0.0075
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": true,
+   "payee": true,
+   "context": false
+  },
+  "gate": true,
+  "payee_flag": false,
+  "reasons": [
+   {
+    "code": "ABOVE_USUAL",
+    "family": "journey",
+    "weight": null,
+    "en": "This is 1.5x your usual payment",
+    "hi": "यह आपकी आम रकम का 1.5 गुना है"
+   }
+  ],
+  "advice": "generic",
+  "features": {
+   "amount_log": 3.7736,
+   "is_new_payee": 0,
+   "n_prev_to_payee": 1,
+   "amt_vs_usual": 1.5245,
+   "new_payees_7d": 1.0,
+   "recent_payee_payments_7d": 1.0,
+   "recent_payee_sum_7d_log": 3.436,
+   "push_out_24h_vs_usual": 2.2315,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 0,
+   "payee_age_days": 3227.92,
+   "payee_idle_days": 0.0017,
+   "payee_new_payers_24h": 1.0,
+   "payee_inflow_24h_log": 3.436,
+   "payee_passthrough_24h": 0.0,
+   "payee_registry": 0,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 0,
+   "payee_campaign_size": 1,
+   "on_call": 0.0,
+   "caller_unknown": 0.0,
+   "call_ott": 0.0,
+   "call_min": 0.0,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 3.0
+  },
+  "memory_note": null,
+  "workflow_guess": "marketplace",
+  "workflow_confidence": 0.794,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••2095",
+  "amount": 5937.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 0.0,
+   "caller_unknown": 0.0,
+   "call_ott": 0.0,
+   "call_min": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 3.0
+  }
+ },
+ "stored": {
+  "kind": "none",
+  "note": "Nothing stored beyond the bank's normal payment ledger; phone flags discarded.",
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

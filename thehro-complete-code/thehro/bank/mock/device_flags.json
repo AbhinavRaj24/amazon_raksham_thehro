@@ -1,0 +1,12 @@
+{
+ "_mock": true,
+ "_source": "placeholder",
+ "device_id": "phone-A",
+ "source": "automation app on the phone (on-device)",
+ "updated_at": "Day 48 · 11:00",
+ "flags": {
+  "on_call": 1,
+  "call_ott": 0,
+  "call_min": 12
+ }
+}

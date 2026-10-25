@@ -1,0 +1,271 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: false_alarm, payment 1 (genuine)",
+ "decision_id": "D-0006",
+ "state": "awaiting_customer",
+ "payment": {
+  "customer": "C3547",
+  "amount": 14002.0,
+  "amount_text": "₹14,002",
+  "channel": "UPI to person",
+  "time": "Day 54 · 20:50"
+ },
+ "payee": {
+  "ref": "A/c ••8073",
+  "type": "new_individual",
+  "facts": [
+   "first payment from this customer",
+   "opened 948 days ago",
+   "no activity for 23 months before today"
+  ]
+ },
+ "phone": {
+  "tier": 2,
+  "headline": "Stop. Take 30 seconds.",
+  "pattern": "Is it really who they say?",
+  "advice": "Voices, photos and numbers can be faked with AI. Hang up and call them back on a number you already have.",
+  "why": [
+   "First payment to this account, 5x your usual payment",
+   "You are on an internet call with an unknown number (7 min so far)",
+   "This account had no activity for 23 months before today"
+  ],
+  "actions": [
+   {
+    "id": "cancel",
+    "label": "Cancel payment"
+   },
+   {
+    "id": "call_bank",
+    "label": "Call my bank"
+   },
+   {
+    "id": "continue",
+    "label": "Continue (after 30 s)"
+   }
+  ]
+ },
+ "phone_by_lang": {
+  "en": {
+   "tier": 2,
+   "headline": "Stop. Take 30 seconds.",
+   "pattern": "Is it really who they say?",
+   "advice": "Voices, photos and numbers can be faked with AI. Hang up and call them back on a number you already have.",
+   "why": [
+    "First payment to this account, 5x your usual payment",
+    "You are on an internet call with an unknown number (7 min so far)",
+    "This account had no activity for 23 months before today"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "Cancel payment"
+    },
+    {
+     "id": "call_bank",
+     "label": "Call my bank"
+    },
+    {
+     "id": "continue",
+     "label": "Continue (after 30 s)"
+    }
+   ]
+  },
+  "hi": {
+   "tier": 2,
+   "headline": "रुकिए। 30 सेकंड लीजिए।",
+   "pattern": "क्या यह सच में वही हैं जो वे कह रहे हैं?",
+   "advice": "AI से आवाज़, फ़ोटो और नंबर नकली बनाए जा सकते हैं। कॉल काटें और उन्हें पहले से मौजूद नंबर पर वापस कॉल करें।",
+   "why": [
+    "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 5 गुना",
+    "आप एक अनजान नंबर से इंटरनेट कॉल पर हैं (अब तक 7 मिनट)",
+    "इस खाते में 23 महीनों से कोई लेन-देन नहीं हुआ था"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "भुगतान रद्द करें"
+    },
+    {
+     "id": "call_bank",
+     "label": "मेरे बैंक को कॉल करें"
+    },
+    {
+     "id": "continue",
+     "label": "जारी रखें (30 सेकंड बाद)"
+    }
+   ]
+  }
+ },
+ "phone_meta": {
+  "lang": "en",
+  "continue_after_s": 30,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 2,
+  "tier_name": "Pause and explain",
+  "base_tier": 2,
+  "scores": {
+   "s_fused": 0.356,
+   "s_journey": 0.1078,
+   "s_payee": 0.0356,
+   "s_context": 0.0226
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": true,
+   "payee": true,
+   "context": false
+  },
+  "gate": true,
+  "payee_flag": false,
+  "reasons": [
+   {
+    "code": "NEW_PAYEE_LARGE",
+    "family": "journey",
+    "weight": 26.3,
+    "en": "First payment to this account, 5x your usual payment",
+    "hi": "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 5 गुना"
+   },
+   {
+    "code": "CALL_UNKNOWN",
+    "family": "context",
+    "weight": 17.5,
+    "en": "You are on an internet call with an unknown number (7 min so far)",
+    "hi": "आप एक अनजान नंबर से इंटरनेट कॉल पर हैं (अब तक 7 मिनट)"
+   },
+   {
+    "code": "DORMANT",
+    "family": "payee",
+    "weight": 12.8,
+    "en": "This account had no activity for 23 months before today",
+    "hi": "इस खाते में 23 महीनों से कोई लेन-देन नहीं हुआ था"
+   }
+  ],
+  "advice": "known_person",
+  "features": {
+   "amount_log": 4.1462,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 5.2452,
+   "new_payees_7d": 1.0,
+   "recent_payee_payments_7d": 1.0,
+   "recent_payee_sum_7d_log": 4.0734,
+   "push_out_24h_vs_usual": 11.428,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 0,
+   "payee_age_days": 948.032,
+   "payee_idle_days": 694.042,
+   "payee_new_payers_24h": 0.0,
+   "payee_inflow_24h_log": 0.0,
+   "payee_passthrough_24h": null,
+   "payee_registry": 0,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 0,
+   "payee_campaign_size": 1,
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 7.0725,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 3.0
+  },
+  "memory_note": null,
+  "workflow_guess": null,
+  "workflow_confidence": 0.439,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••8073",
+  "amount": 14002.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 7.0725,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 3.0
+  }
+ },
+ "stored": {
+  "kind": "evidence",
+  "seq": 0,
+  "record": {
+   "seq": 0,
+   "kind": "decision",
+   "at": "simulated Day 54 · 20:50",
+   "body": {
+    "payment": {
+     "payment_id": "P2500975",
+     "customer_ref": "C3547",
+     "payee_ref": "A/c ••8073",
+     "amount": 14002.0,
+     "channel": "UPI to person",
+     "time": "Day 54 · 20:50"
+    },
+    "decision": {
+     "tier": 2,
+     "tier_name": "Pause and explain",
+     "families_elevated": [
+      "journey",
+      "payee"
+     ],
+     "gate": true,
+     "payee_flag": false,
+     "memory_note": null
+    },
+    "scores": {
+     "s_fused": 0.356,
+     "s_journey": 0.1078,
+     "s_payee": 0.0356,
+     "s_context": 0.0226
+    },
+    "reasons": [
+     "NEW_PAYEE_LARGE",
+     "CALL_UNKNOWN",
+     "DORMANT"
+    ],
+    "workflow_guess": null,
+    "versions": {
+     "thehro": "0.1.0",
+     "model": "hgb-92it-677lab",
+     "thresholds": "val-days-35-41-t2-0.0847"
+    }
+   },
+   "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "10687261fcdd17bcfed1bad1b5b02b6dff1b99ce72057c6a6b8247aab1396df8"
+  },
+  "chain_ok": true,
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

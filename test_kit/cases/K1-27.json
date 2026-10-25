@@ -1,0 +1,24 @@
+{
+  "id": "K1-27",
+  "title": "Genuine payment to a new payee during a long call from an unknown number",
+  "group": "hard",
+  "truth": "genuine",
+  "story": "Her grandson's college accounts office calls from a new landline for 55 minutes to sort out a fee mismatch, and she pays ₹18,000 to the college account.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C26331",
+  "payee_type": "new_individual",
+  "amount": 18000,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 55,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "This looks just like a digital arrest (60+, 23× usual, long unknown call). A pause or trusted check is acceptable; the payee is clean, so a hold would be a false alarm we must not make."
+}

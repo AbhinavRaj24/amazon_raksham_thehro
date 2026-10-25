@@ -1,0 +1,63 @@
+{
+ "_mock": true,
+ "_source": "format examples only; P4 writes the real cases in test_kit/cases/",
+ "cases": [
+  {
+   "id": "K1-EX1",
+   "title": "Digital arrest: first transfer during a long video call",
+   "written_by": "P4",
+   "customer": "C23724",
+   "payee_type": "mule_network",
+   "amount": 15693,
+   "channel": "UPI to person",
+   "history": [],
+   "consent": true,
+   "context": {
+    "on_call": 1,
+    "call_ott": 1,
+    "call_min": 70,
+    "caller_unknown": 1
+   },
+   "expected": "interrupt",
+   "why": "new account in a live mule network, 55x her usual, long call"
+  },
+  {
+   "id": "K1-EX2",
+   "title": "Hospital bill while on the phone with the hospital",
+   "written_by": "P4",
+   "customer": "C734",
+   "payee_type": "new_individual",
+   "amount": 64759,
+   "channel": "IMPS",
+   "history": [],
+   "consent": true,
+   "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 12,
+    "caller_unknown": 1
+   },
+   "expected": "no_interrupt",
+   "why": "genuine emergency; clean payee; no series"
+  },
+  {
+   "id": "K1-EX3",
+   "title": "Marketplace 'scan to receive', first small try",
+   "written_by": "P4",
+   "customer": "C27360",
+   "payee_type": "new_individual",
+   "amount": 2728,
+   "channel": "UPI to person",
+   "history": [],
+   "consent": true,
+   "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 4,
+    "caller_unknown": 1
+   },
+   "expected": "interrupt",
+   "why": "scam; we expect to miss this one (known failure case)"
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "K1-20",
+  "title": "Sending money to a cousin's long-unused account",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "He sends ₹20,000 to help his cousin with a medical bill, to the cousin's old savings account that has not been used in months.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C18694",
+  "payee_type": "dormant",
+  "amount": 20000,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 0
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "A dormant account waking up to receive 15× his usual looks like a mule pattern, so a pause is fair. No flag on the payee and no call: never a hold."
+}

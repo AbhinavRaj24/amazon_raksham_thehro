@@ -1,0 +1,284 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: digital_arrest, payment 3 (scam)",
+ "decision_id": "D-0007",
+ "state": "awaiting_customer",
+ "payment": {
+  "customer": "C23724",
+  "amount": 97208.0,
+  "amount_text": "₹97,208",
+  "channel": "IMPS",
+  "time": "Day 49 · 12:21"
+ },
+ "payee": {
+  "ref": "A/c ••7876",
+  "type": "new_individual",
+  "facts": [
+   "first payment from this customer",
+   "opened 1981 days ago",
+   "no activity for 15 months before today"
+  ]
+ },
+ "phone": {
+  "tier": 3,
+  "headline": "Let's check this with someone you trust",
+  "pattern": "Is someone on a call telling you to pay?",
+  "advice": "Police, CBI, ED, customs or courier companies never ask for money on a call, and nobody can be 'digitally arrested'. Hang up and call 1930.",
+  "why": [
+   "Payments to accounts you first paid this week keep growing: 3 so far, ₹1,59,194 in total",
+   "First payment to this account, 339x your usual payment",
+   "You are on a phone call with an unknown number (51 min so far)"
+  ],
+  "actions": [
+   {
+    "id": "cancel",
+    "label": "Cancel payment"
+   },
+   {
+    "id": "trusted",
+    "label": "Ask my trusted person to approve"
+   },
+   {
+    "id": "wait",
+    "label": "Wait 1 hour, then pay"
+   },
+   {
+    "id": "call_bank",
+    "label": "Call my bank"
+   }
+  ]
+ },
+ "phone_by_lang": {
+  "en": {
+   "tier": 3,
+   "headline": "Let's check this with someone you trust",
+   "pattern": "Is someone on a call telling you to pay?",
+   "advice": "Police, CBI, ED, customs or courier companies never ask for money on a call, and nobody can be 'digitally arrested'. Hang up and call 1930.",
+   "why": [
+    "Payments to accounts you first paid this week keep growing: 3 so far, ₹1,59,194 in total",
+    "First payment to this account, 339x your usual payment",
+    "You are on a phone call with an unknown number (51 min so far)"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "Cancel payment"
+    },
+    {
+     "id": "trusted",
+     "label": "Ask my trusted person to approve"
+    },
+    {
+     "id": "wait",
+     "label": "Wait 1 hour, then pay"
+    },
+    {
+     "id": "call_bank",
+     "label": "Call my bank"
+    }
+   ]
+  },
+  "hi": {
+   "tier": 3,
+   "headline": "इसे किसी भरोसेमंद व्यक्ति से जाँच लें",
+   "pattern": "क्या कॉल पर कोई आपसे पैसे भेजने को कह रहा है?",
+   "advice": "पुलिस, CBI, ED, कस्टम्स या कूरियर कंपनी कभी कॉल पर पैसे नहीं माँगती, और 'डिजिटल अरेस्ट' जैसा कुछ नहीं होता। कॉल काटें और 1930 पर कॉल करें।",
+   "why": [
+    "इस हफ़्ते पहली बार जिन खातों को पैसे भेजे, उनमें रकम बढ़ती जा रही है: अब तक 3 भुगतान, कुल ₹1,59,194",
+    "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 339 गुना",
+    "आप एक अनजान नंबर से फ़ोन कॉल पर हैं (अब तक 51 मिनट)"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "भुगतान रद्द करें"
+    },
+    {
+     "id": "trusted",
+     "label": "अपने भरोसेमंद व्यक्ति से मंज़ूरी लें"
+    },
+    {
+     "id": "wait",
+     "label": "1 घंटा रुककर भुगतान करें"
+    },
+    {
+     "id": "call_bank",
+     "label": "मेरे बैंक को कॉल करें"
+    }
+   ]
+  }
+ },
+ "phone_meta": {
+  "lang": "en",
+  "continue_after_s": null,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 3,
+  "tier_name": "Trusted check",
+  "base_tier": 3,
+  "scores": {
+   "s_fused": 0.6034,
+   "s_journey": 0.5096,
+   "s_payee": 0.1236,
+   "s_context": 0.124
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": true,
+   "payee": true,
+   "context": true
+  },
+  "gate": true,
+  "payee_flag": false,
+  "reasons": [
+   {
+    "code": "ESCALATING",
+    "family": "journey",
+    "weight": 48.3,
+    "en": "Payments to accounts you first paid this week keep growing: 3 so far, ₹1,59,194 in total",
+    "hi": "इस हफ़्ते पहली बार जिन खातों को पैसे भेजे, उनमें रकम बढ़ती जा रही है: अब तक 3 भुगतान, कुल ₹1,59,194"
+   },
+   {
+    "code": "NEW_PAYEE_LARGE",
+    "family": "journey",
+    "weight": 26.3,
+    "en": "First payment to this account, 339x your usual payment",
+    "hi": "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 339 गुना"
+   },
+   {
+    "code": "CALL_UNKNOWN",
+    "family": "context",
+    "weight": 17.5,
+    "en": "You are on a phone call with an unknown number (51 min so far)",
+    "hi": "आप एक अनजान नंबर से फ़ोन कॉल पर हैं (अब तक 51 मिनट)"
+   }
+  ],
+  "advice": "authority_call",
+  "features": {
+   "amount_log": 4.9877,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 338.704,
+   "new_payees_7d": 1.0,
+   "recent_payee_payments_7d": 2.0,
+   "recent_payee_sum_7d_log": 4.7923,
+   "push_out_24h_vs_usual": 132.2,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 2,
+   "payee_age_days": 1981.85,
+   "payee_idle_days": 474.751,
+   "payee_new_payers_24h": 0.0,
+   "payee_inflow_24h_log": 0.0,
+   "payee_passthrough_24h": null,
+   "payee_registry": 0,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 0,
+   "payee_campaign_size": 1,
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 0.0,
+   "call_min": 50.7741,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 2.0
+  },
+  "memory_note": null,
+  "workflow_guess": "digital_arrest",
+  "workflow_confidence": 0.714,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••7876",
+  "amount": 97208.0,
+  "channel": "IMPS",
+  "consent": true,
+  "context": {
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 0.0,
+   "call_min": 50.7741,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 2.0
+  }
+ },
+ "stored": {
+  "kind": "evidence",
+  "seq": 2,
+  "record": {
+   "seq": 2,
+   "kind": "decision",
+   "at": "simulated Day 49 · 12:21",
+   "body": {
+    "payment": {
+     "payment_id": "P2245173",
+     "customer_ref": "C23724",
+     "payee_ref": "A/c ••7876",
+     "amount": 97208.0,
+     "channel": "IMPS",
+     "time": "Day 49 · 12:21"
+    },
+    "decision": {
+     "tier": 3,
+     "tier_name": "Trusted check",
+     "families_elevated": [
+      "journey",
+      "payee",
+      "context"
+     ],
+     "gate": true,
+     "payee_flag": false,
+     "memory_note": null
+    },
+    "scores": {
+     "s_fused": 0.6034,
+     "s_journey": 0.5096,
+     "s_payee": 0.1236,
+     "s_context": 0.124
+    },
+    "reasons": [
+     "ESCALATING",
+     "NEW_PAYEE_LARGE",
+     "CALL_UNKNOWN"
+    ],
+    "workflow_guess": "digital_arrest",
+    "versions": {
+     "thehro": "0.1.0",
+     "model": "hgb-92it-677lab",
+     "thresholds": "val-days-35-41-t2-0.0847"
+    }
+   },
+   "prev_hash": "eff7485c262a4c9a18b95dd6354db974fb3c42853d749106e092ae1c4b71e825",
+   "hash": "1551a648124c6e0ecf2236172e32f5f851cc49242697a3550c33975986c43435"
+  },
+  "chain_ok": true,
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

@@ -20,10 +20,10 @@ import numpy as np
 import pandas as pd
 
 from .config import (ADJUSTED_FRAUD_RATE, ALERT_BUDGET_T2, GENUINE_ABANDON_PROB, MIN_PER_DAY,
-                     NUDGE_BUDGET_T1, REPORTED_FRAUD_RATE, REVIEW_BUDGET_T4, STOP_PROB, TRAIN_END,
-                     VALID_END)
-from .models import WORKFLOW_CONFIDENCE_FLOOR, fit, score
-from .policy import apply_memory, base_tiers, calibrate, evidence
+                     NUDGE_BUDGET_T1, REPORTED_FRAUD_RATE, REVIEW_BUDGET_T4, STOP_PROB,
+                     TRAIN_END, VALID_END)
+from .models import CALLER_FEATURES, WORKFLOW_CONFIDENCE_FLOOR, fit, score
+from .policy import CURRENT, Rules, apply_memory, base_tiers, calibrate, evidence
 from .simulate import AGE_BANDS, KIND, LANGS, REGIONS, WORKFLOWS
 
 GROUP_LABELS = {"age_band": dict(enumerate(AGE_BANDS)), "lang": dict(enumerate(LANGS)),
@@ -39,17 +39,18 @@ def n_customer_payments(denom: dict, start_day: int, end_day: int | None = None)
     return int(denom["customer_payments_by_day"][start_day:end_day].sum())
 
 
-def thresholds_from_validation(f, S, denom, budgets=None):
+def thresholds_from_validation(f, S, denom, budgets=None, rules: Rules = CURRENT, journey_share=None):
     w = windows(f)
     genuine = w["val"] & (f.is_scam.values == 0)
-    return calibrate(S, f, genuine, n_customer_payments(denom, TRAIN_END, VALID_END), budgets)
+    return calibrate(S, f, genuine, n_customer_payments(denom, TRAIN_END, VALID_END), budgets, rules, journey_share)
 
 
-def run_policy(f: pd.DataFrame, S: pd.DataFrame, thr) -> pd.DataFrame:
-    """Final tiers (with customer memory) for the rows of f, processed in time order."""
-    ev = evidence(S, f, thr)
-    base = base_tiers(S, f, thr, ev)
-    tier, esc, sup = apply_memory(f, base, ev)
+def run_policy(f: pd.DataFrame, S: pd.DataFrame, thr, rules: Rules = CURRENT) -> pd.DataFrame:
+    """Final tiers (with customer memory) for the rows of f, processed in time order.
+    rules=policy.V1 is Round 1's policy; the default is the current one."""
+    ev = evidence(S, f, thr, rules)
+    base = base_tiers(S, f, thr, ev, rules)
+    tier, esc, sup = apply_memory(f, base, ev, rules=rules)
     return pd.DataFrame({"tier": tier, "base_tier": base, "escalated": esc, "suppressed": sup,
                          "gate": ev["gate"], "payee_flag": ev["payee_flag"], "n_families": ev["n_families"],
                          "elev_journey": ev["journey"], "elev_payee": ev["payee"],
@@ -196,15 +197,15 @@ def rule_summary(world, ft, flagged, n_all_test, n_users):
     return s
 
 
-def budget_curve(world, f, S, denom, budgets, n_users):
+def budget_curve(world, f, S, denom, budgets, n_users, rules: Rules = CURRENT):
     w = windows(f)
     ft, St = f[w["test"]], S[w["test"]]
     n_all_test = n_customer_payments(denom, VALID_END)
     rows = []
     for b in budgets:
         thr = thresholds_from_validation(f, S, denom, {1: max(NUDGE_BUDGET_T1, b), 2: b,
-                                                       4: min(REVIEW_BUDGET_T4, b)})
-        pol = run_policy(ft, St, thr)
+                                                       4: min(REVIEW_BUDGET_T4, b)}, rules)
+        pol = run_policy(ft, St, thr, rules)
         s, _ = summarise(world, ft, pol, n_all_test, n_users)
         rows.append(dict(budget=b, genuine_per_10k=s["genuine_t2plus_per_10k"], victims_warned=s["victims_warned"],
                          money_protected_share=s["money_protected_share"],
@@ -236,7 +237,7 @@ def perturb(ft: pd.DataFrame, which: str) -> pd.DataFrame:
     return g
 
 
-def stress_tests(world, f, S, models, thr, denom, n_users):
+def stress_tests(world, f, S, models, thr, denom, n_users, rules: Rules = CURRENT):
     w = windows(f)
     ft = f[w["test"]]
     n_all_test = n_customer_payments(denom, VALID_END)
@@ -248,24 +249,26 @@ def stress_tests(world, f, S, models, thr, denom, n_users):
                          ("all", "All three at once")]:
         g = ft if which == "none" else perturb(ft, which)
         Sg = S[w["test"]] if which == "none" else score(models, g)
-        pol = run_policy(g, Sg, thr)
+        pol = run_policy(g, Sg, thr, rules)
         s, _ = summarise(world, g, pol, n_all_test, n_users)
         out[label] = {k: s[k] for k in ["victims_warned", "money_protected_share", "scam_payments_t2plus",
                                         "genuine_t2plus_per_10k"]}
     return out
 
 
-def held_out_workflows(world, f, window, y, denom, n_users, seed=0, verbose=True):
+def held_out_workflows(world, f, window, y, denom, n_users, seed=0, verbose=True,
+                       rules: Rules = CURRENT):
     """Hide each scam type completely from training and see how well it is still caught."""
     w = windows(f)
     ft = f[w["test"]]
     n_all_test = n_customer_payments(denom, VALID_END)
     rows = []
     for wf in WORKFLOWS:
-        m = fit(f, window, y, exclude_workflows=[wf], seed=seed, with_recogniser=False, verbose=False)
+        m = fit(f, window, y, exclude_workflows=[wf], seed=seed, with_recogniser=False, verbose=False,
+                drop=() if rules.caller_id else CALLER_FEATURES)
         S = score(m, f)
-        thr = thresholds_from_validation(f, S, denom)
-        pol = run_policy(ft, S[w["test"]], thr)
+        thr = thresholds_from_validation(f, S, denom, rules=rules)
+        pol = run_policy(ft, S[w["test"]], thr, rules)
         s, jt = summarise(world, ft, pol, n_all_test, n_users)
         jw = jt[jt.workflow == wf]
         rows.append(dict(workflow=wf, journeys=len(jw), victims_warned_hidden=float(jw.warned.mean()),
@@ -276,12 +279,12 @@ def held_out_workflows(world, f, window, y, denom, n_users, seed=0, verbose=True
     return pd.DataFrame(rows).set_index("workflow")
 
 
-def message_fit(ft, tiers):
+def message_fit(ft, tiers, caller_id: bool = False):
     """Does the advice shown fit what is actually happening? (model-free, so it holds for new scams too)"""
     from .explain import ADVICE_FIT, advice_keys
     scam = ft.is_scam.values == 1
     a = scam & (tiers >= 2)
-    keys = advice_keys(ft[a])
+    keys = advice_keys(ft[a], caller_id)
     wfs = [WORKFLOWS[i] for i in ft.workflow.values[a]]
     general = np.isin(keys, ["generic", "flagged_payee"])
     fits = np.array([k in ADVICE_FIT[w] for k, w in zip(keys, wfs)])

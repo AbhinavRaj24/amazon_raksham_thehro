@@ -1,0 +1,579 @@
+{
+ "server": "http://127.0.0.1:8080",
+ "cases_folder": "/home/abhinavraj/Downloads/projects_hackathons/amazon_raksham_ai/test_kit/cases",
+ "status": "ran",
+ "cases": [
+  {
+   "case_id": "K1-01",
+   "file": "K1-01.json",
+   "title": "Digital arrest: FD broken, then a transfer during a long video call",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "A first payment far above anything she has ever sent (₹287 usual), to an account in a flagged mule network, 3 hours after breaking an FD, during a 95-minute internet call from an unknown number. Every family should agree.",
+   "got": {
+    "tier": 4
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "CAMPAIGN",
+    "FD_BREAK",
+    "NEW_PAYEE_LARGE"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-02",
+   "file": "K1-02.json",
+   "title": "Digital arrest: retiree sends ₹1.5 lakh by RTGS to a brand-new account",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "₹1.5 lakh to an account opened weeks ago, after an FD break, during a 140-minute internet call from an unknown number. He has a trusted contact, so a trusted check or hold is the right response.",
+   "got": {
+    "tier": 3
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "FD_BREAK",
+    "NEW_PAYEE_LARGE"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-03",
+   "file": "K1-03.json",
+   "title": "Fake trading app: third, larger 'top-up' after a fake profit",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "A rising series of payments to new accounts, a small credit from a stranger, and now 44× his usual payment to a mule-network account. No call, but journey and payee should agree on their own.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "CAMPAIGN",
+    "REGISTRY",
+    "FRI"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-04",
+   "file": "K1-04.json",
+   "title": "Task scam: 'like YouTube videos' job asks for a bigger prepaid task",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Two small credits from strangers followed by a rising series to new accounts (₹2k → ₹4k → ₹6k), the last to a newly opened account. The amounts are small, but the shape is the textbook task-scam ladder.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "STRANGER_CREDITS",
+    "APP_SWITCHING"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-05",
+   "file": "K1-05.json",
+   "title": "Fake customer care: screen shared and remote app open during a refund call",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Screen sharing and a remote-access app during a call from an unknown number, paying 32× her usual amount to a new account. Screen sharing during a payment is close to a scam by itself.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "SCREEN_SHARE",
+    "REMOTE_APP"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-06",
+   "file": "K1-06.json",
+   "title": "Marketplace 'scan to receive': buyer's QR takes money instead",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "A first payment of 4× his usual to a newly opened account during a short call from an unknown number. The amount is modest, so we may only reach a pause; even a pause would save him here.",
+   "got": {
+    "tier": 1
+   },
+   "right": false,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-07",
+   "file": "K1-07.json",
+   "title": "Cloned voice of a grandson asking for bail money",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "First payment, 23× the customer's usual, during an 8-minute phone call from an unknown number. The payee looks clean (no flag yet), so only journey and context can carry this; a pause or trusted check is right, a hold may not be reachable without an outside flag.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-08",
+   "file": "K1-08.json",
+   "title": "Fake instant-loan app: fourth 'processing fee'",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "A rising series of fees to new accounts, and the payee is already reported on the cybercrime portal. An outside flag plus the series should be enough to stop it.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "REGISTRY",
+    "ESCALATING",
+    "NEW_PAYEE_LARGE"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-09",
+   "file": "K1-09.json",
+   "title": "Digital arrest (Hindi): payee's number rated high fraud risk",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "₹60,000 (45× usual) to a first-time payee whose linked number DoT rates high fraud risk, during a 75-minute internet call from an unknown number. Hindi screen should carry the same warning.",
+   "got": {
+    "tier": 4
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "FRI",
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-10",
+   "file": "K1-10.json",
+   "title": "Fake trading: trader's largest 'deposit' after weeks of fake gains",
+   "group": "clear_scam",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "For a trader ₹75,000 is only 7× usual, but it follows a rising series to new accounts and a stranger credit, and the payee is in a live mule network.",
+   "got": {
+    "tier": 4
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "CAMPAIGN",
+    "REGISTRY",
+    "FRI"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-11",
+   "file": "K1-11.json",
+   "title": "Security deposit to a new landlord",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "62× his usual payment to a first-time payee, so a pause is defensible. But nothing is flagged on the payee and there is no call: holding the money would be wrong.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-12",
+   "file": "K1-12.json",
+   "title": "Hospital bill paid while on the phone with the billing desk",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "A 60+ customer paying 60× usual to a new payee during a call from an unknown number looks like a scam, so a pause or trusted check is acceptable. The payee is clean, so it must never be held.",
+   "got": {
+    "tier": 1
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-13",
+   "file": "K1-13.json",
+   "title": "Buying a second-hand bike from a seller he met",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "11× usual to a new individual: a pause is understandable. The caller is a saved contact and the payee is clean, so no hold.",
+   "got": {
+    "tier": 1
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-14",
+   "file": "K1-14.json",
+   "title": "First fee to a new home tutor",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "no_interrupt",
+   "why_expected": "Close to her usual payment (₹3,894), clean payee, no call. Nothing here should slow her down.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-15",
+   "file": "K1-15.json",
+   "title": "Wedding caterer advance by IMPS",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "₹1.2 lakh to a first-time payee is 11× his usual, so a pause is acceptable for a sum this large. Nothing else is wrong; no hold.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-16",
+   "file": "K1-16.json",
+   "title": "Trader pays a new supplier",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "no_interrupt",
+   "why_expected": "About 2× his usual and a third of what he moves on a normal day. New suppliers are routine for him.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-17",
+   "file": "K1-17.json",
+   "title": "Money to her son while talking to him",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "no_interrupt",
+   "why_expected": "10× her usual, but to a saved contact she pays often, and the caller is in her contacts. At most a note.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-18",
+   "file": "K1-18.json",
+   "title": "Grocery payment at a shop",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "no_interrupt",
+   "why_expected": "A merchant payment: these skip scoring entirely and should never be interrupted.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-19",
+   "file": "K1-19.json",
+   "title": "Monthly payment to the regular vendor",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "no_interrupt",
+   "why_expected": "A regular vendor, about his usual payment size. Nothing new.",
+   "got": {
+    "tier": 0
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-20",
+   "file": "K1-20.json",
+   "title": "Sending money to a cousin's long-unused account",
+   "group": "risky_genuine",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "A dormant account waking up to receive 15× his usual looks like a mule pattern, so a pause is fair. No flag on the payee and no call: never a hold.",
+   "got": {
+    "tier": 1
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "DORMANT"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-21",
+   "file": "K1-21.json",
+   "title": "Splitting: fourth ₹9,500 transfer in two hours to a clean-looking mule",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Each part is only 2.4× her usual and the payee is unflagged, but four payments to four new accounts in two hours is a series. We may miss it if the series features don't push the journey family high enough.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "APP_SWITCHING",
+    "DAY_OUTFLOW"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-22",
+   "file": "K1-22.json",
+   "title": "Chat-only investment coaching, no call, clean payee",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Rising series and a stranger credit, but no call and an unflagged payee. Only the journey family sees it; we expect at best a pause and no hold, and may miss it entirely.",
+   "got": {
+    "tier": 3
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "ESCALATING",
+    "APP_SWITCHING",
+    "DORMANT"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-23",
+   "file": "K1-23.json",
+   "title": "Digital arrest with consent off: no phone signals at all",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Without consent the context family cannot vote, so the call is invisible. Journey (FD break, 296× usual, new payee) and payee (mule network) should still agree. Context is sent here to check it is dropped.",
+   "got": {
+    "tier": 4
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "CAMPAIGN",
+    "FD_BREAK",
+    "NEW_PAYEE_LARGE"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-24",
+   "file": "K1-24.json",
+   "title": "Marketplace scam: the first tiny test payment",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Below her usual payment, only a short call. We expect to miss this (a known Round 1 failure case): the amount is too ordinary to cross the pause line.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-25",
+   "file": "K1-25.json",
+   "title": "Loan-fee scam: the very first ₹999 fee, no call",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "A single small fee to a new account with nothing else unusual. We expect to miss it; the series that would give it away has not started yet.",
+   "got": {
+    "tier": 0
+   },
+   "right": false,
+   "route": "/kit/run",
+   "reasons": [],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-26",
+   "file": "K1-26.json",
+   "title": "Digital arrest paid into a dormant account",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "No outside flag on a dormant account, so no hold is possible. Journey and a 50-minute unknown internet call should give at least a pause or trusted check; we may miss it if the dormant account looks ordinary.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "DORMANT",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-27",
+   "file": "K1-27.json",
+   "title": "Genuine payment to a new payee during a long call from an unknown number",
+   "group": "hard",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "This looks just like a digital arrest (60+, 23× usual, long unknown call). A pause or trusted check is acceptable; the payee is clean, so a hold would be a false alarm we must not make.",
+   "got": {
+    "tier": 1
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE",
+    "DAY_OUTFLOW",
+    "ON_CALL"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-28",
+   "file": "K1-28.json",
+   "title": "60+ customer buys gold from a new jeweller",
+   "group": "hard",
+   "truth": "genuine",
+   "expected": "never_hold",
+   "why_expected": "72× his usual to a new payee looks alarming, so a pause is fair, but there's no call and no flag: never a hold.",
+   "got": {
+    "tier": 1
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_PAYEE_LARGE"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-29",
+   "file": "K1-29.json",
+   "title": "Fake customer care on a customer who has not opted in",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "Screen sharing and the call are invisible without consent. 7× usual to a newly opened account may be enough for a pause; we may miss it because the payee family alone may not cross its line.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "NEW_PAYEE_LARGE",
+    "DAY_OUTFLOW"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  },
+  {
+   "case_id": "K1-30",
+   "file": "K1-30.json",
+   "title": "Investment scam's first deposit to a clean-looking account",
+   "group": "hard",
+   "truth": "scam",
+   "expected": "interrupt",
+   "why_expected": "4× usual, one stranger credit, no call, clean payee. We expect to miss it: the series hasn't started and nothing outside points at the payee yet.",
+   "got": {
+    "tier": 2
+   },
+   "right": true,
+   "route": "/kit/run",
+   "reasons": [
+    "NEW_ACCOUNT",
+    "STRANGER_CREDITS"
+   ],
+   "frozen_at": "2026-10-25T00:09+05:30"
+  }
+ ],
+ "summary": {
+  "n": 30,
+  "scored": 30,
+  "right": 28,
+  "right_share": {
+   "k": 28,
+   "n": 30,
+   "value": 0.933333,
+   "lo": 0.786765,
+   "hi": 0.981523
+  },
+  "errors": 0
+ }
+}

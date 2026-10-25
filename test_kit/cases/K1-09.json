@@ -1,0 +1,24 @@
+{
+  "id": "K1-09",
+  "title": "Digital arrest (Hindi): payee's number rated high fraud risk",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "A 'TRAI officer' says illegal messages were sent from his number, then 'Mumbai Police' on a video call demands ₹60,000 as 'bail security'. He uses the app in Hindi.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C18694",
+  "payee_type": "fri_high",
+  "amount": 60000,
+  "channel": "IMPS",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 1,
+    "call_min": 75,
+    "caller_unknown": 1
+  },
+  "lang": "hi",
+  "expected": "interrupt",
+  "why": "₹60,000 (45× usual) to a first-time payee whose linked number DoT rates high fraud risk, during a 75-minute internet call from an unknown number. Hindi screen should carry the same warning."
+}

@@ -1,0 +1,9 @@
+{
+ "_mock": true,
+ "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "decision_id": "D-0008",
+ "action": "wait",
+ "state": "waiting",
+ "until": "Day 48 · 12:00",
+ "note": "You can pay after one hour."
+}

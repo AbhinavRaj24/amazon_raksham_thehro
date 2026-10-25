@@ -1,0 +1,18 @@
+{
+ "_mock": true,
+ "_source": "placeholder states",
+ "decision_id": "D-0008",
+ "tier": 4,
+ "case": {
+  "case_id": "H-0001",
+  "status": "closed",
+  "outcome": "scam confirmed by the officer: cancelled"
+ },
+ "state": "cancelled",
+ "notifications": [
+  {
+   "at": "11:06:10",
+   "sms": "Your payment of ₹15,693 was stopped. It looked like a scam. No money left your account. To report it, call 1930."
+  }
+ ]
+}

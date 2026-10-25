@@ -1,0 +1,603 @@
+{
+ "data": "synthetic; the counterfactual is refit on days 14-34, lines on days 35-41, tested on days 42-59",
+ "caller_features": [
+  "caller_unknown",
+  "caller_fri_band"
+ ],
+ "shipped": {
+  "victims_warned": {
+   "k": 691,
+   "n": 720,
+   "value": 0.959722,
+   "lo": 0.942753,
+   "hi": 0.971812
+  },
+  "victims_warned_first_payment": {
+   "k": 536,
+   "n": 720,
+   "value": 0.744444,
+   "lo": 0.711346,
+   "hi": 0.774949
+  },
+  "scam_payments_paused": {
+   "k": 2376,
+   "n": 2680,
+   "value": 0.886567,
+   "lo": 0.874003,
+   "hi": 0.898024
+  },
+  "false_pauses_per_10k": {
+   "k": 82,
+   "n": 786121,
+   "value": 1.0431,
+   "lo": 0.829606,
+   "hi": 1.29476
+  },
+  "genuine_trusted_checks_per_10k": {
+   "k": 6,
+   "n": 786121,
+   "value": 0.0763241,
+   "lo": 0.0280096,
+   "hi": 0.166125
+  },
+  "genuine_holds_per_10k": {
+   "k": 0,
+   "n": 786121,
+   "value": 0.0,
+   "lo": 0.0,
+   "hi": 0.0469251
+  },
+  "money_protected_share_modelled": 0.931789
+ },
+ "with_caller_id": {
+  "victims_warned": {
+   "k": 689,
+   "n": 720,
+   "value": 0.956944,
+   "lo": 0.939535,
+   "hi": 0.969504
+  },
+  "victims_warned_first_payment": {
+   "k": 539,
+   "n": 720,
+   "value": 0.748611,
+   "lo": 0.715661,
+   "hi": 0.778922
+  },
+  "scam_payments_paused": {
+   "k": 2384,
+   "n": 2680,
+   "value": 0.889552,
+   "lo": 0.877123,
+   "hi": 0.900866
+  },
+  "false_pauses_per_10k": {
+   "k": 79,
+   "n": 786121,
+   "value": 1.00493,
+   "lo": 0.795616,
+   "hi": 1.25245
+  },
+  "genuine_trusted_checks_per_10k": {
+   "k": 4,
+   "n": 786121,
+   "value": 0.0508828,
+   "lo": 0.0138638,
+   "hi": 0.13028
+  },
+  "genuine_holds_per_10k": {
+   "k": 0,
+   "n": 786121,
+   "value": 0.0,
+   "lo": 0.0,
+   "hi": 0.0469251
+  },
+  "money_protected_share_modelled": 0.93294
+ },
+ "lines": {
+  "shipped": {
+   "t2": 0.105755,
+   "tj": 0.341909
+  },
+  "with_caller_id": {
+   "t2": 0.0969479,
+   "tj": 0.341909
+  }
+ },
+ "per_type": {
+  "shipped": {
+   "investment": 0.968586,
+   "digital_arrest": 0.970874,
+   "task": 1.0,
+   "customer_care": 0.957746,
+   "marketplace": 0.823529,
+   "voice_clone": 0.911111,
+   "loan_fee": 0.955696
+  },
+  "with_caller_id": {
+   "investment": 0.968586,
+   "digital_arrest": 0.961165,
+   "task": 1.0,
+   "customer_care": 0.957746,
+   "marketplace": 0.823529,
+   "voice_clone": 0.933333,
+   "loan_fee": 0.943038
+  }
+ },
+ "message_fit": {
+  "shipped": 0.608586,
+  "with_caller_id": 0.608221
+ },
+ "attacks": [
+  {
+   "attack": "chat_only",
+   "label": "Chat-only coaching (no calls, no screen share)",
+   "shipped": {
+    "victims_warned": {
+     "k": 687,
+     "n": 720,
+     "value": 0.954167,
+     "lo": 0.936332,
+     "hi": 0.96718
+    },
+    "victims_warned_first_payment": {
+     "k": 518,
+     "n": 720,
+     "value": 0.719444,
+     "lo": 0.68553,
+     "hi": 0.75103
+    },
+    "scam_payments_paused": {
+     "k": 2353,
+     "n": 2680,
+     "value": 0.877985,
+     "lo": 0.865049,
+     "hi": 0.889839
+    },
+    "false_pauses_per_10k": {
+     "k": 82,
+     "n": 786121,
+     "value": 1.0431,
+     "lo": 0.829606,
+     "hi": 1.29476
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 6,
+     "n": 786121,
+     "value": 0.0763241,
+     "lo": 0.0280096,
+     "hi": 0.166125
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 786121,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0469251
+    },
+    "money_protected_share_modelled": 0.916614
+   },
+   "with_caller_id": {
+    "victims_warned": {
+     "k": 686,
+     "n": 720,
+     "value": 0.952778,
+     "lo": 0.934737,
+     "hi": 0.966013
+    },
+    "victims_warned_first_payment": {
+     "k": 516,
+     "n": 720,
+     "value": 0.716667,
+     "lo": 0.682669,
+     "hi": 0.748364
+    },
+    "scam_payments_paused": {
+     "k": 2354,
+     "n": 2680,
+     "value": 0.878358,
+     "lo": 0.865438,
+     "hi": 0.890195
+    },
+    "false_pauses_per_10k": {
+     "k": 79,
+     "n": 786121,
+     "value": 1.00493,
+     "lo": 0.795616,
+     "hi": 1.25245
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 4,
+     "n": 786121,
+     "value": 0.0508828,
+     "lo": 0.0138638,
+     "hi": 0.13028
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 786121,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0469251
+    },
+    "money_protected_share_modelled": 0.91684
+   }
+  },
+  {
+   "attack": "split",
+   "label": "Split payments just under Rs 10,000",
+   "shipped": {
+    "victims_warned": {
+     "k": 702,
+     "n": 720,
+     "value": 0.975,
+     "lo": 0.96083,
+     "hi": 0.984129
+    },
+    "victims_warned_first_payment": {
+     "k": 500,
+     "n": 720,
+     "value": 0.694444,
+     "lo": 0.659839,
+     "hi": 0.726986
+    },
+    "scam_payments_paused": {
+     "k": 20193,
+     "n": 23003,
+     "value": 0.877842,
+     "lo": 0.873547,
+     "hi": 0.882011
+    },
+    "false_pauses_per_10k": {
+     "k": 80,
+     "n": 806444,
+     "value": 0.992009,
+     "lo": 0.786602,
+     "hi": 1.23464
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 6,
+     "n": 806444,
+     "value": 0.0744007,
+     "lo": 0.0273037,
+     "hi": 0.161939
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 806444,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0457425
+    },
+    "money_protected_share_modelled": 0.965944
+   },
+   "with_caller_id": {
+    "victims_warned": {
+     "k": 701,
+     "n": 720,
+     "value": 0.973611,
+     "lo": 0.959153,
+     "hi": 0.983042
+    },
+    "victims_warned_first_payment": {
+     "k": 505,
+     "n": 720,
+     "value": 0.701389,
+     "lo": 0.666964,
+     "hi": 0.733677
+    },
+    "scam_payments_paused": {
+     "k": 20250,
+     "n": 23003,
+     "value": 0.88032,
+     "lo": 0.876062,
+     "hi": 0.884451
+    },
+    "false_pauses_per_10k": {
+     "k": 82,
+     "n": 806444,
+     "value": 1.01681,
+     "lo": 0.808699,
+     "hi": 1.26213
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 4,
+     "n": 806444,
+     "value": 0.0496005,
+     "lo": 0.0135145,
+     "hi": 0.126997
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 806444,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0457425
+    },
+    "money_protected_share_modelled": 0.966512
+   }
+  },
+  {
+   "attack": "aged_mules",
+   "label": "Aged mules (old, recently active, forward 50-70% after 6-48 h)",
+   "shipped": {
+    "victims_warned": {
+     "k": 635,
+     "n": 720,
+     "value": 0.881944,
+     "lo": 0.856324,
+     "hi": 0.903511
+    },
+    "victims_warned_first_payment": {
+     "k": 345,
+     "n": 720,
+     "value": 0.479167,
+     "lo": 0.442884,
+     "hi": 0.51567
+    },
+    "scam_payments_paused": {
+     "k": 1922,
+     "n": 2680,
+     "value": 0.717164,
+     "lo": 0.699811,
+     "hi": 0.733895
+    },
+    "false_pauses_per_10k": {
+     "k": 80,
+     "n": 786121,
+     "value": 1.01766,
+     "lo": 0.806937,
+     "hi": 1.26656
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 6,
+     "n": 786121,
+     "value": 0.0763241,
+     "lo": 0.0280096,
+     "hi": 0.166125
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 786121,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0469251
+    },
+    "money_protected_share_modelled": 0.822895
+   },
+   "with_caller_id": {
+    "victims_warned": {
+     "k": 636,
+     "n": 720,
+     "value": 0.883333,
+     "lo": 0.857824,
+     "hi": 0.904774
+    },
+    "victims_warned_first_payment": {
+     "k": 356,
+     "n": 720,
+     "value": 0.494444,
+     "lo": 0.458051,
+     "hi": 0.530896
+    },
+    "scam_payments_paused": {
+     "k": 1927,
+     "n": 2680,
+     "value": 0.71903,
+     "lo": 0.701709,
+     "hi": 0.735724
+    },
+    "false_pauses_per_10k": {
+     "k": 77,
+     "n": 786121,
+     "value": 0.979493,
+     "lo": 0.773001,
+     "hi": 1.2242
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 4,
+     "n": 786121,
+     "value": 0.0508828,
+     "lo": 0.0138638,
+     "hi": 0.13028
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 786121,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0469251
+    },
+    "money_protected_share_modelled": 0.824088
+   }
+  },
+  {
+   "attack": "clean_mules",
+   "label": "Fresh, clean mule for every payment (feature-level)",
+   "shipped": {
+    "victims_warned": {
+     "k": 572,
+     "n": 720,
+     "value": 0.794444,
+     "lo": 0.763401,
+     "hi": 0.822362
+    },
+    "victims_warned_first_payment": {
+     "k": 206,
+     "n": 720,
+     "value": 0.286111,
+     "lo": 0.254303,
+     "hi": 0.32019
+    },
+    "scam_payments_paused": {
+     "k": 1558,
+     "n": 2680,
+     "value": 0.581343,
+     "lo": 0.562562,
+     "hi": 0.599892
+    },
+    "false_pauses_per_10k": {
+     "k": 79,
+     "n": 786121,
+     "value": 1.00493,
+     "lo": 0.795616,
+     "hi": 1.25245
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 6,
+     "n": 786121,
+     "value": 0.0763241,
+     "lo": 0.0280096,
+     "hi": 0.166125
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 786121,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0469251
+    },
+    "money_protected_share_modelled": 0.735671
+   },
+   "with_caller_id": {
+    "victims_warned": {
+     "k": 577,
+     "n": 720,
+     "value": 0.801389,
+     "lo": 0.770682,
+     "hi": 0.828897
+    },
+    "victims_warned_first_payment": {
+     "k": 237,
+     "n": 720,
+     "value": 0.329167,
+     "lo": 0.295829,
+     "hi": 0.364318
+    },
+    "scam_payments_paused": {
+     "k": 1596,
+     "n": 2680,
+     "value": 0.595522,
+     "lo": 0.576817,
+     "hi": 0.613954
+    },
+    "false_pauses_per_10k": {
+     "k": 76,
+     "n": 786121,
+     "value": 0.966772,
+     "lo": 0.761707,
+     "hi": 1.21006
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 4,
+     "n": 786121,
+     "value": 0.0508828,
+     "lo": 0.0138638,
+     "hi": 0.13028
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 786121,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0469251
+    },
+    "money_protected_share_modelled": 0.747724
+   }
+  },
+  {
+   "attack": "all",
+   "label": "All of the above at once",
+   "shipped": {
+    "victims_warned": {
+     "k": 635,
+     "n": 720,
+     "value": 0.881944,
+     "lo": 0.856324,
+     "hi": 0.903511
+    },
+    "victims_warned_first_payment": {
+     "k": 124,
+     "n": 720,
+     "value": 0.172222,
+     "lo": 0.146401,
+     "hi": 0.201523
+    },
+    "scam_payments_paused": {
+     "k": 11724,
+     "n": 23003,
+     "value": 0.509673,
+     "lo": 0.503211,
+     "hi": 0.516131
+    },
+    "false_pauses_per_10k": {
+     "k": 79,
+     "n": 806444,
+     "value": 0.979609,
+     "lo": 0.775566,
+     "hi": 1.22089
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 6,
+     "n": 806444,
+     "value": 0.0744007,
+     "lo": 0.0273037,
+     "hi": 0.161939
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 806444,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0457425
+    },
+    "money_protected_share_modelled": 0.909087
+   },
+   "with_caller_id": {
+    "victims_warned": {
+     "k": 640,
+     "n": 720,
+     "value": 0.888889,
+     "lo": 0.863838,
+     "hi": 0.909812
+    },
+    "victims_warned_first_payment": {
+     "k": 136,
+     "n": 720,
+     "value": 0.188889,
+     "lo": 0.161977,
+     "hi": 0.219102
+    },
+    "scam_payments_paused": {
+     "k": 12214,
+     "n": 23003,
+     "value": 0.530974,
+     "lo": 0.524521,
+     "hi": 0.537417
+    },
+    "false_pauses_per_10k": {
+     "k": 81,
+     "n": 806444,
+     "value": 1.00441,
+     "lo": 0.797646,
+     "hi": 1.24839
+    },
+    "genuine_trusted_checks_per_10k": {
+     "k": 4,
+     "n": 806444,
+     "value": 0.0496005,
+     "lo": 0.0135145,
+     "hi": 0.126997
+    },
+    "genuine_holds_per_10k": {
+     "k": 0,
+     "n": 806444,
+     "value": 0.0,
+     "lo": 0.0,
+     "hi": 0.0457425
+    },
+    "money_protected_share_modelled": 0.911406
+   }
+  }
+ ]
+}

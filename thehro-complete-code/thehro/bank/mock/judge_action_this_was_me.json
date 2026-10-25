@@ -1,0 +1,9 @@
+{
+ "_mock": true,
+ "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "decision_id": "D-0008",
+ "action": "this_was_me",
+ "state": "review_requested",
+ "case_id": "H-0002",
+ "note": "A bank officer will call your registered number within 30 minutes to check this with you."
+}

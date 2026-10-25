@@ -1,0 +1,18 @@
+{
+  "id": "K1-19",
+  "title": "Monthly payment to the regular vendor",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "The trader pays his regular packaging vendor ₹12,000 as he does every month.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C29358",
+  "payee_type": "regular_vendor",
+  "amount": 12000,
+  "channel": "NEFT",
+  "history": [],
+  "consent": true,
+  "lang": "en",
+  "expected": "no_interrupt",
+  "why": "A regular vendor, about his usual payment size. Nothing new."
+}

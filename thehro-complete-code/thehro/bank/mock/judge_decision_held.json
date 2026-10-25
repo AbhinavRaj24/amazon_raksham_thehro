@@ -1,0 +1,13 @@
+{
+ "_mock": true,
+ "_source": "placeholder states",
+ "decision_id": "D-0008",
+ "tier": 4,
+ "case": {
+  "case_id": "H-0001",
+  "status": "open",
+  "outcome": null
+ },
+ "state": "held",
+ "notifications": []
+}

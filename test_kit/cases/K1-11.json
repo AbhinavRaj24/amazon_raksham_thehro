@@ -1,0 +1,21 @@
+{
+  "id": "K1-11",
+  "title": "Security deposit to a new landlord",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "Moving to a new city for work, he pays the landlord a two-month deposit of ₹45,000 after visiting the flat.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C28404",
+  "payee_type": "new_landlord",
+  "amount": 45000,
+  "channel": "IMPS",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 0
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "62× his usual payment to a first-time payee, so a pause is defensible. But nothing is flagged on the payee and there is no call: holding the money would be wrong."
+}

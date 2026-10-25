@@ -1,0 +1,29 @@
+{
+  "id": "K1-01",
+  "title": "Digital arrest: FD broken, then a transfer during a long video call",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "A 'CBI officer' on a WhatsApp video call for 95 minutes says her Aadhaar is linked to a money-laundering parcel. She breaks her fixed deposit and is told to move the money to an 'RBI verification account'.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C23724",
+  "payee_type": "mule_network",
+  "amount": 85000,
+  "channel": "IMPS",
+  "history": [
+    {
+      "kind": "fd_break",
+      "hours_ago": 3
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 1,
+    "call_min": 95,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "A first payment far above anything she has ever sent (₹287 usual), to an account in a flagged mule network, 3 hours after breaking an FD, during a 95-minute internet call from an unknown number. Every family should agree."
+}

@@ -3,13 +3,24 @@ THEHRO_ALL_CODE.md
 thehro-complete-code.zip
 /THEHRO_PIPELINE_AND_DATA.md
 
-# organisers' brief, not our work
+# organisers' documents, not our work
 Amazon IITD-1.pdf
+Final Rubric.pdf
+
+# downloaded datasets (PaySim etc.) and full exports: regenerate them, never commit them
+# (/data/ only: test_kit/data/ holds the small published sample and its checksum, which ARE committed)
+/data/
+archive.zip
+
+# teammates' original packages: already merged into the repo
+teammates_codes/
 
 # deck source: the submitted PDF is the record
 thehro-complete-code/deck_source/
 
 # python
+.venv/
+.cache/
 __pycache__/
 *.pyc
 .pytest_cache/

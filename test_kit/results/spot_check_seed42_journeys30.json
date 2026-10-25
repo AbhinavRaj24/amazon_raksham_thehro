@@ -1,0 +1,886 @@
+{
+ "seed": 42,
+ "level": "journey",
+ "data": "synthetic test days 42-59 (Thehro simulator, seed 7); never used for training or setting lines",
+ "model": {
+  "thehro": "0.1.0",
+  "model": "hgb-86it-677lab-nocallerid",
+  "thresholds": "val-days-35-41-t2-0.1058-tj-0.3419"
+ },
+ "samples": [
+  {
+   "sample": 1,
+   "label": "scam journey",
+   "scam_type": "customer_care",
+   "journey": 1101,
+   "amount_text": "₹2,031",
+   "n_payments": 1,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "Your screen is being shared right now"
+  },
+  {
+   "sample": 2,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 931,
+   "amount_text": "₹9,646",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account was opened 10 days ago"
+  },
+  {
+   "sample": 3,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 761,
+   "amount_text": "₹4,76,613",
+   "n_payments": 6,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 4,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1535,
+   "amount_text": "₹42,436",
+   "n_payments": 4,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    0,
+    2,
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    0,
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 22 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 5,
+   "label": "scam journey",
+   "scam_type": "investment",
+   "journey": 135,
+   "amount_text": "₹1,17,393",
+   "n_payments": 4,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    4,
+    4,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 12 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 6,
+   "label": "scam journey",
+   "scam_type": "investment",
+   "journey": 139,
+   "amount_text": "₹1,29,722",
+   "n_payments": 4,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    4,
+    2,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    4,
+    2,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 13 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 7,
+   "label": "scam journey",
+   "scam_type": "investment",
+   "journey": 243,
+   "amount_text": "₹3,52,526",
+   "n_payments": 5,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 14 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 8,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1528,
+   "amount_text": "₹17,869",
+   "n_payments": 4,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    0,
+    2,
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    0,
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "You are on an internet call (7 min so far)"
+  },
+  {
+   "sample": 9,
+   "label": "scam journey",
+   "scam_type": "voice_clone",
+   "journey": 1483,
+   "amount_text": "₹33,521",
+   "n_payments": 1,
+   "expected": "interrupt",
+   "got": {
+    "tier": 1,
+    "tier_name": "Note"
+   },
+   "right": false,
+   "payment_tiers": [
+    1
+   ],
+   "first_warned_payment": null,
+   "evaluation_tiers": [
+    1
+   ],
+   "evaluation_warned": false,
+   "live_equals_evaluation": true,
+   "top_reason": "First payment to this account, 23x your usual payment"
+  },
+  {
+   "sample": 10,
+   "label": "scam journey",
+   "scam_type": "marketplace",
+   "journey": 1242,
+   "amount_text": "₹8,736",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    1,
+    1,
+    2
+   ],
+   "first_warned_payment": 3,
+   "evaluation_tiers": [
+    1,
+    1,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account was opened 9 days ago"
+  },
+  {
+   "sample": 11,
+   "label": "scam journey",
+   "scam_type": "investment",
+   "journey": 164,
+   "amount_text": "₹4,533",
+   "n_payments": 1,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 14 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 12,
+   "label": "scam journey",
+   "scam_type": "investment",
+   "journey": 266,
+   "amount_text": "₹47,330",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    0,
+    4,
+    4
+   ],
+   "first_warned_payment": 2,
+   "evaluation_tiers": [
+    0,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 14 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 13,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1635,
+   "amount_text": "₹19,263",
+   "n_payments": 6,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    1,
+    2,
+    0,
+    4,
+    0,
+    4
+   ],
+   "first_warned_payment": 2,
+   "evaluation_tiers": [
+    1,
+    2,
+    0,
+    4,
+    0,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "First payment to this account"
+  },
+  {
+   "sample": 14,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 914,
+   "amount_text": "₹5,198",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "You received 2 small payment(s) from unknown accounts today, a common hook in job and investment scams"
+  },
+  {
+   "sample": 15,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1533,
+   "amount_text": "₹12,123",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    1,
+    2,
+    2
+   ],
+   "first_warned_payment": 2,
+   "evaluation_tiers": [
+    1,
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "First payment to this account, 2.8x your usual payment"
+  },
+  {
+   "sample": 16,
+   "label": "scam journey",
+   "scam_type": "voice_clone",
+   "journey": 1487,
+   "amount_text": "₹1,05,820",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 5 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 17,
+   "label": "scam journey",
+   "scam_type": "digital_arrest",
+   "journey": 621,
+   "amount_text": "₹7,26,991",
+   "n_payments": 1,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 10 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 18,
+   "label": "scam journey",
+   "scam_type": "voice_clone",
+   "journey": 1382,
+   "amount_text": "₹53,178",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "You received 1 small payment(s) from unknown accounts today, a common hook in job and investment scams"
+  },
+  {
+   "sample": 19,
+   "label": "scam journey",
+   "scam_type": "digital_arrest",
+   "journey": 677,
+   "amount_text": "₹2,27,785",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 7 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 20,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 838,
+   "amount_text": "₹16,211",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 6 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 21,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1674,
+   "amount_text": "₹11,884",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2,
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account was opened 15 days ago"
+  },
+  {
+   "sample": 22,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 968,
+   "amount_text": "₹18,738",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "You received 3 small payment(s) from unknown accounts today, a common hook in job and investment scams"
+  },
+  {
+   "sample": 23,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 853,
+   "amount_text": "₹20,055",
+   "n_payments": 3,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account was opened 25 days ago"
+  },
+  {
+   "sample": 24,
+   "label": "scam journey",
+   "scam_type": "task",
+   "journey": 907,
+   "amount_text": "₹1,23,985",
+   "n_payments": 5,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2,
+    4,
+    2,
+    3
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2,
+    4,
+    2,
+    3
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 33 accounts that collect money from many new payers and move it on within minutes"
+  },
+  {
+   "sample": 25,
+   "label": "scam journey",
+   "scam_type": "voice_clone",
+   "journey": 1434,
+   "amount_text": "₹39,432",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account was opened 15 days ago"
+  },
+  {
+   "sample": 26,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1600,
+   "amount_text": "₹25,900",
+   "n_payments": 4,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    0,
+    2,
+    4,
+    4
+   ],
+   "first_warned_payment": 2,
+   "evaluation_tiers": [
+    0,
+    2,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "You switched between apps 6 times during this payment"
+  },
+  {
+   "sample": 27,
+   "label": "scam journey",
+   "scam_type": "marketplace",
+   "journey": 1282,
+   "amount_text": "₹13,917",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true,
+   "payment_tiers": [
+    1,
+    2
+   ],
+   "first_warned_payment": 2,
+   "evaluation_tiers": [
+    1,
+    2
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "First payment to this account, 8x your usual payment"
+  },
+  {
+   "sample": 28,
+   "label": "scam journey",
+   "scam_type": "customer_care",
+   "journey": 1084,
+   "amount_text": "₹5,245",
+   "n_payments": 1,
+   "expected": "interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": false,
+   "payment_tiers": [
+    0
+   ],
+   "first_warned_payment": null,
+   "evaluation_tiers": [
+    0
+   ],
+   "evaluation_warned": false,
+   "live_equals_evaluation": true,
+   "top_reason": ""
+  },
+  {
+   "sample": 29,
+   "label": "scam journey",
+   "scam_type": "investment",
+   "journey": 133,
+   "amount_text": "₹2,00,413",
+   "n_payments": 6,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    2,
+    4,
+    4,
+    4,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    2,
+    4,
+    4,
+    4,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account was opened 24 days ago"
+  },
+  {
+   "sample": 30,
+   "label": "scam journey",
+   "scam_type": "loan_fee",
+   "journey": 1658,
+   "amount_text": "₹4,376",
+   "n_payments": 2,
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true,
+   "payment_tiers": [
+    2,
+    4
+   ],
+   "first_warned_payment": 1,
+   "evaluation_tiers": [
+    2,
+    4
+   ],
+   "evaluation_warned": true,
+   "live_equals_evaluation": true,
+   "top_reason": "This account is part of a network of 5 accounts that collect money from many new payers and move it on within minutes"
+  }
+ ],
+ "summary": {
+  "n": 30,
+  "right": 28,
+  "scam_right": 28,
+  "genuine_right": 0,
+  "n_scam": 30,
+  "n_genuine": 0,
+  "right_share": {
+   "k": 28,
+   "n": 30,
+   "value": 0.933333,
+   "lo": 0.786765,
+   "hi": 0.981523
+  },
+  "scam_right_share": {
+   "k": 28,
+   "n": 30,
+   "value": 0.933333,
+   "lo": 0.786765,
+   "hi": 0.981523
+  },
+  "genuine_right_share": {
+   "k": 0,
+   "n": 0,
+   "value": null,
+   "lo": null,
+   "hi": null
+  },
+  "live_equals_evaluation": 30
+ },
+ "note": "Journey level: a victim counts as right if any of their payments was warned (tier 2+). Over all 720 test-day victims this is 94.3%.",
+ "seconds": 2.3
+}

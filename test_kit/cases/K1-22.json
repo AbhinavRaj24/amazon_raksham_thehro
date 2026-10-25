@@ -1,0 +1,38 @@
+{
+  "id": "K1-22",
+  "title": "Chat-only investment coaching, no call, clean payee",
+  "group": "hard",
+  "truth": "scam",
+  "story": "A 'SEBI-registered advisor' coaches him over WhatsApp chat only. After ₹15,000 and ₹30,000 and a ₹3,000 'profit', he is told to send ₹50,000 to a new 'escrow' account.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C29358",
+  "payee_type": "mule_unflagged",
+  "amount": 50000,
+  "channel": "IMPS",
+  "history": [
+    {
+      "kind": "new_payee_payment",
+      "amount": 15000,
+      "hours_ago": 50
+    },
+    {
+      "kind": "stranger_credit",
+      "amount": 3000,
+      "hours_ago": 40
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 30000,
+      "hours_ago": 20
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 0,
+    "app_switches": 7
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "Rising series and a stranger credit, but no call and an unflagged payee. Only the journey family sees it; we expect at best a pause and no hold, and may miss it entirely."
+}

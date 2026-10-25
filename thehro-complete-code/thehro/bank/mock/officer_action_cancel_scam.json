@@ -1,0 +1,30 @@
+{
+ "_mock": true,
+ "_source": "complaint draft from outputs/demo_scenarios.json",
+ "case_id": "H-0001",
+ "state": "cancelled_scam",
+ "ncrp_draft": {
+  "portal": "National Cybercrime Reporting Portal (cybercrime.gov.in) / helpline 1930",
+  "category": "Online Financial Fraud",
+  "sub_category": "UPI related fraud",
+  "incident_time": "Day 48 · 11:00",
+  "amount": 15693.0,
+  "transaction_ref": "<UTR from the payment receipt>",
+  "payee": "A/c ••4119",
+  "channel": "UPI to person",
+  "suspected_scam_type": "digital_arrest",
+  "what_we_saw": [
+   "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes",
+   "First payment to this account, 55x your usual payment",
+   "You are on an internet call with an unknown number (70 min so far)"
+  ],
+  "note": "Report within the first hour if you can: banks can hold money that has not yet moved on."
+ },
+ "mule_report": {
+  "payee": "A/c ••4119",
+  "network_size": 9,
+  "sent_to": "NPCI / I4C feeds (simulated)"
+ },
+ "customer_sms": "Your payment of ₹15,693 was stopped. It looked like a scam. No money left your account. To report it, call 1930.",
+ "chain_ok": true
+}

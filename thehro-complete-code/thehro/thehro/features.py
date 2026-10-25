@@ -88,12 +88,23 @@ class EventIndex:
         return np.where(ok, self.sec[idx_c] / 60.0, np.nan)
 
 
-def build_features(world: World, verbose: bool = True,
-                   campaign_size: int = 3) -> tuple[pd.DataFrame, dict]:
+def build_features(world: World, verbose: bool = True, campaign_size: int = 3,
+                   baselines: tuple | None = None, network=None,
+                   keep_state: bool = False) -> tuple[pd.DataFrame, dict]:
     """Return (scored payments with features, denominators).
 
     Scored payments = customer payments to people or businesses (not shop
     payments to registered merchants, which are fast-pathed).
+
+    The live path (thehro/live.py) runs this same code on a small slice of the
+    world: every event involving one customer and one payee. Two things need the
+    whole world, so the live path passes them in:
+      baselines  (usual_amt, usual_daily) arrays per customer, from the full world
+      network    callable(payees, times) -> (in_campaign, size), the mule-network
+                 detector's state, which needs every account's money flows
+    keep_state=True adds denom["state"] (baselines and the detector's link mask)
+    so the live path can be set up from one full run. With the defaults, nothing
+    changes.
     """
     cfg = world.cfg
     U = cfg.n_users
@@ -127,17 +138,20 @@ def build_features(world: World, verbose: bool = True,
     scored = push.copy()
 
     # ---------------- customer baselines from the warm-up weeks ----------------
-    warm = push & (t < WARMUP_END * MIN_PER_DAY)
-    wdf = pd.DataFrame({"payer": payer[warm], "amount": amount[warm]})
-    base_med = wdf.groupby("payer").amount.median()
-    base_daily = wdf.groupby("payer").amount.sum() / WARMUP_END
-    seg = world.users.segment.values
-    seg_med = pd.Series(base_med.reindex(np.arange(U)).values).groupby(seg).median()
-    seg_daily = pd.Series(base_daily.reindex(np.arange(U)).values).groupby(seg).median()
-    usual_amt = base_med.reindex(np.arange(U)).values
-    usual_amt = np.where(np.isnan(usual_amt), seg_med.reindex(seg).values, usual_amt)
-    usual_daily = base_daily.reindex(np.arange(U)).values
-    usual_daily = np.where(np.isnan(usual_daily), seg_daily.reindex(seg).values, usual_daily)
+    if baselines is None:
+        warm = push & (t < WARMUP_END * MIN_PER_DAY)
+        wdf = pd.DataFrame({"payer": payer[warm], "amount": amount[warm]})
+        base_med = wdf.groupby("payer").amount.median()
+        base_daily = wdf.groupby("payer").amount.sum() / WARMUP_END
+        seg = world.users.segment.values
+        seg_med = pd.Series(base_med.reindex(np.arange(U)).values).groupby(seg).median()
+        seg_daily = pd.Series(base_daily.reindex(np.arange(U)).values).groupby(seg).median()
+        usual_amt = base_med.reindex(np.arange(U)).values
+        usual_amt = np.where(np.isnan(usual_amt), seg_med.reindex(seg).values, usual_amt)
+        usual_daily = base_daily.reindex(np.arange(U)).values
+        usual_daily = np.where(np.isnan(usual_daily), seg_daily.reindex(seg).values, usual_daily)
+    else:
+        usual_amt, usual_daily = baselines
 
     # ---------------- event indexes ----------------
     E_pay = EventIndex(payer[customer], t[customer], {"amount": amount[customer]})
@@ -203,27 +217,34 @@ def build_features(world: World, verbose: bool = True,
     f["payee_fri_band"] = np.where(q_t >= world.fri_t[q_payee], world.fri_band[q_payee], 0).astype(np.int8)
 
     # campaign detector (streaming graph over all money movement)
-    src_in = E_in.window("amount", payer, t, MIN_PER_DAY)
-    src_out = E_out.window("amount", payer, t, MIN_PER_DAY)
-    src_new = E_in.window("new", payer, t, MIN_PER_DAY)
-    src_new_amt = E_in.window("new_amt", payer, t, MIN_PER_DAY)
-    day_all = t / MIN_PER_DAY
-    open_day, idle_before = acc.open_day.values, acc.last_active_before.values
-    young_or_dormant = ((day_all - open_day[payer]) < 180) | (idle_before[payer] > 90)
-    passthrough_after = np.where(src_in > 0, (src_out + amount) / np.maximum(src_in, 1), 0)
-    fan_in = (src_new >= 2) & (src_new_amt >= 5000)          # real money from several new payers
-    mule_like = (src_in > 0) & (passthrough_after >= 0.8) & (fan_in | young_or_dormant)
-    # never link through established accounts that keep their money (shops, suppliers, brokers)
-    dst_in7 = E_in.window("amount", payee, t, 7 * MIN_PER_DAY)
-    dst_out7 = E_out.window("amount", payee, t, 7 * MIN_PER_DAY)
-    dst_young_or_dormant = ((day_all - open_day[payee]) < 180) | (idle_before[payee] > 90)
-    dst_passes_on = (dst_in7 > 0) & (dst_out7 >= 0.5 * dst_in7)
-    forward_like = amount >= 0.5 * np.maximum(src_in, 1)   # moves on most of what just came in
-    union = (mule_like & ~is_sink[payee] & ~is_sink[payer]
-             & (dst_young_or_dormant | (dst_passes_on & forward_like)))
-    camp = detect_campaigns(t, payer, payee, union, scored, size_threshold=campaign_size)
-    f["payee_in_campaign"] = camp["in_campaign"][idx].astype(np.int8)
-    f["payee_campaign_size"] = camp["size"][idx]
+    if network is None:
+        src_in = E_in.window("amount", payer, t, MIN_PER_DAY)
+        src_out = E_out.window("amount", payer, t, MIN_PER_DAY)
+        src_new = E_in.window("new", payer, t, MIN_PER_DAY)
+        src_new_amt = E_in.window("new_amt", payer, t, MIN_PER_DAY)
+        day_all = t / MIN_PER_DAY
+        open_day, idle_before = acc.open_day.values, acc.last_active_before.values
+        young_or_dormant = ((day_all - open_day[payer]) < 180) | (idle_before[payer] > 90)
+        passthrough_after = np.where(src_in > 0, (src_out + amount) / np.maximum(src_in, 1), 0)
+        fan_in = (src_new >= 2) & (src_new_amt >= 5000)          # real money from several new payers
+        mule_like = (src_in > 0) & (passthrough_after >= 0.8) & (fan_in | young_or_dormant)
+        # never link through established accounts that keep their money (shops, suppliers, brokers)
+        dst_in7 = E_in.window("amount", payee, t, 7 * MIN_PER_DAY)
+        dst_out7 = E_out.window("amount", payee, t, 7 * MIN_PER_DAY)
+        dst_young_or_dormant = ((day_all - open_day[payee]) < 180) | (idle_before[payee] > 90)
+        dst_passes_on = (dst_in7 > 0) & (dst_out7 >= 0.5 * dst_in7)
+        forward_like = amount >= 0.5 * np.maximum(src_in, 1)   # moves on most of what just came in
+        union = (mule_like & ~is_sink[payee] & ~is_sink[payer]
+                 & (dst_young_or_dormant | (dst_passes_on & forward_like)))
+        camp = detect_campaigns(t, payer, payee, union, scored, size_threshold=campaign_size)
+        f["payee_in_campaign"] = camp["in_campaign"][idx].astype(np.int8)
+        f["payee_campaign_size"] = camp["size"][idx]
+    else:
+        union = None
+        in_camp, camp_size = network(q_payee, q_t)
+        camp = {"components": []}
+        f["payee_in_campaign"] = np.asarray(in_camp).astype(np.int8)
+        f["payee_campaign_size"] = np.asarray(camp_size).astype(np.int32)
 
     # ---------------- C: context (opt-in; NaN when the customer did not consent) ----------------
     consent = world.users.consent.values[q_payer]
@@ -264,6 +285,9 @@ def build_features(world: World, verbose: bool = True,
         "campaign_components": camp["components"],
         "n_users": U,
     }
+    if keep_state:
+        denom["state"] = {"usual_amt": usual_amt, "usual_daily": usual_daily, "union": union,
+                          "t": t, "payer": payer, "payee": payee}
     if verbose:
         print(f"scored payments: {len(f):,} of {customer.sum():,} customer payments "
               f"({len(f) / customer.sum():.0%}); scams: {f.is_scam.sum():,}")

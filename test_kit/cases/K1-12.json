@@ -1,0 +1,24 @@
+{
+  "id": "K1-12",
+  "title": "Hospital bill paid while on the phone with the billing desk",
+  "group": "risky_genuine",
+  "truth": "genuine",
+  "story": "His wife is admitted after a fall. The hospital billing desk calls from its landline (not in his contacts) and he pays ₹65,000 to the hospital's account.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C15852",
+  "payee_type": "new_individual",
+  "amount": 65000,
+  "channel": "IMPS",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 12,
+    "caller_unknown": 1
+  },
+  "lang": "en",
+  "expected": "never_hold",
+  "why": "A 60+ customer paying 60× usual to a new payee during a call from an unknown number looks like a scam, so a pause or trusted check is acceptable. The payee is clean, so it must never be held."
+}

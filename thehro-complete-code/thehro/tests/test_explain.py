@@ -56,5 +56,28 @@ def test_evidence_log_detects_tampering():
 
 def test_reason_masks_ignore_missing_context():
     F = pd.DataFrame({"on_call": [np.nan], "caller_unknown": [np.nan], "screen_share": [np.nan]})
-    M = reason_masks(F)
+    M = reason_masks(F, caller_id=True)
     assert not M.CALL_UNKNOWN[0] and not M.SCREEN_SHARE[0]
+    assert not reason_masks(F).ON_CALL[0]
+
+
+def test_without_caller_identity_the_call_reason_says_only_what_the_phone_knows():
+    """Policy v4: a bank app knows a call is on, not who is calling."""
+    row = {"on_call": 1, "call_ott": 1, "call_min": 70, "caller_unknown": 1, "caller_fri_band": 3}
+    w = {"ON_CALL": 5.0, "CALL_UNKNOWN": 18.0, "CALLER_FRI": 40.0}
+    v4 = top_reasons(row, w)
+    assert [r["code"] for r in v4] == ["ON_CALL"] and v4[0]["en"] == "You are on an internet call (70 min so far)"
+    assert "अनजान" not in v4[0]["hi"]                                   # no "unknown number" in Hindi either
+    v1 = [r["code"] for r in top_reasons(row, w, caller_id=True)]
+    assert v1 == ["CALLER_FRI", "CALL_UNKNOWN"]
+
+
+def test_every_live_alert_states_a_true_fact():
+    """No reason code applies: the live service falls back to a plain fact, never a false one."""
+    w = {"NEW_PAYEE_LARGE": 26.0}
+    first = top_reasons({"is_new_payee": 1, "amt_vs_usual": 3.9, "amount": 11_000}, w, fallback=True)
+    assert first[0]["code"] == "FIRST_PAYMENT" and "3.9x your usual payment" in first[0]["en"]
+    repeat = top_reasons({"is_new_payee": 0, "amt_vs_usual": 1.52, "amount": 5_937}, w, fallback=True)
+    assert repeat[0]["code"] == "ABOVE_USUAL" and "First payment" not in repeat[0]["en"]
+    assert top_reasons({"is_new_payee": 0, "amt_vs_usual": 1.0}, w, fallback=True)[0]["code"] == "UNUSUAL_PATTERN"
+    assert top_reasons({"is_new_payee": 1, "amt_vs_usual": 3.9}, w) == []          # Round 1 path unchanged

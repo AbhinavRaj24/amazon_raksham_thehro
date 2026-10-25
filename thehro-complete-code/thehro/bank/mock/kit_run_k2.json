@@ -1,0 +1,133 @@
+{
+ "_mock": true,
+ "_source": "first payments of the demo journeys (not a random draw)",
+ "seed": 7,
+ "samples": [
+  {
+   "sample": 1,
+   "label": "scam",
+   "scam_type": "digital_arrest",
+   "amount_text": "₹15,693",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true
+  },
+  {
+   "sample": 2,
+   "label": "scam",
+   "scam_type": "investment",
+   "amount_text": "₹10,439",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true
+  },
+  {
+   "sample": 3,
+   "label": "scam",
+   "scam_type": "task",
+   "amount_text": "₹2,175",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true
+  },
+  {
+   "sample": 4,
+   "label": "scam",
+   "scam_type": "customer_care",
+   "amount_text": "₹25,290",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true
+  },
+  {
+   "sample": 5,
+   "label": "scam",
+   "scam_type": "marketplace",
+   "amount_text": "₹2,728",
+   "expected": "interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": false
+  },
+  {
+   "sample": 6,
+   "label": "scam",
+   "scam_type": "voice_clone",
+   "amount_text": "₹25,345",
+   "expected": "interrupt",
+   "got": {
+    "tier": 4,
+    "tier_name": "Hold for review"
+   },
+   "right": true
+  },
+  {
+   "sample": 7,
+   "label": "scam",
+   "scam_type": "loan_fee",
+   "amount_text": "₹4,134",
+   "expected": "interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": true
+  },
+  {
+   "sample": 8,
+   "label": "genuine",
+   "scam_type": null,
+   "amount_text": "₹44,300",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true
+  },
+  {
+   "sample": 9,
+   "label": "genuine",
+   "scam_type": null,
+   "amount_text": "₹64,759",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 0,
+    "tier_name": "Allow"
+   },
+   "right": true
+  },
+  {
+   "sample": 10,
+   "label": "genuine",
+   "scam_type": null,
+   "amount_text": "₹14,002",
+   "expected": "no_interrupt",
+   "got": {
+    "tier": 2,
+    "tier_name": "Pause and explain"
+   },
+   "right": false
+  }
+ ],
+ "summary": {
+  "n": 10,
+  "right": 8,
+  "scam_right": 6,
+  "genuine_right": 2
+ }
+}

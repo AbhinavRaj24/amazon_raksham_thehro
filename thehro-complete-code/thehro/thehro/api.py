@@ -16,6 +16,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from . import __version__
+from .policy import CURRENT, RULES
 from .service import DecisionService, load_bundle
 
 BUNDLE = os.environ.get("THEHRO_BUNDLE", os.path.join(os.path.dirname(__file__), "..", "outputs", "model_bundle.pkl"))
@@ -28,7 +29,11 @@ _service: Optional[DecisionService] = None
 def service() -> DecisionService:
     global _service
     if _service is None:
-        _service = DecisionService(load_bundle(BUNDLE))
+        # THEHRO_POLICY=v1 runs Round 1's policy (v2: with retry memory), e.g. to show a gap live
+        name = os.environ.get("THEHRO_POLICY", CURRENT.name)
+        if name not in RULES:
+            raise RuntimeError(f"THEHRO_POLICY must be one of {sorted(RULES)}")
+        _service = DecisionService(load_bundle(BUNDLE), rules=RULES[name])
     return _service
 
 
@@ -51,7 +56,8 @@ class ScoreRequest(BaseModel):
 
 class OutcomeRequest(BaseModel):
     evidence_seq: int
-    action: Literal["cancel", "continue", "call_bank", "trusted_ok", "wait", "scam"]
+    action: Literal["cancel", "continue", "call_bank", "trusted_ok", "wait", "scam", "this_was_me", "appeal",
+                    "release", "trusted_declined"]
     t_min: Optional[float] = None
 
 

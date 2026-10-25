@@ -1,0 +1,28 @@
+{
+  "id": "K1-30",
+  "title": "Investment scam's first deposit to a clean-looking account",
+  "group": "hard",
+  "truth": "scam",
+  "story": "After a ₹500 'welcome bonus' from a stranger, a trading-group admin asks him to make his first ₹10,000 deposit. Chat only.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C3547",
+  "payee_type": "mule_unflagged",
+  "amount": 10000,
+  "channel": "UPI to person",
+  "history": [
+    {
+      "kind": "stranger_credit",
+      "amount": 500,
+      "hours_ago": 20
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 0,
+    "app_switches": 3
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "4× usual, one stranger credit, no call, clean payee. We expect to miss it: the series hasn't started and nothing outside points at the payee yet."
+}

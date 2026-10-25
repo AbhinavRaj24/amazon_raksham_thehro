@@ -1,0 +1,7 @@
+{
+ "_mock": true,
+ "_source": "placeholder",
+ "case_id": "H-0001",
+ "state": "auto_cancelled",
+ "note": "No answer within 30 minutes: the payment was cancelled and the money stayed in the account."
+}

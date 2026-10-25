@@ -107,6 +107,10 @@ REASONS = [
     Reason("CALLER_FRI", "context",
            "The number calling you is rated {band} fraud risk by the telecom department",
            "आपको कॉल कर रहे नंबर को दूरसंचार विभाग ने '{band}' धोखाधड़ी जोखिम बताया है"),
+    # policy v4: a bank app knows a call is in progress, but not who is calling
+    Reason("ON_CALL", "context",
+           "You are on {kind}{dur}",
+           "आप {kind} पर हैं{dur}"),
     Reason("SCREEN_SHARE", "context",
            "Your screen is being shared right now",
            "आपकी स्क्रीन अभी शेयर हो रही है"),
@@ -126,8 +130,9 @@ def _num(F, name):
     return np.nan_to_num(np.asarray(F[name], dtype=float), nan=0.0)
 
 
-def reason_masks(F: pd.DataFrame) -> pd.DataFrame:
-    """Which reasons are true for each payment (vectorised)."""
+def reason_masks(F: pd.DataFrame, caller_id: bool = False) -> pd.DataFrame:
+    """Which reasons are true for each payment (vectorised). caller_id=False (policy v4, the default): the
+    caller's number isn't readable, so the reasons about who is calling are replaced by ON_CALL."""
     g = lambda c: _num(F, c)  # noqa: E731
     m = {
         "NEW_PAYEE_LARGE": (g("is_new_payee") == 1) & (g("amt_vs_usual") >= 5),
@@ -147,21 +152,47 @@ def reason_masks(F: pd.DataFrame) -> pd.DataFrame:
         "DORMANT": g("payee_idle_days") >= 90,
         "CALL_UNKNOWN": (g("on_call") == 1) & (g("caller_unknown") == 1),
         "CALLER_FRI": g("caller_fri_band") >= 2,
+        "ON_CALL": g("on_call") == 1,
         "SCREEN_SHARE": g("screen_share") == 1,
         "REMOTE_APP": g("remote_app") == 1,
         "APP_SWITCHING": g("app_switches") >= 4,
     }
+    if caller_id:
+        del m["ON_CALL"]
+    else:
+        del m["CALL_UNKNOWN"], m["CALLER_FRI"]
     return pd.DataFrame(m, index=F.index)
 
 
-def fit_reason_weights(F: pd.DataFrame, y: np.ndarray) -> dict:
+def fit_reason_weights(F: pd.DataFrame, y: np.ndarray, caller_id: bool = False) -> dict:
     """Likelihood ratio of each reason: P(reason | reported scam) / P(reason | other payments)."""
-    masks = reason_masks(F)
+    masks = reason_masks(F, caller_id)
     M = masks.values
     y = np.asarray(y, dtype=bool)
     pos, neg = M[y], M[~y]
     lr = (pos.sum(0) + 1) / (len(pos) + 2) / ((neg.sum(0) + 1) / (len(neg) + 2))
     return {code: float(v) for code, v in zip(masks.columns, lr)}
+
+
+def memory_reason(memory: dict) -> dict:
+    """The fact behind a memory escalation, for the top of the alert ("you were warned 45 minutes ago")."""
+    m = float(memory["minutes_since"])
+    if m < 90:
+        en, hi = f"{max(m, 1):.0f} minutes ago", f"{max(m, 1):.0f} मिनट पहले"
+    elif m < 48 * 60:
+        en, hi = f"{m / 60:.0f} hours ago", f"{m / 60:.0f} घंटे पहले"
+    else:
+        en, hi = f"{m / 1440:.0f} days ago", f"{m / 1440:.0f} दिन पहले"
+    if memory["kind"] == "retry":
+        text_en = f"You were warned about a likely scam payment {en}. Is someone asking you to try again?"
+        text_hi = f"{hi} आपको एक संदिग्ध भुगतान के बारे में चेतावनी दी गई थी। क्या कोई आपसे फिर से कोशिश करवा रहा है?"
+    elif memory["kind"] == "confirmed":
+        text_en = f"A bank officer checked this account with you {en}, and nothing new has been reported about it since."
+        text_hi = f"{hi} बैंक अधिकारी ने आपके साथ इस खाते की जाँच की थी, और तब से इसके बारे में कुछ नया दर्ज नहीं हुआ है।"
+    else:
+        text_en = f"You went ahead after a scam warning {en}. Payments soon after a warning get extra checks."
+        text_hi = f"{hi} चेतावनी के बाद भी आपने भुगतान किया था। चेतावनी के कुछ समय बाद के भुगतानों की अतिरिक्त जाँच होती है।"
+    return {"code": "RECENT_WARNING", "family": "memory", "weight": None, "en": text_en, "hi": text_hi}
 
 
 def _fill(code: str, row: dict, lang: str) -> str:
@@ -190,7 +221,7 @@ def _fill(code: str, row: dict, lang: str) -> str:
         return tpl.format(n=max(int(_v(row, "payee_age_days")), 1))
     if code == "DORMANT":
         return tpl.format(n=int(_v(row, "payee_idle_days") // 30))
-    if code == "CALL_UNKNOWN":
+    if code in ("CALL_UNKNOWN", "ON_CALL"):
         ott = _v(row, "call_ott") == 1
         mins = _v(row, "call_min")
         if hi:
@@ -205,8 +236,33 @@ def _fill(code: str, row: dict, lang: str) -> str:
     return tpl
 
 
-def top_reasons(row: dict, weights: dict, k: int = 3) -> list[dict]:
-    """The k strongest true reasons for one payment, with English and Hindi text."""
+def _mult(x: float) -> str:
+    return f"{x:.1f}" if x < 10 else f"{x:.0f}"
+
+
+def fallback_reason(row: dict) -> dict:
+    """A true, checkable fact for an alert where none of the reason codes applies.
+
+    Used by the live decision service (fallback=True) so no alert is ever shown without a reason,
+    and never states something that isn't so: Round 1's tier-1 note fell back to "First payment to
+    this account" even when it wasn't one."""
+    m = _v(row, "amt_vs_usual")
+    if _v(row, "is_new_payee") == 1:
+        more = (f", {_mult(m)}x your usual payment", f", आपकी आम रकम का {_mult(m)} गुना") if m >= 1.5 else ("", "")
+        return {"code": "FIRST_PAYMENT", "family": "journey", "weight": None,
+                "en": "First payment to this account" + more[0], "hi": "इस खाते को आपका पहला भुगतान" + more[1]}
+    if m >= 1.5:
+        return {"code": "ABOVE_USUAL", "family": "journey", "weight": None,
+                "en": f"This is {_mult(m)}x your usual payment", "hi": f"यह आपकी आम रकम का {_mult(m)} गुना है"}
+    return {"code": "UNUSUAL_PATTERN", "family": "journey", "weight": None,
+            "en": "This payment doesn't match how you usually pay (the amount, the time and the account together)",
+            "hi": "यह भुगतान आपके आम तरीके से मेल नहीं खाता (रकम, समय और खाता एक साथ)"}
+
+
+def top_reasons(row: dict, weights: dict, k: int = 3, fallback: bool = False, caller_id: bool = False) -> list[dict]:
+    """The k strongest true reasons for one payment, with English and Hindi text. fallback=True (the live
+    service) adds a plain fact when no reason code applies, so an alert always says why. caller_id: see
+    reason_masks."""
     F = pd.DataFrame([row])
     for col in ["is_new_payee", "amt_vs_usual", "recent_payee_payments_7d", "growth_vs_recent_avg",
                 "fd_break_48h", "stranger_credits_24h", "push_out_24h_vs_usual", "is_night",
@@ -215,10 +271,13 @@ def top_reasons(row: dict, weights: dict, k: int = 3) -> list[dict]:
                 "on_call", "caller_unknown", "caller_fri_band", "screen_share", "remote_app", "app_switches"]:
         if col not in F:
             F[col] = np.nan
-    true = reason_masks(F).iloc[0]
+    true = reason_masks(F, caller_id).iloc[0]
     codes = sorted([c for c, v in true.items() if v], key=lambda c: -weights.get(c, 1.0))[:k]
-    return [{"code": c, "family": REASON_BY_CODE[c].family, "weight": round(weights.get(c, 1.0), 1),
-             "en": _fill(c, row, "en"), "hi": _fill(c, row, "hi")} for c in codes]
+    out = [{"code": c, "family": REASON_BY_CODE[c].family, "weight": round(weights.get(c, 1.0), 1),
+            "en": _fill(c, row, "en"), "hi": _fill(c, row, "hi")} for c in codes]
+    if fallback and not out:
+        out = [fallback_reason(row)]
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -271,11 +330,11 @@ ADVICE_FIT = {
 }
 
 
-def advice_keys(F: pd.DataFrame) -> np.ndarray:
+def advice_keys(F: pd.DataFrame, caller_id: bool = False) -> np.ndarray:
     """Advice for each payment, from the facts present."""
-    M = reason_masks(F)
+    M = reason_masks(F, caller_id)
     call_min = _num(F, "call_min")
-    call = M.CALL_UNKNOWN.values
+    call = (M.CALL_UNKNOWN if caller_id else M.ON_CALL).values
     series = (M.ESCALATING | M.STRANGER_CREDITS).values
     key = np.full(len(F), "generic", dtype=object)
     rules = [  # each rule overwrites the ones before it, so the list runs from lowest priority up
@@ -307,6 +366,12 @@ ACTIONS = {
     4: [("cancel", "Cancel payment", "भुगतान रद्द करें"),
         ("call_bank", "Talk to the bank now", "अभी बैंक से बात करें")],
 }
+# Tier 3 for a customer with no trusted person set up (most customers): the bank calls them back instead
+HEADLINE_NO_TRUSTED = ("Let's check this with your bank first", "पहले इसे अपने बैंक से जाँच लें")
+ACTIONS_NO_TRUSTED = [("cancel", "Cancel payment", "भुगतान रद्द करें"),
+                      ("callback", "Get a call from my bank (within 15 minutes)", "बैंक से कॉल पाएँ (15 मिनट के अंदर)"),
+                      ("wait", "Wait 1 hour, then pay", "1 घंटा रुककर भुगतान करें"),
+                      ("call_bank", "Call my bank", "मेरे बैंक को कॉल करें")]
 HOLD_NOTE = ("Only this payment is held. A bank fraud officer will call your registered number within "
              "30 minutes. Nothing else on your account is affected.",
              "केवल यह भुगतान रोका गया है। बैंक का धोखाधड़ी अधिकारी 30 मिनट के अंदर आपके रजिस्टर्ड नंबर पर "
@@ -320,8 +385,10 @@ def workflow_guess(wf_pred, wf_conf, floor: float) -> str | None:
     return WORKFLOWS[int(wf_pred)]
 
 
-def build_message(tier: int, reasons: list[dict], advice: str = "generic", lang: str = "en") -> dict:
-    """What the customer sees. Tier 1 is a single line; tier 2+ is a full screen."""
+def build_message(tier: int, reasons: list[dict], advice: str = "generic", lang: str = "en",
+                  trusted_contact: bool = True) -> dict:
+    """What the customer sees. Tier 1 is a single line; tier 2+ is a full screen. A tier 3 for a customer with no
+    trusted person offers a call-back from the bank instead of asking someone they don't have."""
     hi = lang == "hi"
     if tier <= 0:
         return {}
@@ -338,6 +405,9 @@ def build_message(tier: int, reasons: list[dict], advice: str = "generic", lang:
         "why": [r["hi" if hi else "en"] for r in reasons],
         "actions": [{"id": a, "label": (h if hi else e)} for a, e, h in ACTIONS[tier]],
     }
+    if tier == 3 and not trusted_contact:
+        msg["headline"] = HEADLINE_NO_TRUSTED[hi]
+        msg["actions"] = [{"id": a, "label": (h if hi else e)} for a, e, h in ACTIONS_NO_TRUSTED]
     if tier == 4:
         msg["hold_note"] = HOLD_NOTE[hi]
     return msg

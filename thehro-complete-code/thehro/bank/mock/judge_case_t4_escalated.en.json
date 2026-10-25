@@ -1,0 +1,262 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: task, payment 2 (scam)",
+ "decision_id": "D-0009",
+ "state": "held",
+ "payment": {
+  "customer": "C28404",
+  "amount": 6672.0,
+  "amount_text": "₹6,672",
+  "channel": "UPI to person",
+  "time": "Day 58 · 08:51"
+ },
+ "payee": {
+  "ref": "A/c ••5868",
+  "type": "fri_high",
+  "facts": [
+   "first payment from this customer",
+   "opened 82 days ago",
+   "linked mobile rated high fraud risk by DoT"
+  ]
+ },
+ "phone": {
+  "tier": 4,
+  "headline": "We've paused this payment to protect you",
+  "pattern": "Are you paying to unlock money?",
+  "advice": "Anyone who asks you to pay first to receive money (a loan, job earnings, investment returns, a refund or a buyer's payment) is a scammer.",
+  "why": [
+   "You went ahead after a scam warning 8 hours ago. Payments soon after a warning get extra checks.",
+   "The mobile number linked to this account is rated high fraud risk by the telecom department",
+   "You received 3 small payment(s) from unknown accounts today, a common hook in job and investment scams"
+  ],
+  "actions": [
+   {
+    "id": "cancel",
+    "label": "Cancel payment"
+   },
+   {
+    "id": "call_bank",
+    "label": "Talk to the bank now"
+   }
+  ],
+  "hold_note": "Only this payment is held. A bank fraud officer will call your registered number within 30 minutes. Nothing else on your account is affected."
+ },
+ "phone_by_lang": {
+  "en": {
+   "tier": 4,
+   "headline": "We've paused this payment to protect you",
+   "pattern": "Are you paying to unlock money?",
+   "advice": "Anyone who asks you to pay first to receive money (a loan, job earnings, investment returns, a refund or a buyer's payment) is a scammer.",
+   "why": [
+    "You went ahead after a scam warning 8 hours ago. Payments soon after a warning get extra checks.",
+    "The mobile number linked to this account is rated high fraud risk by the telecom department",
+    "You received 3 small payment(s) from unknown accounts today, a common hook in job and investment scams"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "Cancel payment"
+    },
+    {
+     "id": "call_bank",
+     "label": "Talk to the bank now"
+    }
+   ],
+   "hold_note": "Only this payment is held. A bank fraud officer will call your registered number within 30 minutes. Nothing else on your account is affected."
+  },
+  "hi": {
+   "tier": 4,
+   "headline": "आपकी सुरक्षा के लिए हमने यह भुगतान रोका है",
+   "pattern": "क्या आप पैसे पाने के लिए पैसे दे रहे हैं?",
+   "advice": "जो भी पैसे देने से पहले आपसे पैसे माँगे (लोन, नौकरी की कमाई, निवेश का मुनाफ़ा, रिफ़ंड या खरीदार का भुगतान), वह ठग है।",
+   "why": [
+    "8 घंटे पहले चेतावनी के बाद भी आपने भुगतान किया था। चेतावनी के कुछ समय बाद के भुगतानों की अतिरिक्त जाँच होती है।",
+    "इस खाते से जुड़े मोबाइल नंबर को दूरसंचार विभाग ने 'उच्च' धोखाधड़ी जोखिम बताया है",
+    "आज आपको अनजान खातों से 3 छोटी रकम मिली, जो नौकरी और निवेश घोटालों का आम जाल है"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "भुगतान रद्द करें"
+    },
+    {
+     "id": "call_bank",
+     "label": "अभी बैंक से बात करें"
+    }
+   ],
+   "hold_note": "केवल यह भुगतान रोका गया है। बैंक का धोखाधड़ी अधिकारी 30 मिनट के अंदर आपके रजिस्टर्ड नंबर पर कॉल करेगा। आपके खाते में और कुछ नहीं बदला है।"
+  }
+ },
+ "phone_meta": {
+  "lang": "en",
+  "continue_after_s": null,
+  "case_id": "H-0001"
+ },
+ "bank_view": {
+  "tier": 4,
+  "tier_name": "Hold for review",
+  "base_tier": 2,
+  "scores": {
+   "s_fused": 0.1533,
+   "s_journey": 0.2243,
+   "s_payee": 0.1296,
+   "s_context": 0.0075
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": true,
+   "payee": true,
+   "context": false
+  },
+  "gate": true,
+  "payee_flag": true,
+  "reasons": [
+   {
+    "code": "RECENT_WARNING",
+    "family": "memory",
+    "weight": null,
+    "en": "You went ahead after a scam warning 8 hours ago. Payments soon after a warning get extra checks.",
+    "hi": "8 घंटे पहले चेतावनी के बाद भी आपने भुगतान किया था। चेतावनी के कुछ समय बाद के भुगतानों की अतिरिक्त जाँच होती है।"
+   },
+   {
+    "code": "FRI",
+    "family": "payee",
+    "weight": 140.5,
+    "en": "The mobile number linked to this account is rated high fraud risk by the telecom department",
+    "hi": "इस खाते से जुड़े मोबाइल नंबर को दूरसंचार विभाग ने 'उच्च' धोखाधड़ी जोखिम बताया है"
+   },
+   {
+    "code": "STRANGER_CREDITS",
+    "family": "journey",
+    "weight": 121.1,
+    "en": "You received 3 small payment(s) from unknown accounts today, a common hook in job and investment scams",
+    "hi": "आज आपको अनजान खातों से 3 छोटी रकम मिली, जो नौकरी और निवेश घोटालों का आम जाल है"
+   }
+  ],
+  "advice": "pay_to_unlock",
+  "features": {
+   "amount_log": 3.8243,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 9.241,
+   "new_payees_7d": 1.0,
+   "recent_payee_payments_7d": 1.0,
+   "recent_payee_sum_7d_log": 3.3377,
+   "push_out_24h_vs_usual": 3.6224,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 3.0,
+   "is_night": 0,
+   "payee_type": 0,
+   "payee_age_days": 82.7078,
+   "payee_idle_days": 2.2235,
+   "payee_new_payers_24h": 0.0,
+   "payee_inflow_24h_log": 0.0,
+   "payee_passthrough_24h": null,
+   "payee_registry": 0,
+   "payee_fri_band": 2,
+   "payee_in_campaign": 0,
+   "payee_campaign_size": 1,
+   "on_call": 0.0,
+   "caller_unknown": 0.0,
+   "call_ott": 0.0,
+   "call_min": 0.0,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 3.0
+  },
+  "memory_note": "customer continued past a warning in the last 7 days",
+  "workflow_guess": "task",
+  "workflow_confidence": 1.0,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••5868",
+  "amount": 6672.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 0.0,
+   "caller_unknown": 0.0,
+   "call_ott": 0.0,
+   "call_min": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 3.0
+  }
+ },
+ "stored": {
+  "kind": "evidence",
+  "seq": 1,
+  "record": {
+   "seq": 1,
+   "kind": "decision",
+   "at": "simulated Day 58 · 08:51",
+   "body": {
+    "payment": {
+     "payment_id": "P2650855",
+     "customer_ref": "C28404",
+     "payee_ref": "A/c ••5868",
+     "amount": 6672.0,
+     "channel": "UPI to person",
+     "time": "Day 58 · 08:51"
+    },
+    "decision": {
+     "tier": 4,
+     "tier_name": "Hold for review",
+     "families_elevated": [
+      "journey",
+      "payee"
+     ],
+     "gate": true,
+     "payee_flag": true,
+     "memory_note": "customer continued past a warning in the last 7 days"
+    },
+    "scores": {
+     "s_fused": 0.1533,
+     "s_journey": 0.2243,
+     "s_payee": 0.1296,
+     "s_context": 0.0075
+    },
+    "reasons": [
+     "FRI",
+     "STRANGER_CREDITS",
+     "NEW_PAYEE_LARGE"
+    ],
+    "workflow_guess": "task",
+    "versions": {
+     "thehro": "0.1.0",
+     "model": "hgb-92it-677lab",
+     "thresholds": "val-days-35-41-t2-0.0847"
+    }
+   },
+   "prev_hash": "756f4439a73969175f3630cccac34960f14f5bf61ed637ecbf0a8485f1ce5952",
+   "hash": "c3fad4574b1bf664f2b104f18f7a3653b217f8204a32794e689bd647a2176739"
+  },
+  "chain_ok": true,
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

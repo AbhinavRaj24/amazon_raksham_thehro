@@ -28,7 +28,8 @@ from thehro.config import (ADJUSTED_FRAUD_RATE, ALERT_BUDGET_T2, HOLD_MIN_AMOUNT
                            VALID_END)
 from thehro.explain import fit_reason_weights  # noqa: E402
 from thehro.features import ALL_FEATURES, build_features  # noqa: E402
-from thehro.models import fit, score, training_labels  # noqa: E402
+from thehro.models import CALLER_FEATURES, fit, score, training_labels  # noqa: E402
+from thehro.policy import CURRENT, RULES  # noqa: E402
 from thehro.service import DecisionService  # noqa: E402
 from thehro.simulate import WORKFLOWS, SimConfig, simulate  # noqa: E402
 
@@ -56,6 +57,8 @@ def main():
     ap.add_argument("--out", default=str(ROOT / "outputs"))
     ap.add_argument("--cache", default=None, help="pickle of (world, features, denominators) to reuse")
     ap.add_argument("--quick", action="store_true", help="skip held-out scam-type tests")
+    ap.add_argument("--policy", default=CURRENT.name, choices=sorted(RULES),
+                    help="policy version (v1 reproduces Round 1's results; default: the current policy)")
     a = ap.parse_args()
     out = Path(a.out)
     (out / "tables").mkdir(parents=True, exist_ok=True)
@@ -74,23 +77,28 @@ def main():
     U = denom["n_users"]
 
     # 2. models and thresholds ---------------------------------------------------------------
+    policy = RULES[a.policy]
+    drop = () if policy.caller_id else CALLER_FEATURES     # policy v4: no caller identity anywhere
     window, y = training_labels(f)
-    models = fit(f, window, y)
+    models = fit(f, window, y, drop=drop)
     S = score(models, f)
-    thr = E.thresholds_from_validation(f, S, denom)
-    weights = fit_reason_weights(f[window], y[window])
-    versions = {"thehro": __version__, "model": f"hgb-{models.meta['n_iter_fused']}it-{models.meta['n_pos']}lab",
-                "thresholds": f"val-days-35-41-t2-{thr.t2:.4f}"}
-    print(f"thresholds: note {thr.t1:.4f}  pause {thr.t2:.4f}  hold {thr.t4:.4f}  family {thr.family}")
+    thr = E.thresholds_from_validation(f, S, denom, rules=policy)
+    weights = fit_reason_weights(f[window], y[window], caller_id=policy.caller_id)
+    tag = "" if policy.caller_id else "-nocallerid"
+    versions = {"thehro": __version__,
+                "model": f"hgb-{models.meta['n_iter_fused']}it-{models.meta['n_pos']}lab{tag}",
+                "thresholds": f"val-days-35-41-t2-{thr.t2:.4f}" + (f"-tj-{thr.tj:.4f}" if thr.tj is not None else "")}
+    print(f"thresholds: note {thr.t1:.4f}  pause {thr.t2:.4f}  hold {thr.t4:.4f}  family {thr.family}"
+          + (f"  journey line {thr.tj:.4f}" if thr.tj is not None else ""))
     bundle = {"models": models, "thresholds": thr, "reason_weights": weights, "versions": versions,
-              "features": ALL_FEATURES}
+              "features": [c for c in ALL_FEATURES if c not in drop], "policy": policy.name}
     pickle.dump(bundle, open(out / "model_bundle.pkl", "wb"), protocol=pickle.HIGHEST_PROTOCOL)
 
     # 3. evaluation on the test weeks ----------------------------------------------------------------
     w = E.windows(f)
     ft, St = f[w["test"]], S[w["test"]]
     n_all_test = E.n_customer_payments(denom, VALID_END)
-    pol = E.run_policy(ft, St, thr)
+    pol = E.run_policy(ft, St, thr, policy)
     head, jt = E.summarise(world, ft, pol, n_all_test, U)
     head_half, _ = E.summarise(world, ft, pol, n_all_test, U, stop_scale=0.5)
     head["money_protected_share_if_half_as_many_stop"] = head_half["money_protected_share"]
@@ -101,7 +109,7 @@ def main():
     head["test_scam_payments"] = int(ft.is_scam.sum())
     head["test_days"] = int(world.cfg.days - VALID_END)
     head["customers"] = int(U)
-    head["thresholds"] = {"t1": thr.t1, "t2": thr.t2, "t4": thr.t4, "family": thr.family}
+    head["thresholds"] = {"t1": thr.t1, "t2": thr.t2, "t4": thr.t4, "family": thr.family, "tj": thr.tj}
     head["budgets"] = {"t1": NUDGE_BUDGET_T1, "t2": ALERT_BUDGET_T2, "t4": REVIEW_BUDGET_T4}
     head["policy"] = {"trusted_min": TRUSTED_CHECK_MIN_AMOUNT, "hold_min": HOLD_MIN_AMOUNT,
                       "memory_days": OVERRIDE_MEMORY_DAYS}
@@ -118,21 +126,21 @@ def main():
     wf_tab = E.per_workflow(jt, ft, pol.tier.values)
     fair = E.fairness(world, ft, pol.tier.values, jt, denom)
     rules = {name: E.rule_summary(world, ft, m, n_all_test, U) for name, m in E.naive_rules(ft).items()}
-    curve = E.budget_curve(world, f, S, denom, [1e-5, 3e-5, 1e-4, 3e-4, 1e-3, 3e-3, 1e-2], U)
-    stress = E.stress_tests(world, f, S, models, thr, denom, U)
+    curve = E.budget_curve(world, f, S, denom, [1e-5, 3e-5, 1e-4, 3e-4, 1e-3, 3e-3, 1e-2], U, policy)
+    stress = E.stress_tests(world, f, S, models, thr, denom, U, policy)
     rq = E.recogniser_quality(ft, St, pol.tier.values)
-    mfit = E.message_fit(ft, pol.tier.values)
+    mfit = E.message_fit(ft, pol.tier.values, policy.caller_id)
     camp = E.campaign_timing(world, denom["campaign_components"])
     lowo = None
     if not a.quick:
         print("held-out scam types:")
-        lowo = E.held_out_workflows(world, f, window, y, denom, U)
+        lowo = E.held_out_workflows(world, f, window, y, denom, U, rules=policy)
 
     # labels the model actually had, per scam type
     labels = pd.Series(f.workflow.values[window & (y == 1)]).map(dict(enumerate(WORKFLOWS))).value_counts()
 
     # 4. latency of the decision path (models + policy + reasons + message + evidence) ------
-    svc = DecisionService(bundle)
+    svc = DecisionService(bundle, rules=policy)
     rng = np.random.default_rng(0)
     rows = ft.sample(1000, random_state=1)
     lat = []
@@ -151,6 +159,7 @@ def main():
 
     # 5. write outputs ----------------------------------------------------------------------------
     metrics = {
+        "policy": policy.name,             # which policy version produced these numbers (absent = Round 1's v1)
         "headline": head,
         "per_workflow": wf_tab,
         "fairness": fair,
@@ -191,7 +200,7 @@ def main():
         figures.bars(cmp_, ["full", "hidden"], ["Scam type seen in training", "Scam type hidden from training"],
                      "Victims warned, by scam type", out / "figures" / "held_out.png")
 
-    demo = scenarios.export(world, ft, St, pol, jt, weights, jsonable(metrics), versions)
+    demo = scenarios.export(world, ft, St, pol, jt, weights, jsonable(metrics), versions, caller_id=policy.caller_id)
     json.dump(jsonable(demo), open(out / "demo_scenarios.json", "w"), ensure_ascii=False, indent=1)
     sample = []
     for _, r in ft[ft.is_scam == 1].head(3).iterrows():

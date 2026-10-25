@@ -1,0 +1,425 @@
+{
+ "seed": 7,
+ "data": "synthetic test days 42-59, events edited, frozen model hgb-86it-677lab-nocallerid, policy v4",
+ "baseline": {
+  "victims_warned": {
+   "k": 691,
+   "n": 720,
+   "value": 0.959722,
+   "lo": 0.942753,
+   "hi": 0.971812
+  },
+  "victims_warned_first_payment": {
+   "k": 536,
+   "n": 720,
+   "value": 0.744444,
+   "lo": 0.711346,
+   "hi": 0.774949
+  },
+  "scam_payments_paused": {
+   "k": 2376,
+   "n": 2680,
+   "value": 0.886567,
+   "lo": 0.874003,
+   "hi": 0.898024
+  },
+  "false_pauses_per_10k": {
+   "k": 82,
+   "n": 786121,
+   "value": 1.0431,
+   "lo": 0.829606,
+   "hi": 1.29476
+  },
+  "genuine_trusted_checks_per_10k": {
+   "k": 6,
+   "n": 786121,
+   "value": 0.0763241,
+   "lo": 0.0280096,
+   "hi": 0.166125
+  },
+  "genuine_holds_per_10k": {
+   "k": 0,
+   "n": 786121,
+   "value": 0.0,
+   "lo": 0.0,
+   "hi": 0.0469251
+  },
+  "money_protected_share_modelled": 0.931789
+ },
+ "rows": [
+  {
+   "attack": "rebuild",
+   "label": "No edits (rebuild check)",
+   "ran": true,
+   "victims_warned": {
+    "k": 691,
+    "n": 720,
+    "value": 0.959722,
+    "lo": 0.942753,
+    "hi": 0.971812
+   },
+   "victims_warned_first_payment": {
+    "k": 536,
+    "n": 720,
+    "value": 0.744444,
+    "lo": 0.711346,
+    "hi": 0.774949
+   },
+   "scam_payments_paused": {
+    "k": 2376,
+    "n": 2680,
+    "value": 0.886567,
+    "lo": 0.874003,
+    "hi": 0.898024
+   },
+   "false_pauses_per_10k": {
+    "k": 82,
+    "n": 786121,
+    "value": 1.0431,
+    "lo": 0.829606,
+    "hi": 1.29476
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.931789,
+   "info": {},
+   "scam_payments": 2680,
+   "verdict": "",
+   "seconds": 7.7
+  },
+  {
+   "attack": "chat_only",
+   "label": "Chat-only coaching (no calls, no screen share)",
+   "ran": true,
+   "victims_warned": {
+    "k": 687,
+    "n": 720,
+    "value": 0.954167,
+    "lo": 0.936332,
+    "hi": 0.96718
+   },
+   "victims_warned_first_payment": {
+    "k": 518,
+    "n": 720,
+    "value": 0.719444,
+    "lo": 0.68553,
+    "hi": 0.75103
+   },
+   "scam_payments_paused": {
+    "k": 2353,
+    "n": 2680,
+    "value": 0.877985,
+    "lo": 0.865049,
+    "hi": 0.889839
+   },
+   "false_pauses_per_10k": {
+    "k": 82,
+    "n": 786121,
+    "value": 1.0431,
+    "lo": 0.829606,
+    "hi": 1.29476
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.916614,
+   "info": {
+    "chat_only": {
+     "scam_payments_edited": 2680
+    }
+   },
+   "scam_payments": 2680,
+   "verdict": "pass: ≥ 75% warned",
+   "seconds": 7.8
+  },
+  {
+   "attack": "split",
+   "label": "Split payments just under Rs 10,000",
+   "ran": true,
+   "victims_warned": {
+    "k": 702,
+    "n": 720,
+    "value": 0.975,
+    "lo": 0.96083,
+    "hi": 0.984129
+   },
+   "victims_warned_first_payment": {
+    "k": 500,
+    "n": 720,
+    "value": 0.694444,
+    "lo": 0.659839,
+    "hi": 0.726986
+   },
+   "scam_payments_paused": {
+    "k": 20193,
+    "n": 23003,
+    "value": 0.877842,
+    "lo": 0.873547,
+    "hi": 0.882011
+   },
+   "false_pauses_per_10k": {
+    "k": 80,
+    "n": 806444,
+    "value": 0.992009,
+    "lo": 0.786602,
+    "hi": 1.23464
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 806444,
+    "value": 0.0744007,
+    "lo": 0.0273037,
+    "hi": 0.161939
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 806444,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0457425
+   },
+   "money_protected_share_modelled": 0.965944,
+   "info": {
+    "split": {
+     "payments_split": 1763,
+     "parts_created": 22086,
+     "median_parts_per_payment": 4.0,
+     "max_parts_per_payment": 506,
+     "parts_9000_to_9900_share": 0.863352,
+     "parts_dropped_after_day_60": 0,
+     "amount_dropped_after_day_60": 0.0
+    }
+   },
+   "scam_payments": 23003,
+   "verdict": "pass: ≥ 75% warned",
+   "seconds": 10.0
+  },
+  {
+   "attack": "aged_mules",
+   "label": "Aged mules (old, recently active, forward 50-70% after 6-48 h)",
+   "ran": true,
+   "victims_warned": {
+    "k": 635,
+    "n": 720,
+    "value": 0.881944,
+    "lo": 0.856324,
+    "hi": 0.903511
+   },
+   "victims_warned_first_payment": {
+    "k": 345,
+    "n": 720,
+    "value": 0.479167,
+    "lo": 0.442884,
+    "hi": 0.51567
+   },
+   "scam_payments_paused": {
+    "k": 1922,
+    "n": 2680,
+    "value": 0.717164,
+    "lo": 0.699811,
+    "hi": 0.733895
+   },
+   "false_pauses_per_10k": {
+    "k": 80,
+    "n": 786121,
+    "value": 1.01766,
+    "lo": 0.806937,
+    "hi": 1.26656
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.822895,
+   "info": {
+    "aged_mules": {
+     "mule_accounts_aged": 1297,
+     "forwards_delayed_and_cut": 3398,
+     "forwards_pushed_past_day_60": 135
+    }
+   },
+   "scam_payments": 2680,
+   "verdict": "pass: ≥ 75% warned",
+   "seconds": 8.1
+  },
+  {
+   "attack": "clean_mules",
+   "label": "Fresh, clean mule for every payment (feature-level)",
+   "ran": true,
+   "victims_warned": {
+    "k": 572,
+    "n": 720,
+    "value": 0.794444,
+    "lo": 0.763401,
+    "hi": 0.822362
+   },
+   "victims_warned_first_payment": {
+    "k": 206,
+    "n": 720,
+    "value": 0.286111,
+    "lo": 0.254303,
+    "hi": 0.32019
+   },
+   "scam_payments_paused": {
+    "k": 1558,
+    "n": 2680,
+    "value": 0.581343,
+    "lo": 0.562562,
+    "hi": 0.599892
+   },
+   "false_pauses_per_10k": {
+    "k": 79,
+    "n": 786121,
+    "value": 1.00493,
+    "lo": 0.795616,
+    "hi": 1.25245
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 786121,
+    "value": 0.0763241,
+    "lo": 0.0280096,
+    "hi": 0.166125
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 786121,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0469251
+   },
+   "money_protected_share_modelled": 0.735671,
+   "info": {
+    "clean_mules": {
+     "scam_payments_edited": 2680,
+     "note": "feature-level: evaluate.perturb(ft, 'clean_mules')"
+    }
+   },
+   "scam_payments": 2680,
+   "verdict": "pass: ≥ 75% warned",
+   "seconds": 0.7
+  },
+  {
+   "attack": "all",
+   "label": "All of the above at once",
+   "ran": true,
+   "victims_warned": {
+    "k": 635,
+    "n": 720,
+    "value": 0.881944,
+    "lo": 0.856324,
+    "hi": 0.903511
+   },
+   "victims_warned_first_payment": {
+    "k": 124,
+    "n": 720,
+    "value": 0.172222,
+    "lo": 0.146401,
+    "hi": 0.201523
+   },
+   "scam_payments_paused": {
+    "k": 11724,
+    "n": 23003,
+    "value": 0.509673,
+    "lo": 0.503211,
+    "hi": 0.516131
+   },
+   "false_pauses_per_10k": {
+    "k": 79,
+    "n": 806444,
+    "value": 0.979609,
+    "lo": 0.775566,
+    "hi": 1.22089
+   },
+   "genuine_trusted_checks_per_10k": {
+    "k": 6,
+    "n": 806444,
+    "value": 0.0744007,
+    "lo": 0.0273037,
+    "hi": 0.161939
+   },
+   "genuine_holds_per_10k": {
+    "k": 0,
+    "n": 806444,
+    "value": 0.0,
+    "lo": 0.0,
+    "hi": 0.0457425
+   },
+   "money_protected_share_modelled": 0.909087,
+   "info": {
+    "chat_only": {
+     "scam_payments_edited": 2680
+    },
+    "split": {
+     "payments_split": 1763,
+     "parts_created": 22086,
+     "median_parts_per_payment": 4.0,
+     "max_parts_per_payment": 506,
+     "parts_9000_to_9900_share": 0.863352,
+     "parts_dropped_after_day_60": 0,
+     "amount_dropped_after_day_60": 0.0
+    },
+    "aged_mules": {
+     "mule_accounts_aged": 1297,
+     "forwards_delayed_and_cut": 3398,
+     "forwards_pushed_past_day_60": 135
+    },
+    "clean_mules": {
+     "scam_payments_edited": 23003,
+     "note": "feature-level: evaluate.perturb(ft, 'clean_mules')"
+    }
+   },
+   "scam_payments": 23003,
+   "verdict": "pass: ≥ 85% warned at ≤ 1 false pause per 10,000",
+   "seconds": 9.3
+  },
+  {
+   "attack": "cancel_retry",
+   "label": "Cancel and retry smaller to another payee (line probing)",
+   "ran": false,
+   "measured_in": "policy",
+   "retries": 658,
+   "retries_stopped_v1": 0.806991,
+   "retries_stopped_v2": 0.987842,
+   "retries_stopped_v2_ci": [
+    0.976194,
+    0.993827
+   ],
+   "verdict": "pass: retries stopped 80.7% with Round 1's policy, 98.8% with policy v4 (n = 658; next section)",
+   "policy": "v4"
+  }
+ ]
+}

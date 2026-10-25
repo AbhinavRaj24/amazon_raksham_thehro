@@ -1,0 +1,273 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: loan_fee, payment 1 (scam)",
+ "decision_id": "D-0005",
+ "state": "awaiting_customer",
+ "payment": {
+  "customer": "C29358",
+  "amount": 4134.0,
+  "amount_text": "₹4,134",
+  "channel": "UPI to person",
+  "time": "Day 59 · 09:55"
+ },
+ "payee": {
+  "ref": "A/c ••9379",
+  "type": "registry",
+  "facts": [
+   "first payment from this customer",
+   "opened 1957 days ago",
+   "in a live network of 5 accounts",
+   "passed on 100% of ₹12,130 received in 24 h",
+   "reported on the national cybercrime portal"
+  ]
+ },
+ "phone": {
+  "tier": 2,
+  "headline": "Stop. Take 30 seconds.",
+  "pattern": "This account is linked to fraud.",
+  "advice": "Don't pay unless you know this person well and have checked with them directly.",
+  "why": [
+   "This account is part of a network of 5 accounts that collect money from many new payers and move it on within minutes",
+   "This account has been reported on the national cybercrime portal",
+   "You switched between apps 5 times during this payment"
+  ],
+  "actions": [
+   {
+    "id": "cancel",
+    "label": "Cancel payment"
+   },
+   {
+    "id": "call_bank",
+    "label": "Call my bank"
+   },
+   {
+    "id": "continue",
+    "label": "Continue (after 30 s)"
+   }
+  ]
+ },
+ "phone_by_lang": {
+  "en": {
+   "tier": 2,
+   "headline": "Stop. Take 30 seconds.",
+   "pattern": "This account is linked to fraud.",
+   "advice": "Don't pay unless you know this person well and have checked with them directly.",
+   "why": [
+    "This account is part of a network of 5 accounts that collect money from many new payers and move it on within minutes",
+    "This account has been reported on the national cybercrime portal",
+    "You switched between apps 5 times during this payment"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "Cancel payment"
+    },
+    {
+     "id": "call_bank",
+     "label": "Call my bank"
+    },
+    {
+     "id": "continue",
+     "label": "Continue (after 30 s)"
+    }
+   ]
+  },
+  "hi": {
+   "tier": 2,
+   "headline": "रुकिए। 30 सेकंड लीजिए।",
+   "pattern": "यह खाता धोखाधड़ी से जुड़ा है।",
+   "advice": "जब तक आप इस व्यक्ति को अच्छी तरह न जानते हों और उनसे सीधे पुष्टि न कर ली हो, भुगतान न करें।",
+   "why": [
+    "यह खाता 5 खातों के ऐसे नेटवर्क का हिस्सा है जो कई नए लोगों से पैसे लेकर मिनटों में आगे भेज देता है",
+    "इस खाते की शिकायत राष्ट्रीय साइबर अपराध पोर्टल पर दर्ज है",
+    "इस भुगतान के दौरान आपने 5 बार ऐप बदले"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "भुगतान रद्द करें"
+    },
+    {
+     "id": "call_bank",
+     "label": "मेरे बैंक को कॉल करें"
+    },
+    {
+     "id": "continue",
+     "label": "जारी रखें (30 सेकंड बाद)"
+    }
+   ]
+  }
+ },
+ "phone_meta": {
+  "lang": "en",
+  "continue_after_s": 30,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 2,
+  "tier_name": "Pause and explain",
+  "base_tier": 2,
+  "scores": {
+   "s_fused": 0.2242,
+   "s_journey": 0.0045,
+   "s_payee": 0.5563,
+   "s_context": 0.0449
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": false,
+   "payee": true,
+   "context": true
+  },
+  "gate": true,
+  "payee_flag": true,
+  "reasons": [
+   {
+    "code": "CAMPAIGN",
+    "family": "payee",
+    "weight": 242.7,
+    "en": "This account is part of a network of 5 accounts that collect money from many new payers and move it on within minutes",
+    "hi": "यह खाता 5 खातों के ऐसे नेटवर्क का हिस्सा है जो कई नए लोगों से पैसे लेकर मिनटों में आगे भेज देता है"
+   },
+   {
+    "code": "REGISTRY",
+    "family": "payee",
+    "weight": 196.9,
+    "en": "This account has been reported on the national cybercrime portal",
+    "hi": "इस खाते की शिकायत राष्ट्रीय साइबर अपराध पोर्टल पर दर्ज है"
+   },
+   {
+    "code": "APP_SWITCHING",
+    "family": "context",
+    "weight": 14.9,
+    "en": "You switched between apps 5 times during this payment",
+    "hi": "इस भुगतान के दौरान आपने 5 बार ऐप बदले"
+   }
+  ],
+  "advice": "flagged_payee",
+  "features": {
+   "amount_log": 3.6164,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 0.3935,
+   "new_payees_7d": 1.0,
+   "recent_payee_payments_7d": 1.0,
+   "recent_payee_sum_7d_log": 3.3002,
+   "push_out_24h_vs_usual": 16.6483,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 0,
+   "payee_age_days": 1957.12,
+   "payee_idle_days": 0.5612,
+   "payee_new_payers_24h": 0.0,
+   "payee_inflow_24h_log": 4.0839,
+   "payee_passthrough_24h": 1.1938,
+   "payee_registry": 1,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 1,
+   "payee_campaign_size": 5,
+   "on_call": 0.0,
+   "caller_unknown": 0.0,
+   "call_ott": 0.0,
+   "call_min": 0.0,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 5.0
+  },
+  "memory_note": null,
+  "workflow_guess": "marketplace",
+  "workflow_confidence": 0.829,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••9379",
+  "amount": 4134.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 0.0,
+   "caller_unknown": 0.0,
+   "call_ott": 0.0,
+   "call_min": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 5.0
+  }
+ },
+ "stored": {
+  "kind": "evidence",
+  "seq": 0,
+  "record": {
+   "seq": 0,
+   "kind": "decision",
+   "at": "simulated Day 59 · 09:55",
+   "body": {
+    "payment": {
+     "payment_id": "P2699122",
+     "customer_ref": "C29358",
+     "payee_ref": "A/c ••9379",
+     "amount": 4134.0,
+     "channel": "UPI to person",
+     "time": "Day 59 · 09:55"
+    },
+    "decision": {
+     "tier": 2,
+     "tier_name": "Pause and explain",
+     "families_elevated": [
+      "payee",
+      "context"
+     ],
+     "gate": true,
+     "payee_flag": true,
+     "memory_note": null
+    },
+    "scores": {
+     "s_fused": 0.2242,
+     "s_journey": 0.0045,
+     "s_payee": 0.5563,
+     "s_context": 0.0449
+    },
+    "reasons": [
+     "CAMPAIGN",
+     "REGISTRY",
+     "APP_SWITCHING"
+    ],
+    "workflow_guess": "marketplace",
+    "versions": {
+     "thehro": "0.1.0",
+     "model": "hgb-92it-677lab",
+     "thresholds": "val-days-35-41-t2-0.0847"
+    }
+   },
+   "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "b5e933a652ae2ff6207b51c3296a829f24f4acc9abe129240b908e3293c836d3"
+  },
+  "chain_ok": true,
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

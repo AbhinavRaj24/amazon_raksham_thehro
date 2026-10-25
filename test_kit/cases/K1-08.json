@@ -1,0 +1,34 @@
+{
+  "id": "K1-08",
+  "title": "Fake instant-loan app: fourth 'processing fee'",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "An instant-loan app approved ₹2 lakh but asked for a ₹999 'file charge', then ₹1,500 'GST' and ₹2,500 'insurance'. Now it wants ₹4,000 'NOC fee' before disbursal.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C28404",
+  "payee_type": "registry",
+  "amount": 4000,
+  "channel": "UPI to person",
+  "history": [
+    {
+      "kind": "new_payee_payment",
+      "amount": 999,
+      "hours_ago": 30
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 1500,
+      "hours_ago": 20
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 2500,
+      "hours_ago": 5
+    }
+  ],
+  "consent": true,
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "A rising series of fees to new accounts, and the payee is already reported on the cybercrime portal. An outside flag plus the series should be enough to stop it."
+}

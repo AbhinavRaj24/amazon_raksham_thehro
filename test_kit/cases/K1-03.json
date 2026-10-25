@@ -1,0 +1,38 @@
+{
+  "id": "K1-03",
+  "title": "Fake trading app: third, larger 'top-up' after a fake profit",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "Added to a WhatsApp 'stock tips' group, he invested ₹10,000 and then ₹18,000 through a fake app, received ₹2,400 'profit' to build trust, and is now told to deposit ₹32,000 to unlock an IPO allotment.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C28404",
+  "payee_type": "mule_network",
+  "amount": 32000,
+  "channel": "IMPS",
+  "history": [
+    {
+      "kind": "new_payee_payment",
+      "amount": 10000,
+      "hours_ago": 72
+    },
+    {
+      "kind": "stranger_credit",
+      "amount": 2400,
+      "hours_ago": 48
+    },
+    {
+      "kind": "new_payee_payment",
+      "amount": 18000,
+      "hours_ago": 30
+    }
+  ],
+  "consent": true,
+  "context": {
+    "on_call": 0,
+    "app_switches": 6
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "A rising series of payments to new accounts, a small credit from a stranger, and now 44× his usual payment to a mule-network account. No call, but journey and payee should agree on their own."
+}

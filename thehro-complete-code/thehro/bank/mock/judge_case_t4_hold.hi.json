@@ -1,0 +1,264 @@
+{
+ "_mock": true,
+ "_source": "outputs/demo_scenarios.json: digital_arrest, payment 1 (scam)",
+ "decision_id": "D-0008",
+ "state": "held",
+ "payment": {
+  "customer": "C23724",
+  "amount": 15693.0,
+  "amount_text": "₹15,693",
+  "channel": "UPI to person",
+  "time": "Day 48 · 11:00"
+ },
+ "payee": {
+  "ref": "A/c ••4119",
+  "type": "mule_network",
+  "facts": [
+   "first payment from this customer",
+   "opened 58 days ago",
+   "in a live network of 9 accounts",
+   "passed on 95% of ₹2,33,829 received in 24 h"
+  ]
+ },
+ "phone": {
+  "tier": 4,
+  "headline": "आपकी सुरक्षा के लिए हमने यह भुगतान रोका है",
+  "pattern": "क्या कॉल पर कोई आपसे पैसे भेजने को कह रहा है?",
+  "advice": "पुलिस, CBI, ED, कस्टम्स या कूरियर कंपनी कभी कॉल पर पैसे नहीं माँगती, और 'डिजिटल अरेस्ट' जैसा कुछ नहीं होता। कॉल काटें और 1930 पर कॉल करें।",
+  "why": [
+   "यह खाता 9 खातों के ऐसे नेटवर्क का हिस्सा है जो कई नए लोगों से पैसे लेकर मिनटों में आगे भेज देता है",
+   "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 55 गुना",
+   "आप एक अनजान नंबर से इंटरनेट कॉल पर हैं (अब तक 70 मिनट)"
+  ],
+  "actions": [
+   {
+    "id": "cancel",
+    "label": "भुगतान रद्द करें"
+   },
+   {
+    "id": "call_bank",
+    "label": "अभी बैंक से बात करें"
+   }
+  ],
+  "hold_note": "केवल यह भुगतान रोका गया है। बैंक का धोखाधड़ी अधिकारी 30 मिनट के अंदर आपके रजिस्टर्ड नंबर पर कॉल करेगा। आपके खाते में और कुछ नहीं बदला है।"
+ },
+ "phone_by_lang": {
+  "en": {
+   "tier": 4,
+   "headline": "We've paused this payment to protect you",
+   "pattern": "Is someone on a call telling you to pay?",
+   "advice": "Police, CBI, ED, customs or courier companies never ask for money on a call, and nobody can be 'digitally arrested'. Hang up and call 1930.",
+   "why": [
+    "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes",
+    "First payment to this account, 55x your usual payment",
+    "You are on an internet call with an unknown number (70 min so far)"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "Cancel payment"
+    },
+    {
+     "id": "call_bank",
+     "label": "Talk to the bank now"
+    }
+   ],
+   "hold_note": "Only this payment is held. A bank fraud officer will call your registered number within 30 minutes. Nothing else on your account is affected."
+  },
+  "hi": {
+   "tier": 4,
+   "headline": "आपकी सुरक्षा के लिए हमने यह भुगतान रोका है",
+   "pattern": "क्या कॉल पर कोई आपसे पैसे भेजने को कह रहा है?",
+   "advice": "पुलिस, CBI, ED, कस्टम्स या कूरियर कंपनी कभी कॉल पर पैसे नहीं माँगती, और 'डिजिटल अरेस्ट' जैसा कुछ नहीं होता। कॉल काटें और 1930 पर कॉल करें।",
+   "why": [
+    "यह खाता 9 खातों के ऐसे नेटवर्क का हिस्सा है जो कई नए लोगों से पैसे लेकर मिनटों में आगे भेज देता है",
+    "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 55 गुना",
+    "आप एक अनजान नंबर से इंटरनेट कॉल पर हैं (अब तक 70 मिनट)"
+   ],
+   "actions": [
+    {
+     "id": "cancel",
+     "label": "भुगतान रद्द करें"
+    },
+    {
+     "id": "call_bank",
+     "label": "अभी बैंक से बात करें"
+    }
+   ],
+   "hold_note": "केवल यह भुगतान रोका गया है। बैंक का धोखाधड़ी अधिकारी 30 मिनट के अंदर आपके रजिस्टर्ड नंबर पर कॉल करेगा। आपके खाते में और कुछ नहीं बदला है।"
+  }
+ },
+ "phone_meta": {
+  "lang": "hi",
+  "continue_after_s": null,
+  "case_id": "H-0001"
+ },
+ "bank_view": {
+  "tier": 4,
+  "tier_name": "Hold for review",
+  "base_tier": 4,
+  "scores": {
+   "s_fused": 0.3845,
+   "s_journey": 0.0873,
+   "s_payee": 0.5248,
+   "s_context": 0.0702
+  },
+  "lines": {
+   "note": 0.0106708,
+   "pause": 0.0846576,
+   "hold": 0.0846576
+  },
+  "family_lines": {
+   "journey": 0.0133886,
+   "payee": 0.010119,
+   "context": 0.0274055
+  },
+  "families": {
+   "journey": true,
+   "payee": true,
+   "context": true
+  },
+  "gate": true,
+  "payee_flag": true,
+  "reasons": [
+   {
+    "code": "CAMPAIGN",
+    "family": "payee",
+    "weight": 242.7,
+    "en": "This account is part of a network of 9 accounts that collect money from many new payers and move it on within minutes",
+    "hi": "यह खाता 9 खातों के ऐसे नेटवर्क का हिस्सा है जो कई नए लोगों से पैसे लेकर मिनटों में आगे भेज देता है"
+   },
+   {
+    "code": "NEW_PAYEE_LARGE",
+    "family": "journey",
+    "weight": 26.3,
+    "en": "First payment to this account, 55x your usual payment",
+    "hi": "इस खाते को आपका पहला भुगतान, आपकी आम रकम का 55 गुना"
+   },
+   {
+    "code": "CALL_UNKNOWN",
+    "family": "context",
+    "weight": 17.5,
+    "en": "You are on an internet call with an unknown number (70 min so far)",
+    "hi": "आप एक अनजान नंबर से इंटरनेट कॉल पर हैं (अब तक 70 मिनट)"
+   }
+  ],
+  "advice": "authority_call",
+  "features": {
+   "amount_log": 4.1957,
+   "is_new_payee": 1,
+   "n_prev_to_payee": 0,
+   "amt_vs_usual": 54.6794,
+   "new_payees_7d": 0.0,
+   "recent_payee_payments_7d": 0.0,
+   "recent_payee_sum_7d_log": 0.0,
+   "push_out_24h_vs_usual": 1.1334,
+   "fd_break_48h": 0,
+   "stranger_credits_24h": 0.0,
+   "is_night": 0,
+   "payee_type": 2,
+   "payee_age_days": 58.0775,
+   "payee_idle_days": 0.3921,
+   "payee_new_payers_24h": 2.0,
+   "payee_inflow_24h_log": 5.3689,
+   "payee_passthrough_24h": 0.9523,
+   "payee_registry": 0,
+   "payee_fri_band": 0,
+   "payee_in_campaign": 1,
+   "payee_campaign_size": 9,
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 69.5543,
+   "caller_fri_band": 0.0,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 5.0
+  },
+  "memory_note": null,
+  "workflow_guess": "digital_arrest",
+  "workflow_confidence": 0.943,
+  "fallback": null,
+  "fast_path": null,
+  "timing_ms": {
+   "features": 150,
+   "decision": 24,
+   "total": 180,
+   "_note": "placeholder timings"
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••4119",
+  "amount": 15693.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 69.5543,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 5.0
+  }
+ },
+ "stored": {
+  "kind": "evidence",
+  "seq": 0,
+  "record": {
+   "seq": 0,
+   "kind": "decision",
+   "at": "simulated Day 48 · 11:00",
+   "body": {
+    "payment": {
+     "payment_id": "P2194884",
+     "customer_ref": "C23724",
+     "payee_ref": "A/c ••4119",
+     "amount": 15693.0,
+     "channel": "UPI to person",
+     "time": "Day 48 · 11:00"
+    },
+    "decision": {
+     "tier": 4,
+     "tier_name": "Hold for review",
+     "families_elevated": [
+      "journey",
+      "payee",
+      "context"
+     ],
+     "gate": true,
+     "payee_flag": true,
+     "memory_note": null
+    },
+    "scores": {
+     "s_fused": 0.3845,
+     "s_journey": 0.0873,
+     "s_payee": 0.5248,
+     "s_context": 0.0702
+    },
+    "reasons": [
+     "CAMPAIGN",
+     "NEW_PAYEE_LARGE",
+     "CALL_UNKNOWN"
+    ],
+    "workflow_guess": "digital_arrest",
+    "versions": {
+     "thehro": "0.1.0",
+     "model": "hgb-92it-677lab",
+     "thresholds": "val-days-35-41-t2-0.0847"
+    }
+   },
+   "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "da4705303787a176ad50d1136a02c07490341541675e50a7cec66c1311f4159e"
+  },
+  "chain_ok": true,
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

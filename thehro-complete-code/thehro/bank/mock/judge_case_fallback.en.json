@@ -1,0 +1,70 @@
+{
+ "_mock": true,
+ "_source": "hand-built: the digital-arrest payment with the decision service stopped",
+ "decision_id": "D-0010",
+ "state": "pin",
+ "payment": {
+  "customer": "C23724",
+  "amount": 15693.0,
+  "amount_text": "₹15,693",
+  "channel": "UPI to person",
+  "time": "Day 48 · 11:00"
+ },
+ "payee": {
+  "ref": "A/c ••4119",
+  "type": "mule_network",
+  "facts": [
+   "first payment from this customer",
+   "opened 58 days ago",
+   "in a live network of 9 accounts",
+   "passed on 95% of ₹2,33,829 received in 24 h"
+  ]
+ },
+ "phone": {},
+ "phone_by_lang": {
+  "en": {},
+  "hi": {}
+ },
+ "phone_meta": {
+  "lang": "en",
+  "continue_after_s": null,
+  "case_id": null
+ },
+ "bank_view": {
+  "tier": 0,
+  "tier_name": "Allow",
+  "fallback": "decision service unavailable: the bank's own rules applied and nothing was held",
+  "scores": null,
+  "reasons": [],
+  "timing_ms": {
+   "decision_timeout": 150
+  }
+ },
+ "sent_from_phone": {
+  "payee": "A/c ••4119",
+  "amount": 15693.0,
+  "channel": "UPI to person",
+  "consent": true,
+  "context": {
+   "on_call": 1.0,
+   "caller_unknown": 1.0,
+   "call_ott": 1.0,
+   "call_min": 69.5543,
+   "screen_share": 0.0,
+   "remote_app": 0.0,
+   "app_switches": 5.0
+  }
+ },
+ "stored": {
+  "kind": "none",
+  "note": "Thehro did not decide; the bank logged the fallback.",
+  "not_kept": [
+   "call audio",
+   "messages or chats",
+   "contacts",
+   "the caller's number",
+   "location",
+   "screen content"
+  ]
+ }
+}

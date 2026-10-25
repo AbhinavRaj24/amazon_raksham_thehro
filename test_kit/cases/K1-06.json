@@ -1,0 +1,25 @@
+{
+  "id": "K1-06",
+  "title": "Marketplace 'scan to receive': buyer's QR takes money instead",
+  "group": "clear_scam",
+  "truth": "scam",
+  "story": "He listed an old sofa online. A 'buyer in the army' calls and sends a QR code 'to receive the advance'; scanning it sends ₹5,500 out of his account.",
+  "written_by": "P4",
+  "written_at": "2026-10-24T19:30+05:30",
+  "customer": "C18694",
+  "payee_type": "new_account",
+  "amount": 5500,
+  "channel": "UPI to person",
+  "history": [],
+  "consent": true,
+  "context": {
+    "on_call": 1,
+    "call_ott": 0,
+    "call_min": 6,
+    "caller_unknown": 1,
+    "app_switches": 3
+  },
+  "lang": "en",
+  "expected": "interrupt",
+  "why": "A first payment of 4× his usual to a newly opened account during a short call from an unknown number. The amount is modest, so we may only reach a pause; even a pause would save him here."
+}
