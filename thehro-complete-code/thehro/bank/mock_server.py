@@ -3,7 +3,7 @@
     cd thehro-complete-code/thehro
     uvicorn bank.mock_server:app --host 0.0.0.0 --port 8080      # try it at http://127.0.0.1:8080/docs
 
-Paths and shapes follow FINALE_PLAN.md §8. Answers come from bank/mock/*.json (built from the Round 1
+Paths and shapes follow the live bank server (bank/server.py). Answers come from bank/mock/*.json (built from the Round 1
 outputs by bank/mock/make_mocks.py). Force any screen with "mock" in the request body or ?mock= in the URL,
 for example {"mock": "t4_hold"}; GET /mock/list shows the choices. Pages in bank/static/ are served at /.
 """

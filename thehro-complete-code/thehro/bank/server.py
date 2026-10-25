@@ -11,7 +11,7 @@ It stands in for the bank's backend:
      nothing, if the service is slow or down;
   3. shows the phone only the message (never scores), drops phone flags when there is no consent, and keeps
      the customer's choices, holds for officer review, and a log of who read which case.
-Paths and shapes match the mocks (bank/mock/README.md) and FINALE_PLAN.md §8.
+Paths and shapes match the mocks (bank/mock/README.md).
 """
 from __future__ import annotations
 

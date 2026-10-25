@@ -1,6 +1,6 @@
 {
  "_mock": true,
- "_source": "personas from outputs/demo_scenarios.json; lists as in FINALE_PLAN.md §5.1",
+ "_source": "personas from outputs/demo_scenarios.json; lists as on the live server",
  "now": {
   "t_min": 68340,
   "label": "Day 48 · 11:00"

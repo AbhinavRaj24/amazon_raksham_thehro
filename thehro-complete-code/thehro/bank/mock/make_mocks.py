@@ -141,7 +141,7 @@ def main():
                           **p, "usual_payment": round(usual) if usual else None,
                           "usual_payment_text": inr(usual) if usual else None})
     write("judge_options", {
-        "_mock": True, "_source": "personas from outputs/demo_scenarios.json; lists as in FINALE_PLAN.md §5.1",
+        "_mock": True, "_source": "personas from outputs/demo_scenarios.json; lists as on the live server",
         "now": NOW,
         "customers": customers,
         "payee_types": [
@@ -232,7 +232,7 @@ def main():
         "wait": {"state": "waiting", "until": "Day 48 · 12:00", "note": "You can pay after one hour."},
     }
     for a, body in actions.items():
-        write(f"judge_action_{a}", {"_mock": True, "_source": "placeholder states (FINALE_PLAN.md §8)",
+        write(f"judge_action_{a}", {"_mock": True, "_source": "placeholder states",
                                     "decision_id": "D-0008", "action": a, **body})
 
     # ---------------- judge: a decision's current state (the page polls it while a hold is reviewed) ----------

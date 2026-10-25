@@ -1,6 +1,6 @@
 {
  "_mock": true,
- "_source": "placeholder states (FINALE_PLAN.md §8)",
+ "_source": "placeholder states",
  "decision_id": "D-0008",
  "action": "this_was_me",
  "state": "review_requested",

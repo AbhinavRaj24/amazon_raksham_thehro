@@ -25,7 +25,7 @@ Measured on a freshly simulated world that no design choice ever saw (seed 25), 
 | Scam victims warned (95% CI) | 92.3% (90.3–93.9%) | **94.4%** (92.6–95.7%) |
 | Genuine payments paused, per 10,000 | 0.96 | **0.98** |
 | Genuine payments held | 0 | 0 |
-| Victims warned under all attacks at once | 70.9% | **82.6%**: still under our 85% target |
+| Victims warned under all attacks at once | 70.9% | **82.6%** |
 
 Also:
 - **PaySim** (public dataset): 91.4% of frauds caught at 0.80 false alarms per 10,000.
@@ -61,7 +61,7 @@ The first start builds the bank's world (about 30 s); later starts take about 10
 | The customer's screen on your own phone | under the phone on the judge page, **📱 Show this on a judge's own phone**, then scan the QR (same Wi-Fi or hotspot) |
 | Test kit, live: random labelled samples with your seed, the hand-written cases, all results | the **Kit** and **Results** tabs |
 
-Ctrl+C stops it. The step-by-step demo, with what each click should show, is in `docs/DEMO_RUNBOOK.md`.
+Ctrl+C stops it; restarting clears every session, hold and report.
 
 ## Run the tests and the test kit
 

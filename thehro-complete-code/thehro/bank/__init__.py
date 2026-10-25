@@ -1,1 +1,1 @@
-"""Bank side of the finale prototype: the bank server, its pages and its mocks (FINALE_PLAN.md §8)."""
+"""Bank side of the finale prototype: the bank server, its pages and its mocks."""

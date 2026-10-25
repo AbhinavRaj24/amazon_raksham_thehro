@@ -8,7 +8,7 @@
    the service's own in-process time.
 2. Bank server in judge mode (`bank.server`, in-process decisions): POST /judge/case end to end, which also builds
    the 39 features live from the customer's and payee's events.
-Not measured here: the phone's round trip over Wi-Fi or 4G (that needs the demo phone; see FINALE_PLAN.md L-9).
+Not measured here: the phone's round trip over Wi-Fi or 4G (that needs the demo phone).
 Writes test_kit/results/loadtest.json and the "latency" section of test_kit/report.md.
 """
 from __future__ import annotations

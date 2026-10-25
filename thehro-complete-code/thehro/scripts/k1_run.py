@@ -3,7 +3,7 @@
     python scripts/k1_run.py                              # bank server at http://127.0.0.1:8080
     python scripts/k1_run.py --server http://192.168.1.5:8080
 
-Each test_kit/cases/K1-*.json is a judge-mode case (FINALE_PLAN.md section 8: customer, payee_type, amount,
+Each test_kit/cases/K1-*.json is a judge-mode case (as for POST /judge/case: customer, payee_type, amount,
 channel, history, consent, context, lang) plus "expected" (interrupt, no_interrupt or never_hold) and "why"
 (format: scripts/check_cases.py). P4 commits them before anything runs on them; this script never edits them.
 

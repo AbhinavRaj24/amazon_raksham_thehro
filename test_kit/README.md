@@ -171,7 +171,7 @@ and no cross-bank mule networks.
   `cases/FROZEN.sha256` (one SHA-256 per file, identical to P4's package as received) *before* anything ran on
   them. The freeze is enforced: `scripts/k1_run.py` and the bank server's `/kit/run` refuse any case file that is
   missing from that list or has changed since.
-  Each file is a judge-mode case from `FINALE_PLAN.md` §8 plus who wrote it, when, the true answer and the
+  Each file is a judge-mode case (the same fields as `POST /judge/case`) plus who wrote it, when, the true answer and the
   expected outcome:
   ```json
   {"id": "K1-01", "title": "Digital arrest: FD broken, then a transfer during a long video call",
